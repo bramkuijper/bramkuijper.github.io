@@ -19,9 +19,10 @@ We aim for one chapter per week (except for the starter session), but we can adj
 ### Session dates and times:
 1. Thu April 16 1200 - 1300: chapter 1 - 1.4. 
 2. Wed April 22: 1000 - 1200 (*provisional, TBC April 16*), chapter 1.5 - chapter 1 end (page 36) and try to make at least 2 of the problems 
-3. Wed April 29: 1000 - 1200 (*provisional, TBC April 16*), chapter 2 
-4. Wed May 6: 1000 - 1200 (*provisional, TBC April 16*), chapter 3 
-5. Wed May 13: 1000 - 1200 (*provisional, TBC April 16*), chapter 4
-6. Wed May 20: 1000 - 1200 (*provisional, TBC April 16*), chapter 5
-7. Wed May 27: 1000 - 1200 (*provisional, TBC April 16*), chapter 6
+At the end of each session, we'll choose the date of the next session.
 
+## Session content and links
+1. [Introduction and a haploid viability selection model]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
+
+## Tools needed: a computer algebra systems
+Most exercises can be completed by pen and paper, but this gets tedious when plotting functions and numerically solving things. Below, I list three possible options for programs that can do numerical calculations for us. At a minimum, I will try to provide all solutions using Sympy/Jupyter, which come in a readable html format (hence you do not necessarily need to install Sympy/Jupyter yourself if you prefer other software). In the longer term, I hope to provide answers using all three tools.
