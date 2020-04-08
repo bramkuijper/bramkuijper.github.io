@@ -11,7 +11,17 @@ Email Bram at `a dot l dot w dot kuijper at exeter dot ac uk`.
 ## Sessions
 We meet online using [Microsoft Teams](https://products.office.com/en-gb/microsoft-teams/download-app). By now, you should have received a link to the meeting, but let me know if you haven't received it / still want to join.
 
-If you do not know how to use the chat function and the whiteboard, please read the manual on [Microsoft Teams](https://www.exeter.ac.uk/it/teams/). You might want to mute your microphone when joining and unmute when you have something to say. 
+If you do not know how to use the chat function and the whiteboard, please read the manual on [Microsoft Teams](https://www.exeter.ac.uk/it/teams/). You might want to mute your microphone when joining the session. 
 
 We aim for one chapter per week (except for the starter session), but we can adjust if necessary. 
+
+
+### Session dates and times:
+1. Thu April 16 1200 - 1300: chapter 1 - 1.4. 
+2. Wed April 22: 1000 - 1200 (*provisional, TBC April 16*), chapter 1.5 - chapter 1 end (page 36) and try to make at least 2 of the problems 
+3. Wed April 29: 1000 - 1200 (*provisional, TBC April 16*), chapter 2 
+4. Wed May 6: 1000 - 1200 (*provisional, TBC April 16*), chapter 3 
+5. Wed May 13: 1000 - 1200 (*provisional, TBC April 16*), chapter 4
+6. Wed May 20: 1000 - 1200 (*provisional, TBC April 16*), chapter 5
+7. Wed May 27: 1000 - 1200 (*provisional, TBC April 16*), chapter 6
 
