@@ -3,16 +3,19 @@ layout: default
 ---
 
 # Bram Kuijper - Evolutionary Theory
-I am a theoretical biologist working at the University of Exeter's Penryn Campus. 
+I am a theoretical biologist working at the University of Exeter's Penryn Campus. I use both analytical and computational models to understand a range of evolutionary problems.
 
 ## Interests
 * Phenotypic plasticity and adaptation
 * Maternal and paternal effects
-* Sexual selection and conflict
-* Intragenomic conflict
+* Cooperation and conflict in the genome
 * Sex allocation
 * Information and learning
+* Sexual selection and conflict
+
+## Ongoing:
+* From April 16 2020 onwards: [Book reading group]({{ site.baseurl }}{% link mcelreath_boyd/index.md}) on McElreath and Boyd (2007) "Mathematical Models of Social Evolution", Chicago University Press 
 
 ## Workshops and teaching
-* MSc module 'Approaches in Evolution and Behavioural Ecology' BIOM4018
-* Scientific programming in Python for postgraduate researchers
+* MSc module 'Approaches in Evolution and Behavioural Ecology' [BIOM4018](http://biosciences.exeter.ac.uk/current/modules/description/index.php?moduleCode=BIOM4018) 
+* 3-23 Sept 2020: [Scientific programming in Python](https://exeter-data-analytics.github.io/workshops/intro-to-python.html) (for postgraduate and early career researchers)
