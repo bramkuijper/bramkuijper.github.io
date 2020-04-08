@@ -28,3 +28,9 @@ and after that we'll take a break and take stock
 
 ## Session content and links
 1. [Introduction and a haploid viability selection model]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
+
+## You'll need a computer algebra system
+Most exercises can be completed by pen and paper, but this gets tedious when plotting functions and numerically solving things. Below, I list three possible options for programs that can do numerical calculations for us. At a minimum, I will try to provide all solutions using Sympy/Jupyter, which come in a readable html format (hence you do not necessarily need to install Sympy/Jupyter yourself if you prefer other software). In the longer term, I hope to provide answers using all three tools.
+
+1. [Sympy](https://www.sympy.org/en/index.html). Open source symbolic algebra package for [Python](https://www.python.org/). Sympy is particularly handy when used in a [jupyter notebook](https://jupyter.org/). Installation instructions for Sympy [here](https://docs.sympy.org/latest/install.html) and for jupyter [here](https://jupyter.readthedocs.io/en/latest/install.html). Some features may be experimental and unreliable, so your mileage may vary. 
+
