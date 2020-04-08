@@ -14,7 +14,7 @@ I am a theoretical biologist working at the University of Exeter's Penryn Campus
 * Sexual selection and conflict
 
 ## Ongoing:
-* From April 16 2020 onwards: [Book reading group]({{ site.baseurl }}{% link mcelreath_boyd/index.md}) on McElreath and Boyd (2007) "Mathematical Models of Social Evolution", Chicago University Press 
+* From April 16 2020 onwards: [Book reading group]({{ site.baseurl }}{% link mcelreath_boyd/index.md%}) on McElreath and Boyd (2007) "Mathematical Models of Social Evolution", Chicago University Press 
 
 ## Workshops and teaching
 * MSc module 'Approaches in Evolution and Behavioural Ecology' [BIOM4018](http://biosciences.exeter.ac.uk/current/modules/description/index.php?moduleCode=BIOM4018) 
