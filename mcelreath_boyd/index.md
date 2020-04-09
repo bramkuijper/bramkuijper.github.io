@@ -24,6 +24,6 @@ At the end of each session, we'll choose the date of the next session, which wil
 
 
 ## Session content and links
-* Session 1 Thu April 16. [Introduction and a haploid viability selection model]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
+* Session 1 Thu April 16. [Introduction and a haploid viability selection model]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html %})
 
 
