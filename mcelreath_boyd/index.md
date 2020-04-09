@@ -24,5 +24,10 @@ At the end of each session, we'll choose the date of the next session, which wil
 
 
 ## Session content and links
-* Session 1 Thu April 16. [Haploid population genetics worksheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
+* Session 1 Thu April 16. 
+- [Haploid population genetics worksheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
+- Additional reading by Wimsatt on philosophy of modeling [here](http://mechanism.ucsd.edu/teaching/models/Wimsatt.falsemodels.pdf) and another one by Paul Smaldino [here](http://smaldino.com/wp/wp-content/uploads/2017/01/Smaldino2017-ModelsAreStupid.pdf)
+
+
+
 
