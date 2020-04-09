@@ -19,5 +19,11 @@ We aim for one chapter per week (except for the starter session), but we can adj
 ### Session dates and times:
 1. Thu April 16 1200 - 1300: chapter 1 - 1.4. 
 2. Wed April 22: 1000 - 1200 (*provisional, TBC April 16*), chapter 1.5 - chapter 1 end (page 36) and try to make at least 2 of the problems 
-At the end of each session, we'll choose the date of the next session.
+
+At the end of each session, we'll choose the date of the next session, which will appear here.
+
+
+## Session content and links
+* Session 1 Thu April 16. [Introduction and a haploid viability selection model]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
+
 
