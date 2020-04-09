@@ -24,6 +24,5 @@ At the end of each session, we'll choose the date of the next session, which wil
 
 
 ## Session content and links
-* Session 1 Thu April 16. 
-
+* Session 1 Thu April 16. [Book reading group]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
 
