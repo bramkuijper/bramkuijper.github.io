@@ -18,7 +18,7 @@ We aim for one chapter per week (except for the starter session), but we can adj
 
 ### Session dates and times:
 1. Thu April 16 1200 - 1300: chapter 1 - 1.4. 
-2. Wed April 22: 1000 - 1200 (*provisional, TBC April 16*), chapter 1.5 - chapter 1 end (page 36) and try to make at least 2 of the problems 
+2. Wed April 22: 1200 - 1400 (*provisional, TBC April 16*), chapter 1.5 - chapter 1 end (page 36) and try to make at least 2 of the problems 
 
 At the end of each session, we'll choose the date of the next session, which will appear here.
 
@@ -27,6 +27,9 @@ At the end of each session, we'll choose the date of the next session, which wil
 * Session 1 Thu April 16. 
 - [Haploid population genetics worksheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
 - Additional reading: interesting article by Wimsatt on philosophy of modeling [here](http://mechanism.ucsd.edu/teaching/models/Wimsatt.falsemodels.pdf) and another article by Paul Smaldino [here](http://smaldino.com/wp/wp-content/uploads/2017/01/Smaldino2017-ModelsAreStupid.pdf)
+
+* Session 2 Wed Apr 22.
+- Equilibrium analysis and cobweb plots in sympy: [Explicit solutions, cobweb plots and equilibria in sympy]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.html%}) and [original jupyter workbook]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.ipynb%})
 
 
 ## Tools needed: a computer algebra system
