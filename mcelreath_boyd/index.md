@@ -25,11 +25,11 @@ At the end of each session, we'll choose the date of the next session, which wil
 
 ## Session content and links
 * Session 1 Thu April 16. 
-- [Haploid population genetics worksheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
-- Additional reading: interesting article by Wimsatt on philosophy of modeling [here](http://mechanism.ucsd.edu/teaching/models/Wimsatt.falsemodels.pdf) and another article by Paul Smaldino [here](http://smaldino.com/wp/wp-content/uploads/2017/01/Smaldino2017-ModelsAreStupid.pdf)
+    - [Haploid population genetics worksheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14.html%})
+    - Additional reading: interesting article by Wimsatt on philosophy of modeling [here](http://mechanism.ucsd.edu/teaching/models/Wimsatt.falsemodels.pdf) and another article by Paul Smaldino [here](http://smaldino.com/wp/wp-content/uploads/2017/01/Smaldino2017-ModelsAreStupid.pdf)
 
 * Session 2 Wed Apr 22.
-- Equilibrium analysis and cobweb plots in sympy: [Explicit solutions, cobweb plots and equilibria in sympy]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.html%}) and [original jupyter workbook]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.ipynb%})
+    - Equilibrium analysis and cobweb plots of the haploid selection model: [jupyter workbook in html]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.html%}), [original jupyter workbook]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.ipynb%}), [mathematica sheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.nb%})
 
 
 ## Tools needed: a computer algebra system
