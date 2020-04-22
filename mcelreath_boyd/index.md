@@ -13,12 +13,12 @@ We meet online using [Microsoft Teams](https://products.office.com/en-gb/microso
 
 If you do not know how to use the chat function and the whiteboard, please read the manual on [Microsoft Teams](https://www.exeter.ac.uk/it/teams/). You might want to mute your microphone when joining the session. 
 
-We aim for one chapter per week (except for the starter session), but we can adjust if necessary. 
 
 
 ### Session dates and times:
 1. Thu April 16 1200 - 1300: chapter 1 - 1.4. 
-2. Wed April 22: 1200 - 1400, chapter 1.5 - chapter 1 end (page 36) and try to make at least 2 of the problems 
+2. Wed April 22: 1200 - 1400, chapter 1.5 - chapter 1 end (page 36) + 2 exercises
+3. Wed April 29: 1200 - 1300, chapter 2 reading
 
 At the end of each session, we'll choose the date of the next session, which will appear here.
 
@@ -30,6 +30,8 @@ At the end of each session, we'll choose the date of the next session, which wil
 
 * Session 2 Wed Apr 22.
     - Equilibrium analysis and cobweb plots of the haploid selection model: [jupyter workbook in html]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.html%}), [original jupyter workbook]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.ipynb%}), [mathematica sheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_14_end.nb%})
+    - Answers to exercises 1-5: Most derivations are given in the jupyter worksheets, either in [html format]({{ site.baseurl }}{% link mcelreath_boyd/ch1_exercises_answers.html%}) or the [original jupyter workbook]({{ site.baseurl }}{% link mcelreath_boyd/ch1_exercises_answers.ipynb%}). There is also a  [compact mathematica sheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_exercises_answers.nb%}) with the computational methods (no derivations) to arrive at the answers.
+    - Interested in plotting ternary plots (where three instead of two alleles kick around)? See the [egtplot](https://github.com/mirzaevinom/egtplot) package (thanks to Arthur Newbury for the link).
 
 
 ## Tools needed: a computer algebra system
