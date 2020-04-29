@@ -19,6 +19,7 @@ If you do not know how to use the chat function and the whiteboard, please read 
 1. Thu April 16 1200 - 1300: chapter 1 - 1.4. 
 2. Wed April 22: 1200 - 1400, chapter 1.5 - chapter 1 end (page 36) + 2 exercises
 3. Wed April 29: 1200 - 1300, chapter 2 reading
+4. Wed May 6: 1200 - 1400, chapter 2 exercises
 
 At the end of each session, we'll choose the date of the next session, which will appear here.
 
@@ -33,6 +34,9 @@ At the end of each session, we'll choose the date of the next session, which wil
     - Answers to exercises 1-5: Most derivations are given in the jupyter worksheets, either in [html format]({{ site.baseurl }}{% link mcelreath_boyd/ch1_exercises_answers.html%}) or the [original jupyter workbook]({{ site.baseurl }}{% link mcelreath_boyd/ch1_exercises_answers.ipynb%}). There is also a  [compact mathematica sheet]({{ site.baseurl }}{% link mcelreath_boyd/ch1_exercises_answers.nb%}) with the computational methods (no derivations) to arrive at the answers.
     - Interested in plotting ternary plots (where three instead of two alleles kick around)? See the [egtplot](https://github.com/mirzaevinom/egtplot) package (thanks to Arthur Newbury for the link).
 
+* Session 2 Wed Apr 29.
+    - Some examples of solutions and (ternary) plots in `sympy`: [jupyter workbook in html]({{ site.baseurl }}{% link mcelreath_boyd/ch2_reading.html%}), [original jupyter workbook]({{ site.baseurl }}{% link mcelreath_boyd/ch2_reading.ipynb%}). 
+    - Additional literature re our discussion on ordered games (let me know if you want a pdf): for an example of a `Stackelberg` game where one individual moves first, allowing it to limit the strategy space of the second individual, see [Kokko (1999)](https://doi.org/10.1046/j.1461-0248.1999.00075.x) and [McNamara et al (2003)](https://doi.org/10.1093/beheco/14.3.301). Re the latter paper, on pp. 304-305 one can find a concise account of what happens. Also deals with more extensive negotation games towards the end. A more counterintuitive example of an 'ordered-games' is a paper on queen-worker conflict [Pen & Taylor (2005)](https://royalsocietypublishing.org/doi/full/10.1098/rspb.2005.3234), where the 2nd mover (workers) exploits information divulged by the 1st mover (queen). Despite this all, the 1st mover still wins, as natural selection allows the queen to anticipate that the workers will behave optimally in response to information. My crappy conjecture that it would ever be possible for a 2nd mover to prevail over the 1st mover (e.g., perhaps because the 2nd has more info about the 1st mover than the 1st mover has about the 2nd) does not seem to hold. But eager to hear if you know something. 
 
 ## Tools needed: a computer algebra system
 Most exercises can be completed using pen and paper, but this gets tedious when plotting functions and numerically solving things. Below are three possible options for programs that do numerical calculations for us. At a minimum, solutions will be provided using the first option, a [jupyter notebook](https://jupyter.org/), which will be published in .html format as well. In the longer term, we hope to provide answers to problems using more than one tool.
