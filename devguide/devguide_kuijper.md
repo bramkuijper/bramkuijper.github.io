@@ -5,15 +5,16 @@ If you are doing a simulation/modeling project involving C++, you need to instal
 Regardless of the operationg system you are using, make sure to read the [Now build a C++ program and run it](#RunC++) section below. ''Before'' doing so, however, first work through the [Installing things on Windows](#Windows) section. Otherwise continue right here with the [Installing things on a Mac](#Mac) section.
 
 ## <a name="Mac"></a>Installing things on a Mac
-### List of things to do/install
-1. Check out the Mac OS terminal application
-2. Install Xcode developer tools, which includes the c++ compiler 'clang'
-3. Install the package manager 'homebrew'
-4. Install git
-5. Install some required libraries: 'yaml-cpp' and 'libgsl'
+In short, we will do the following things:  
+1. Use the Mac OS terminal application  
+2. Install Xcode developer tools, which includes the c++ compiler ``clang``  
+3. Install the package manager ``homebrew``  
+4. Install ``git``  
+5. Install some required libraries: ``yaml-cpp`` and ``libgsl``  
+6. Install a coding editor like ``mate``  
 
-### Check out the Mac OS terminal application
-In Finder, go to Application
+### Use the Mac OS terminal application
+Open a Finder window. Then open the ''/Applications/Utitities'' folder. Then double-click terminal
 
 ## <a name="Windows"></a>Installing things on Windows
 1. Install MSYS2
@@ -26,6 +27,7 @@ In Finder, go to Application
 
 
 ## <a name="Windows"></a>OK, installation done. Now build a c++ program and run it.
-1. First, acquainted with some commonly used Unix 
+1. First, acquainted with some commonly used Unix commands
+
 
 
