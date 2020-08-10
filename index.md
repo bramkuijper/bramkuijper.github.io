@@ -19,3 +19,7 @@ I am a theoretical biologist working at the University of Exeter's Penryn Campus
 ## Workshops and teaching
 * MSc module 'Approaches in Evolution and Behavioural Ecology' [BIOM4018](http://biosciences.exeter.ac.uk/current/modules/description/index.php?moduleCode=BIOM4018) 
 * 3-23 Sept 2020: [Scientific programming in Python](https://exeter-data-analytics.github.io/workshops/intro-to-python.html) (for postgraduate and early career researchers)
+
+
+## Research projects
+For anyone doing a research project (3rd year or MSc) in my lab, read the [Developers guide]({{ site.base.url }}{% link devguide/devguide.html}) that shows you which programs to install and which commandline tools are important.
