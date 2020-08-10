@@ -50,7 +50,8 @@ While most simulation models are rather basic, some rely on added functionality 
 
 1. Go to <https://brew.sh/>
 2. Paste the little script that is presented there into the terminal and press enter.
-3. You'r done. 
+3. Answer a bunch of questions 
+4. You are done. 
 
 ### Install ``git``
 Git is a version control system -- it makes sure the source code you are running on your computer
