@@ -48,7 +48,7 @@ However if you are getting the message:
 ```
 then the c++ compiler is *not* installed and you should check whether you have followed all steps in <https://www.mkyong.com/mac/how-to-install-gcc-compiler-on-mac-os-x/>.
 
-### Install the package manager ``homebrew``
+### <a name="brew">Install the package manager ``homebrew``</a>
 While most simulation models are rather basic, some rely on added functionality packaged in a number of  *libraries*.  To compile and run the simulation models on your own computer you will need to install those libraries as well. This is done most easily by installing the ``homebrew`` package manager which manages the library installation for you.
 
 1. Go to <https://brew.sh/>
@@ -86,7 +86,9 @@ MSYS2 is an emulator that allows us to run UNIX commands on a windows machine. U
 
 1. Go to <http://msys2.org> and download the one-click installer ``msys2-x86_64-20xxxxx.exe``
 2. Once the file is downloaded click on it to instlal
-3. A rather paranoid warning message 'windows protected your PC' shows up (see image below. The warning occurs as Microsoft wants developers to pay them fees for such warnings not to appear. The developers of MSYS2 (rightly) thought otherwise. To get rid of the warning message, click on the **more info** link in the 
+3. A rather paranoid warning message 'windows protected your PC' shows up (see image below). The warning occurs as Microsoft wants developers to pay them fees for such warnings not to appear. The developers of MSYS2 (rightly) thought otherwise. To get rid of the warning message, click on the **more info** link and subsequently click **Run anyway** 
+
+![Figure of paranoid warning message](https://raw.githubusercontent.com/bramkuijper/bramkuijper.github.io/master/devguide/img/msys_warning.png) 
 
 
 
