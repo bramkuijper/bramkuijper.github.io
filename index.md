@@ -24,7 +24,6 @@ I am a theoretical biologist working at the University of Exeter's Penryn Campus
 ## Research projects
 For anyone doing a research project (3rd year or MSc) in my lab, read the [Developers guide]({{ site.base.url }}{% link devguide/devguide.md %}) that shows you which programs to install and which commandline tools are important.
 
-
 ## Publications 
 See also my [gooogle scholar page](https://scholar.google.com/citations?user=qoxet6oAAAAJ&hl=en).
 <script src="https://bibbase.org/show?bib=https://bramkuijper.github.io/pubs.bib&jsonp=1"></script>
