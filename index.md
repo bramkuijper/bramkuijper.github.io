@@ -26,4 +26,4 @@ For anyone doing a research project (3rd year or MSc) in my lab, read the [Devel
 
 
 ## Publications 
-<script src="https://bibbase.org/show?bib=https://github.com/bramkuijper/bramkuijper.github.io/pubs.bib&jsonp=1"></script>
+<script src="https://bibbase.org/show?bib=https://bramkuijper.github.io/pubs.bib&jsonp=1"></script>
