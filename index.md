@@ -18,10 +18,12 @@ I am a theoretical biologist working at the University of Exeter's Penryn Campus
 * We are starting a new MSc programme in Sept 2021 ['Applied Data Science: Ecology & Evolution'](https://www.exeter.ac.uk/postgraduate/courses/mathematics/appdataeco/) 
  
 ## Teaching
-* Coordinator of the MSc module 'Approaches in Evolution and Behavioural Ecology' [biom4018](http://biosciences.exeter.ac.uk/current/modules/description/index.php?moduleCode=BIOM4018) 
-* BSc 2nd year module ['Behavioural Ecology' (bio2430)](https://biosciences.exeter.ac.uk/current/modules/description/index.php?moduleCode=BIO2430&ay=2021/2)  (module coordinator: [Prof Jeremy Field](https://biosciences.exeter.ac.uk/staff/profile/index.php?web_id=Jeremy_Field))
-* MSc module 'Data Driven Ecology and Evolution' (lesm008) (module coordinator: [Dr Mario Recker](https://biosciences.exeter.ac.uk/staff/profile/index.php?web_id=Mario_Recker))
+* BSc 2nd year module ['Behavioural Ecology' (BIO2430)](https://biosciences.exeter.ac.uk/current/modules/description/index.php?moduleCode=BIO2430&ay=2021/2)  (module coordinator: [Prof Jeremy Field](https://biosciences.exeter.ac.uk/staff/profile/index.php?web_id=Jeremy_Field))
+* MSc module 'Evolutionary Behavioural Ecology (BIOM4046)
+* MSc module 'Data Driven Ecology and Evolution' (LESM008) (module coordinator: [Dr Mario Recker](https://biosciences.exeter.ac.uk/staff/profile/index.php?web_id=Mario_Recker))
 
+### Practical Evolutionary Modelling (BIOM4046)
+Read the [practical handout]({{ site.baseurl }}{ % link  teaching/practical_evolution/index.html % }).
 
 ## Interested in evolutionary modeling / data analysis? Join us!
 Interested in working on the interface between evolutionary theory and data? Interested in joining the group for a postdoctoral, PhD or MbyRes project? Please get in touch to discuss project ideas and funding options.
