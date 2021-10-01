@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Bram Kuijper" />
 
 
-<meta name="date" content="2021-09-30" />
+<meta name="date" content="2021-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -39,7 +39,7 @@ set in the _output.yml file.</p>" />
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="an-evolutionary-model-of-the-hawk-dove-game.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -181,8 +181,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#fitness"><i class="fa fa-check"></i><b>3.6</b> Fitness</a></li>
 <li class="chapter" data-level="3.7" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-2"><i class="fa fa-check"></i><b>3.7</b> Exercise</a></li>
 <li class="chapter" data-level="3.8" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#evolutionary-dynamics"><i class="fa fa-check"></i><b>3.8</b> Evolutionary dynamics</a></li>
-<li class="chapter" data-level="3.9" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested"><i class="fa fa-check"></i><b>3.9</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (skip this if not interested)</a></li>
-<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#implementing-our-evolutionary-algorithm"><i class="fa fa-check"></i><b>3.10</b> Implementing our evolutionary algorithm</a></li>
+<li class="chapter" data-level="3.9" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-only-if-interested"><i class="fa fa-check"></i><b>3.9</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (only if interested)</a></li>
+<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#implementing-an-evolutionary-algorithm-in-r"><i class="fa fa-check"></i><b>3.10</b> Implementing an evolutionary algorithm in R</a></li>
+<li class="chapter" data-level="3.11" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-3"><i class="fa fa-check"></i><b>3.11</b> Exercise</a></li>
+<li class="chapter" data-level="3.12" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-4"><i class="fa fa-check"></i><b>3.12</b> Exercise</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -257,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-2"><a href="a-brief-r-programming-crash-course.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;character&quot;</span></span>
 <span id="cb6-3"><a href="a-brief-r-programming-crash-course.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(var<span class="fl">.2</span>)</span>
 <span id="cb6-4"><a href="a-brief-r-programming-crash-course.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;double&quot;</span></span></code></pre></div>
-<p>As you see, <code>typeof</code> does not tell you <code>var.2</code> is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a <code>double</code>, which is another word for floating point value. If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).</p>
+<p>As you see, <code>typeof</code> does not tell you <code>var.2</code> is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a <code>double</code>, which is another word for floating point value). If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).</p>
 </div>
 </div>
 <div id="vectors-and-element-selection" class="section level2" number="2.2">
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.2.1</span> Exercises</h3>
 <ul>
 <li><p>What happens to the vector <code>animals</code> if you assign the name of your favorite animal (in quotes <code>""</code>, because text) to element <code>40</code>?</p></li>
-<li><p>Assign the number 0.5 to element <code>10</code> of the <code>animals</code> vector. Try to multiple this value by 10, by typing</p></li>
+<li><p>Assign the number 0.5 to element <code>10</code> of the <code>animals</code> vector. Try to multiply this value by 10, by typing</p></li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="a-brief-r-programming-crash-course.html#cb8-1" aria-hidden="true" tabindex="-1"></a>animals[[<span class="dv">10</span>]]<span class="sc">*</span><span class="dv">10</span></span></code></pre></div>
 <p>what happens? Use <code>typeof(animals[[10]])</code> to see what is going on.</p>
@@ -410,13 +412,13 @@ and there are lots more.</li>
 <div id="exercises-1" class="section level3" number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Exercises</h3>
 <ul>
-<li>Can you think of why we don’t we write <code>for (idx in vec.1)</code> as in the previous example?</li>
+<li>Why we don’t we write <code>for (idx in vec.1)</code>, as in the previous example?</li>
 <li>Could you change the code to store the sum that you obtain
 in each iteration in a list? I.e., that list should have the values</li>
 </ul>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="a-brief-r-programming-crash-course.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cumul.list)</span></code></pre></div>
 <pre><code>## [1]  1.5  8.7 23.1 23.4 47.9</code></pre>
-<p>OK now that we have some tools under our belts, let’s get going with evolution!!</p>
+<p>Now that we have some tools under our belts, let’s get going with evolution!!</p>
 
 </div>
 </div>

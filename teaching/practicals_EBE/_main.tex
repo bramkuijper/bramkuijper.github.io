@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -109,7 +109,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
@@ -117,7 +117,7 @@
 
 \title{Evolutionary Behavioural Ecology: practical on Modeling Evolution}
 \author{Bram Kuijper}
-\date{2021-09-30}
+\date{2021-10-01}
 
 \begin{document}
 \maketitle
@@ -247,7 +247,7 @@ You can always check the type of your variable using the \texttt{typeof()} funct
 \end{Highlighting}
 \end{Shaded}
 
-As you see, \texttt{typeof} does not tell you \texttt{var.2} is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a \texttt{double}, which is another word for floating point value. If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).
+As you see, \texttt{typeof} does not tell you \texttt{var.2} is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a \texttt{double}, which is another word for floating point value). If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).
 
 \hypertarget{vectors-and-element-selection}{%
 \section{Vectors and element selection}\label{vectors-and-element-selection}}
@@ -285,7 +285,7 @@ As you have seen in the example of \texttt{var.2} above, variables can point to 
 \item
   What happens to the vector \texttt{animals} if you assign the name of your favorite animal (in quotes \texttt{""}, because text) to element \texttt{40}?
 \item
-  Assign the number 0.5 to element \texttt{10} of the \texttt{animals} vector. Try to multiple this value by 10, by typing
+  Assign the number 0.5 to element \texttt{10} of the \texttt{animals} vector. Try to multiply this value by 10, by typing
 \end{itemize}
 
 \begin{Shaded}
@@ -459,7 +459,7 @@ Just to throw in another example that is slightly different, let us calculate th
 \begin{itemize}
 \tightlist
 \item
-  Can you think of why we don't we write \texttt{for\ (idx\ in\ vec.1)} as in the previous example?
+  Why we don't we write \texttt{for\ (idx\ in\ vec.1)}, as in the previous example?
 \item
   Could you change the code to store the sum that you obtain
   in each iteration in a list? I.e., that list should have the values
@@ -475,7 +475,7 @@ Just to throw in another example that is slightly different, let us calculate th
 ## [1]  1.5  8.7 23.1 23.4 47.9
 \end{verbatim}
 
-OK now that we have some tools under our belts, let's get going with evolution!!
+Now that we have some tools under our belts, let's get going with evolution!!
 
 \hypertarget{an-evolutionary-model-of-the-hawk-dove-game}{%
 \chapter{An evolutionary model of the hawk-dove game}\label{an-evolutionary-model-of-the-hawk-dove-game}}
@@ -600,8 +600,8 @@ The expression for \(p_{t+1}\) above tells you that if hawks do better than the 
 
 One advantage of our super-simple model is that we do not have derive a separate expression for the change in frequency of the dove allele!! This is simply \(1-p_{t+1}\). However, if we would consider more than two alleles per locus (or multiple loci), matters would be (far) more difficult.
 
-\hypertarget{relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested}{%
-\section{\texorpdfstring{Relation to \(\Delta p\) in lecture slides (skip this if not interested)}{Relation to \textbackslash Delta p in lecture slides (skip this if not interested)}}\label{relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested}}
+\hypertarget{relation-to-delta-p-in-lecture-slides-only-if-interested}{%
+\section{\texorpdfstring{Relation to \(\Delta p\) in lecture slides (only if interested)}{Relation to \textbackslash Delta p in lecture slides (only if interested)}}\label{relation-to-delta-p-in-lecture-slides-only-if-interested}}
 
 In the lecture slides we have seen that the change in allele frequency was given by
 \begin{align}
@@ -621,8 +621,61 @@ The clue is in the \(\Delta p = p_{t+1} - p_{t}\). If we substitute here for our
 &= p_{t} \left (1 - p_{t} \right )  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{\left (1  - p_{t}\right ) W_{D} }{\bar{W}_{t}} \quad \text{clubbing terms of }W_{H} \\
 &= p_{t} \left (1 - p_{t} \right ) \frac{W_{H} - W_{D}}{\bar{W}_{t}} \quad \text{clubbing terms of }p_{t} \left(1-p_{t} \right) \\
 \end{align}
+and we are done. Quite a bit of algebra to show that \(p_{t+1}\) and \(\Delta p\) are just two sides of the same coin, the first one is a \emph{recursion} equation, the second one a \emph{difference} equation.
 
-\hypertarget{implementing-our-evolutionary-algorithm}{%
-\section{Implementing our evolutionary algorithm}\label{implementing-our-evolutionary-algorithm}}
+\hypertarget{implementing-an-evolutionary-algorithm-in-r}{%
+\section{Implementing an evolutionary algorithm in R}\label{implementing-an-evolutionary-algorithm-in-r}}
+
+In order to asses whether hawks or doves win out, we need to iterate the population genetics recursion equation \(p_{t+1} = p_{t} W_{H} / \bar{W}\) for a number of timesteps until there is no further change.
+
+The \texttt{for} loop that we briefly encountered is an ideal tool to do this. To get you started, I provide a brief part of an R-script - containing mistakes and omissions - that you can modify so that it can update the recursion equation over multiple time steps until evolution stops.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# broken code on the evolution of hawks vs doves}
+\CommentTok{\# we intend to iterate the haploid population genetics}
+\CommentTok{\# recursion p(t+1) = p(t)*...}
+\CommentTok{\# but quite some things are missing or are wrong.}
+\CommentTok{\# Can you spot the errors / omissions?}
+
+\CommentTok{\# parameters coding the payoffs}
+\NormalTok{c }\OtherTok{\textless{}{-}} \FloatTok{2.0}
+
+\CommentTok{\# baseline fitness}
+\NormalTok{w0 }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\DecValTok{100}
+
+\CommentTok{\# maximum time the simulation should run for}
+\NormalTok{max\_time }\OtherTok{\textless{}{-}} \DecValTok{10}
+
+\CommentTok{\# a vector containing allele frequencies}
+\CommentTok{\# for all time steps}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\AttributeTok{x=}\ConstantTok{NA}\NormalTok{, }\AttributeTok{times=}\NormalTok{max\_time)}
+
+\CommentTok{\# set the initial frequency of the hawks}
+\CommentTok{\# at time step 1}
+\NormalTok{p[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \FloatTok{0.01}
+
+
+\NormalTok{wD }\OtherTok{\textless{}{-}}\NormalTok{ w0 }\SpecialCharTok{+}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{*} \DecValTok{0}
+
+\CommentTok{\# a for loop to iterate the recursion equation}
+\CommentTok{\# over multiple timesteps}
+\ControlFlowTok{for}\NormalTok{ (time\_idx  )}
+\NormalTok{\{}
+    \CommentTok{\# recursion equation}
+\NormalTok{    p[[time\_idx }\SpecialCharTok{+} \DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{*}\NormalTok{ wD}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-3}{%
+\section{Exercise}\label{exercise-3}}
+
+Can you improve the code above to obtain the change in frequency of the hawk allele over \texttt{max\_time} timesteps?
+
+\hypertarget{exercise-4}{%
+\section{Exercise}\label{exercise-4}}
+
+From evolutionary game theory, we know that the equilibrium frequency \(\hat{p}\) of hawks (i.e., the frequency at which there is no further change in the frequency of hawks) is \(\hat{p} = v/c\). Do you get the same answer here? What would you conclude about the importance of genetic detail?
 
 \end{document}

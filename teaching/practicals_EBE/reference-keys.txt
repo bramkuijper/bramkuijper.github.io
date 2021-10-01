@@ -23,5 +23,7 @@ life-cycle
 fitness
 exercise-2
 evolutionary-dynamics
-relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested
-implementing-our-evolutionary-algorithm
+relation-to-delta-p-in-lecture-slides-only-if-interested
+implementing-an-evolutionary-algorithm-in-r
+exercise-3
+exercise-4

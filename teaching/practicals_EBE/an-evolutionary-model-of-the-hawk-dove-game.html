@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Bram Kuijper" />
 
 
-<meta name="date" content="2021-09-30" />
+<meta name="date" content="2021-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -39,7 +39,7 @@ set in the _output.yml file.</p>" />
   
 <link rel="prev" href="a-brief-r-programming-crash-course.html"/>
 
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -181,8 +181,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#fitness"><i class="fa fa-check"></i><b>3.6</b> Fitness</a></li>
 <li class="chapter" data-level="3.7" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-2"><i class="fa fa-check"></i><b>3.7</b> Exercise</a></li>
 <li class="chapter" data-level="3.8" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#evolutionary-dynamics"><i class="fa fa-check"></i><b>3.8</b> Evolutionary dynamics</a></li>
-<li class="chapter" data-level="3.9" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested"><i class="fa fa-check"></i><b>3.9</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (skip this if not interested)</a></li>
-<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#implementing-our-evolutionary-algorithm"><i class="fa fa-check"></i><b>3.10</b> Implementing our evolutionary algorithm</a></li>
+<li class="chapter" data-level="3.9" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-only-if-interested"><i class="fa fa-check"></i><b>3.9</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (only if interested)</a></li>
+<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#implementing-an-evolutionary-algorithm-in-r"><i class="fa fa-check"></i><b>3.10</b> Implementing an evolutionary algorithm in R</a></li>
+<li class="chapter" data-level="3.11" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-3"><i class="fa fa-check"></i><b>3.11</b> Exercise</a></li>
+<li class="chapter" data-level="3.12" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-4"><i class="fa fa-check"></i><b>3.12</b> Exercise</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -305,8 +307,8 @@ p_{t+1} &amp;= p_{t}  \frac{W_{H}}{\bar{W}_{t}}
 <p>The expression for <span class="math inline">\(p_{t+1}\)</span> above tells you that if hawks do better than the average (<span class="math inline">\(W_{H} &gt; \bar{W}\)</span>), the frequency of the hawk allele will increase from one generation to the next, as <span class="math inline">\(W_{H}/\bar{W} &gt; 1\)</span>. Similarly, if hawks do worse than average, we have <span class="math inline">\(W_{H}/\bar{W} &lt; 1\)</span> and the frequency of the hawk allele decreases.</p>
 <p>One advantage of our super-simple model is that we do not have derive a separate expression for the change in frequency of the dove allele!! This is simply <span class="math inline">\(1-p_{t+1}\)</span>. However, if we would consider more than two alleles per locus (or multiple loci), matters would be (far) more difficult.</p>
 </div>
-<div id="relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (skip this if not interested)</h2>
+<div id="relation-to-delta-p-in-lecture-slides-only-if-interested" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (only if interested)</h2>
 <p>In the lecture slides we have seen that the change in allele frequency was given by
 <span class="math display">\[\begin{align}
 \Delta p = p_{t+1} - p_{t} = p_{t} \left ( 1 - p_{t} \right ) \frac{ W_{H} - W_{D}}{\bar{W}}
@@ -321,10 +323,54 @@ The clue is in the <span class="math inline">\(\Delta p = p_{t+1} - p_{t}\)</spa
 &amp;= p_{t}  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{p_{t} W_{H} + \left (1  - p_{t}\right ) W_{D} }{\bar{W}_{t}} \quad \text{expanding }\bar{W} \\
 &amp;= p_{t} \left (1 - p_{t} \right )  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{\left (1  - p_{t}\right ) W_{D} }{\bar{W}_{t}} \quad \text{clubbing terms of }W_{H} \\
 &amp;= p_{t} \left (1 - p_{t} \right ) \frac{W_{H} - W_{D}}{\bar{W}_{t}} \quad \text{clubbing terms of }p_{t} \left(1-p_{t} \right) \\
-\end{align}\]</span></p>
+\end{align}\]</span>
+and we are done. Quite a bit of algebra to show that <span class="math inline">\(p_{t+1}\)</span> and <span class="math inline">\(\Delta p\)</span> are just two sides of the same coin, the first one is a <em>recursion</em> equation, the second one a <em>difference</em> equation.</p>
 </div>
-<div id="implementing-our-evolutionary-algorithm" class="section level2" number="3.10">
-<h2><span class="header-section-number">3.10</span> Implementing our evolutionary algorithm</h2>
+<div id="implementing-an-evolutionary-algorithm-in-r" class="section level2" number="3.10">
+<h2><span class="header-section-number">3.10</span> Implementing an evolutionary algorithm in R</h2>
+<p>In order to asses whether hawks or doves win out, we need to iterate the population genetics recursion equation <span class="math inline">\(p_{t+1} = p_{t} W_{H} / \bar{W}\)</span> for a number of timesteps until there is no further change.</p>
+<p>The <code>for</code> loop that we briefly encountered is an ideal tool to do this. To get you started, I provide a brief part of an R-script - containing mistakes and omissions - that you can modify so that it can update the recursion equation over multiple time steps until evolution stops.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># broken code on the evolution of hawks vs doves</span></span>
+<span id="cb16-2"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we intend to iterate the haploid population genetics</span></span>
+<span id="cb16-3"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># recursion p(t+1) = p(t)*...</span></span>
+<span id="cb16-4"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># but quite some things are missing or are wrong.</span></span>
+<span id="cb16-5"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Can you spot the errors / omissions?</span></span>
+<span id="cb16-6"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters coding the payoffs</span></span>
+<span id="cb16-8"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-8" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">2.0</span></span>
+<span id="cb16-9"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># baseline fitness</span></span>
+<span id="cb16-11"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-11" aria-hidden="true" tabindex="-1"></a>w0 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">100</span></span>
+<span id="cb16-12"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># maximum time the simulation should run for</span></span>
+<span id="cb16-14"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-14" aria-hidden="true" tabindex="-1"></a>max_time <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb16-15"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># a vector containing allele frequencies</span></span>
+<span id="cb16-17"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># for all time steps</span></span>
+<span id="cb16-18"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-18" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="at">x=</span><span class="cn">NA</span>, <span class="at">times=</span>max_time)</span>
+<span id="cb16-19"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co"># set the initial frequency of the hawks</span></span>
+<span id="cb16-21"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># at time step 1</span></span>
+<span id="cb16-22"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-22" aria-hidden="true" tabindex="-1"></a>p[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb16-23"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-25" aria-hidden="true" tabindex="-1"></a>wD <span class="ot">&lt;-</span> w0 <span class="sc">+</span> p[[time_idx]] <span class="sc">*</span> <span class="dv">0</span></span>
+<span id="cb16-26"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co"># a for loop to iterate the recursion equation</span></span>
+<span id="cb16-28"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co"># over multiple timesteps</span></span>
+<span id="cb16-29"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (time_idx  )</span>
+<span id="cb16-30"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-30" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb16-31"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># recursion equation</span></span>
+<span id="cb16-32"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-32" aria-hidden="true" tabindex="-1"></a>    p[[time_idx <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> p[[time_idx]] <span class="sc">*</span> wD</span>
+<span id="cb16-33"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#cb16-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="exercise-3" class="section level2" number="3.11">
+<h2><span class="header-section-number">3.11</span> Exercise</h2>
+<p>Can you improve the code above to obtain the change in frequency of the hawk allele over <code>max_time</code> timesteps?</p>
+</div>
+<div id="exercise-4" class="section level2" number="3.12">
+<h2><span class="header-section-number">3.12</span> Exercise</h2>
+<p>From evolutionary game theory, we know that the equilibrium frequency <span class="math inline">\(\hat{p}\)</span> of hawks (i.e., the frequency at which there is no further change in the frequency of hawks) is <span class="math inline">\(\hat{p} = v/c\)</span>. Do you get the same answer here? What would you conclude about the importance of genetic detail?</p>
 
 </div>
 </div>
