@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practical on Modeling Evolution</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practical on Modeling Evolution" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practical on Modeling Evolution" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Bram Kuijper" />
+
+
+<meta name="date" content="2021-09-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="an-evolutionary-model-of-the-hawk-dove-game.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Practical EBE handout</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Practicals on evolutionary models using R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#opening-the-r-environment"><i class="fa fa-check"></i><b>1.2</b> Opening the R environment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html"><i class="fa fa-check"></i><b>2</b> A brief R programming crash course</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#naming-variables"><i class="fa fa-check"></i><b>2.1.1</b> Naming variables</a></li>
+<li class="chapter" data-level="2.1.2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#changing-the-value-stored-by-variables"><i class="fa fa-check"></i><b>2.1.2</b> Changing the value stored by variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#vectors-and-element-selection"><i class="fa fa-check"></i><b>2.2</b> Vectors and element selection</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#exercises"><i class="fa fa-check"></i><b>2.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#information-about-your-vector"><i class="fa fa-check"></i><b>2.3</b> Information about your vector</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#exercise"><i class="fa fa-check"></i><b>2.3.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#sequences"><i class="fa fa-check"></i><b>2.4</b> Sequences</a></li>
+<li class="chapter" data-level="2.5" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#the-important-bit-for-loops"><i class="fa fa-check"></i><b>2.5</b> The important bit: <code>for</code> loops</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#dissecting-the-for-loop"><i class="fa fa-check"></i><b>2.5.1</b> Dissecting the for loop</a></li>
+<li class="chapter" data-level="2.5.2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#another-example"><i class="fa fa-check"></i><b>2.5.2</b> Another example</a></li>
+<li class="chapter" data-level="2.5.3" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#exercises-1"><i class="fa fa-check"></i><b>2.5.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html"><i class="fa fa-check"></i><b>3</b> An evolutionary model of the hawk-dove game</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#payoff-matrices"><i class="fa fa-check"></i><b>3.1</b> Payoff matrices</a></li>
+<li class="chapter" data-level="3.2" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-1"><i class="fa fa-check"></i><b>3.2</b> Exercise</a></li>
+<li class="chapter" data-level="3.3" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#a-haploid-population-genetical-model-of-the-hawk-dove-game"><i class="fa fa-check"></i><b>3.3</b> A haploid population genetical model of the Hawk-Dove game</a></li>
+<li class="chapter" data-level="3.4" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#alleles"><i class="fa fa-check"></i><b>3.4</b> Alleles</a></li>
+<li class="chapter" data-level="3.5" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#life-cycle"><i class="fa fa-check"></i><b>3.5</b> Life cycle</a></li>
+<li class="chapter" data-level="3.6" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#fitness"><i class="fa fa-check"></i><b>3.6</b> Fitness</a></li>
+<li class="chapter" data-level="3.7" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-2"><i class="fa fa-check"></i><b>3.7</b> Exercise</a></li>
+<li class="chapter" data-level="3.8" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#evolutionary-dynamics"><i class="fa fa-check"></i><b>3.8</b> Evolutionary dynamics</a></li>
+<li class="chapter" data-level="3.9" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested"><i class="fa fa-check"></i><b>3.9</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (skip this if not interested)</a></li>
+<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#implementing-our-evolutionary-algorithm"><i class="fa fa-check"></i><b>3.10</b> Implementing our evolutionary algorithm</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: practical on Modeling Evolution</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-brief-r-programming-crash-course" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> A brief R programming crash course</h1>
+<p>To get started with making our own evolutionary model, we need to make a simple program in R that tracks an evolving population.</p>
+<p>To this end, you need to know something about the ingredients that simple programs use, namely variables, vectors/sequences and for-loops. Some of this may have already featured in your statistics or introduction to data science modules, but at this stage, getting some repetition about the sometimes bamboozling inner workings of R certainly does not hurt. Even the most field-oriented among you will use R extensively during your research projects, so the more exposure you can get to this environment, the better.</p>
+<p>Try to type along with the examples below and see whether they work. Give me a shout if something looks odd.</p>
+<div id="variables" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Variables</h2>
+<p>A variable provides us with a named storage of data, allowing you to retrieve that bit of data when you want it. A variable in R can contain any type of data (e.g., a single number, a string of text, a vector of multiple values, etc).</p>
+<p>We assign data to a variable using a <code>=</code> or <code>&lt;-</code> operator (both can be used interchangeably) For example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-brief-r-programming-crash-course.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a variable named var.1 and assign a value to it using the &lt;- operator</span></span>
+<span id="cb1-2"><a href="a-brief-r-programming-crash-course.html#cb1-2" aria-hidden="true" tabindex="-1"></a>var<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="dv">25000</span></span>
+<span id="cb1-3"><a href="a-brief-r-programming-crash-course.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="a-brief-r-programming-crash-course.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a variable named var.2 and assign a vector, c(), of numbers to it using the = operator</span></span>
+<span id="cb1-5"><a href="a-brief-r-programming-crash-course.html#cb1-5" aria-hidden="true" tabindex="-1"></a>var<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">9.5</span>,<span class="dv">200</span>)</span>
+<span id="cb1-6"><a href="a-brief-r-programming-crash-course.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="a-brief-r-programming-crash-course.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># a bit of text, surrounded by single &#39;&#39; or double &quot;&quot; quotes</span></span>
+<span id="cb1-8"><a href="a-brief-r-programming-crash-course.html#cb1-8" aria-hidden="true" tabindex="-1"></a>some.text <span class="ot">&lt;-</span> <span class="st">&quot;Swanpool beach&quot;</span></span></code></pre></div>
+<div id="naming-variables" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Naming variables</h3>
+<p>Variables can have any name, but cannot start with a number and can only contain dot <code>.</code> and underscore <code>_</code> characters as special characters.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="a-brief-r-programming-crash-course.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this fails</span></span>
+<span id="cb2-2"><a href="a-brief-r-programming-crash-course.html#cb2-2" aria-hidden="true" tabindex="-1"></a>2times_song_release_year <span class="ot">&lt;-</span> <span class="dv">1999</span></span>
+<span id="cb2-3"><a href="a-brief-r-programming-crash-course.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: &lt;text&gt;:2:2: unexpected symbol</span></span>
+<span id="cb2-4"><a href="a-brief-r-programming-crash-course.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1: # this fails</span></span>
+<span id="cb2-5"><a href="a-brief-r-programming-crash-course.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2: 2times_song_release_year</span></span>
+<span id="cb2-6"><a href="a-brief-r-programming-crash-course.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">##     ^</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="a-brief-r-programming-crash-course.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is fine</span></span>
+<span id="cb3-2"><a href="a-brief-r-programming-crash-course.html#cb3-2" aria-hidden="true" tabindex="-1"></a>release_year_2times <span class="ot">&lt;-</span> <span class="dv">1999</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="a-brief-r-programming-crash-course.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this fails too</span></span>
+<span id="cb4-2"><a href="a-brief-r-programming-crash-course.html#cb4-2" aria-hidden="true" tabindex="-1"></a>release%year <span class="ot">&lt;-</span> <span class="dv">1999</span></span>
+<span id="cb4-3"><a href="a-brief-r-programming-crash-course.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: &lt;text&gt;:2:8: unexpected input</span></span>
+<span id="cb4-4"><a href="a-brief-r-programming-crash-course.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1: # this fails too</span></span>
+<span id="cb4-5"><a href="a-brief-r-programming-crash-course.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2: release%year &lt;- 1999</span></span>
+<span id="cb4-6"><a href="a-brief-r-programming-crash-course.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">##           ^</span></span></code></pre></div>
+</div>
+<div id="changing-the-value-stored-by-variables" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Changing the value stored by variables</h3>
+<p>You can easily change values of variables, simply by assigning them a new one! The new value can be of a completely different type.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="a-brief-r-programming-crash-course.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the value of a variable, showing its current value</span></span>
+<span id="cb5-2"><a href="a-brief-r-programming-crash-course.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var<span class="fl">.1</span>)</span>
+<span id="cb5-3"><a href="a-brief-r-programming-crash-course.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 25000</span></span>
+<span id="cb5-4"><a href="a-brief-r-programming-crash-course.html#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="a-brief-r-programming-crash-course.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># change the value</span></span>
+<span id="cb5-6"><a href="a-brief-r-programming-crash-course.html#cb5-6" aria-hidden="true" tabindex="-1"></a>var<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="st">&quot;some text instead!&quot;</span></span>
+<span id="cb5-7"><a href="a-brief-r-programming-crash-course.html#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="a-brief-r-programming-crash-course.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print the new value</span></span>
+<span id="cb5-9"><a href="a-brief-r-programming-crash-course.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var<span class="fl">.1</span>)</span>
+<span id="cb5-10"><a href="a-brief-r-programming-crash-course.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;some text instead!&quot;</span></span></code></pre></div>
+<p>You can always check the type of your variable using the <code>typeof()</code> function:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-brief-r-programming-crash-course.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(var<span class="fl">.1</span>)</span>
+<span id="cb6-2"><a href="a-brief-r-programming-crash-course.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;character&quot;</span></span>
+<span id="cb6-3"><a href="a-brief-r-programming-crash-course.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(var<span class="fl">.2</span>)</span>
+<span id="cb6-4"><a href="a-brief-r-programming-crash-course.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;double&quot;</span></span></code></pre></div>
+<p>As you see, <code>typeof</code> does not tell you <code>var.2</code> is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a <code>double</code>, which is another word for floating point value. If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).</p>
+</div>
+</div>
+<div id="vectors-and-element-selection" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Vectors and element selection</h2>
+<p>As you have seen in the example of <code>var.2</code> above, variables can point to collections of multiple values (vectors). To create a vector, we use the <code>c()</code> function. We can subsequently get values of (groups of) individual elements by using the <code>[[]]</code> operator:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="a-brief-r-programming-crash-course.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. create a vector of character elements using c()</span></span>
+<span id="cb7-2"><a href="a-brief-r-programming-crash-course.html#cb7-2" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Opossum&quot;</span>,<span class="st">&quot;Dog&quot;</span>,<span class="st">&quot;Pallas&#39;s leaf warbler&quot;</span>)</span>
+<span id="cb7-3"><a href="a-brief-r-programming-crash-course.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="a-brief-r-programming-crash-course.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. select a single element using the double square brackets [[]]</span></span>
+<span id="cb7-5"><a href="a-brief-r-programming-crash-course.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[[<span class="dv">3</span>]])</span>
+<span id="cb7-6"><a href="a-brief-r-programming-crash-course.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Pallas&#39;s leaf warbler&quot;</span></span>
+<span id="cb7-7"><a href="a-brief-r-programming-crash-course.html#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="a-brief-r-programming-crash-course.html#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="a-brief-r-programming-crash-course.html#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. obtain a selection of </span></span>
+<span id="cb7-10"><a href="a-brief-r-programming-crash-course.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple values using [] and</span></span>
+<span id="cb7-11"><a href="a-brief-r-programming-crash-course.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># a vector of elements you want to select</span></span>
+<span id="cb7-12"><a href="a-brief-r-programming-crash-course.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)])</span>
+<span id="cb7-13"><a href="a-brief-r-programming-crash-course.html#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Dog&quot;                   &quot;Pallas&#39;s leaf warbler&quot;</span></span>
+<span id="cb7-14"><a href="a-brief-r-programming-crash-course.html#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="a-brief-r-programming-crash-course.html#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="a-brief-r-programming-crash-course.html#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. assign a new value to an existing element</span></span>
+<span id="cb7-17"><a href="a-brief-r-programming-crash-course.html#cb7-17" aria-hidden="true" tabindex="-1"></a>animals[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="st">&quot;Click beetle&quot;</span></span>
+<span id="cb7-18"><a href="a-brief-r-programming-crash-course.html#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals)</span>
+<span id="cb7-19"><a href="a-brief-r-programming-crash-course.html#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Click beetle&quot;          &quot;Dog&quot;                   &quot;Pallas&#39;s leaf warbler&quot;</span></span></code></pre></div>
+<div id="exercises" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Exercises</h3>
+<ul>
+<li><p>What happens to the vector <code>animals</code> if you assign the name of your favorite animal (in quotes <code>""</code>, because text) to element <code>40</code>?</p></li>
+<li><p>Assign the number 0.5 to element <code>10</code> of the <code>animals</code> vector. Try to multiple this value by 10, by typing</p></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="a-brief-r-programming-crash-course.html#cb8-1" aria-hidden="true" tabindex="-1"></a>animals[[<span class="dv">10</span>]]<span class="sc">*</span><span class="dv">10</span></span></code></pre></div>
+<p>what happens? Use <code>typeof(animals[[10]])</code> to see what is going on.</p>
+</div>
+</div>
+<div id="information-about-your-vector" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Information about your vector</h2>
+<p>You can obtain information about your vector by using a range of different functions, such as</p>
+<ul>
+<li><code>sum()</code>: sums all values (only works with numbers obvz)<br />
+</li>
+<li><code>unique()</code> lists all unique values<br />
+</li>
+<li><code>sort()</code> sorts values.
+and there are lots more.</li>
+</ul>
+<p>Most often, however, you will use the <code>length()</code> function to obtain its size:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="a-brief-r-programming-crash-course.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x=</span>animals)</span>
+<span id="cb9-2"><a href="a-brief-r-programming-crash-course.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 40</span></span></code></pre></div>
+<div id="exercise" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Exercise</h3>
+<p>Using the standard <code>iris</code> dataset (available within in <code>R</code> by typing <code>iris</code> on the command line), find out the number of unique values for the column <code>Sepal.Width</code>. If you see <code>iris</code> but don’t know how you can access the column, try to search for it on the web.</p>
+</div>
+</div>
+<div id="sequences" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Sequences</h2>
+<p>Vectors are also used to contain sequences of numbers, which can either be generated with the from-to operator <code>:</code> or with the more explicit <code>seq()</code> function:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="a-brief-r-programming-crash-course.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sequence from 1 to 10</span></span>
+<span id="cb10-2"><a href="a-brief-r-programming-crash-course.html#cb10-2" aria-hidden="true" tabindex="-1"></a>some.seq <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb10-3"><a href="a-brief-r-programming-crash-course.html#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="a-brief-r-programming-crash-course.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sequence from 10 to 1</span></span>
+<span id="cb10-5"><a href="a-brief-r-programming-crash-course.html#cb10-5" aria-hidden="true" tabindex="-1"></a>reverse.seq <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb10-6"><a href="a-brief-r-programming-crash-course.html#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="a-brief-r-programming-crash-course.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># same, but using the sequence in some.seq and the rev() &#39;reverse&#39; function:</span></span>
+<span id="cb10-8"><a href="a-brief-r-programming-crash-course.html#cb10-8" aria-hidden="true" tabindex="-1"></a>reverse.seq<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">rev</span>(some.seq)</span>
+<span id="cb10-9"><a href="a-brief-r-programming-crash-course.html#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="a-brief-r-programming-crash-course.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># sequence from 10 to 1, using the seq() function, with a negative increment</span></span>
+<span id="cb10-11"><a href="a-brief-r-programming-crash-course.html#cb10-11" aria-hidden="true" tabindex="-1"></a>another.seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">10</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb10-12"><a href="a-brief-r-programming-crash-course.html#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="a-brief-r-programming-crash-course.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># the seq() function is great if you want to take bigger steps:</span></span>
+<span id="cb10-14"><a href="a-brief-r-programming-crash-course.html#cb10-14" aria-hidden="true" tabindex="-1"></a>steps.of<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">3</span>,<span class="at">to=</span><span class="dv">29</span>,<span class="at">by=</span><span class="dv">5</span>)</span></code></pre></div>
+<p>We can also make vectors using repetitions of values, through <code>rep()</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="a-brief-r-programming-crash-course.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a vector of 300 zeros</span></span>
+<span id="cb11-2"><a href="a-brief-r-programming-crash-course.html#cb11-2" aria-hidden="true" tabindex="-1"></a>only.zeros <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="at">x=</span><span class="dv">0</span>,<span class="at">times=</span><span class="dv">300</span>)</span>
+<span id="cb11-3"><a href="a-brief-r-programming-crash-course.html#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="a-brief-r-programming-crash-course.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a vector of 0,1 values, repeated until a length of 13 is achieved</span></span>
+<span id="cb11-5"><a href="a-brief-r-programming-crash-course.html#cb11-5" aria-hidden="true" tabindex="-1"></a>zero.one <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">length.out=</span><span class="dv">13</span>)</span></code></pre></div>
+</div>
+<div id="the-important-bit-for-loops" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> The important bit: <code>for</code> loops</h2>
+<p>The point about programming is that you want to repeat actions multiple times. To this end, R offers you two different looping constructs: the <code>while()</code> loop and the <code>for</code> loop.</p>
+<p>In this practical, we focus on the <code>for</code> loop as it is more commonly used than <code>while()</code>. Best to begin by an example:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="a-brief-r-programming-crash-course.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you need some vector of something</span></span>
+<span id="cb12-2"><a href="a-brief-r-programming-crash-course.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># otherwise there will</span></span>
+<span id="cb12-3"><a href="a-brief-r-programming-crash-course.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># be nothing to loop over</span></span>
+<span id="cb12-4"><a href="a-brief-r-programming-crash-course.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, I use a vector of numbers from 5 up to (&amp; including) 10</span></span>
+<span id="cb12-5"><a href="a-brief-r-programming-crash-course.html#cb12-5" aria-hidden="true" tabindex="-1"></a>some.vec <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb12-6"><a href="a-brief-r-programming-crash-course.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="a-brief-r-programming-crash-course.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># component 1: the for statement within </span></span>
+<span id="cb12-8"><a href="a-brief-r-programming-crash-course.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># parentheses ()</span></span>
+<span id="cb12-9"><a href="a-brief-r-programming-crash-course.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (iterator <span class="cf">in</span> some.vec) </span>
+<span id="cb12-10"><a href="a-brief-r-programming-crash-course.html#cb12-10" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb12-11"><a href="a-brief-r-programming-crash-course.html#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># component 2: the for body within curly braces {} </span></span>
+<span id="cb12-12"><a href="a-brief-r-programming-crash-course.html#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># in which tasks </span></span>
+<span id="cb12-13"><a href="a-brief-r-programming-crash-course.html#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># are performed</span></span>
+<span id="cb12-14"><a href="a-brief-r-programming-crash-course.html#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># repeatedly for each value of iterator</span></span>
+<span id="cb12-15"><a href="a-brief-r-programming-crash-course.html#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(iterator)</span>
+<span id="cb12-16"><a href="a-brief-r-programming-crash-course.html#cb12-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-17"><a href="a-brief-r-programming-crash-course.html#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># I am also printing something else</span></span>
+<span id="cb12-18"><a href="a-brief-r-programming-crash-course.html#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for the sake of illustration</span></span>
+<span id="cb12-19"><a href="a-brief-r-programming-crash-course.html#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Some text.&quot;</span>)</span>
+<span id="cb12-20"><a href="a-brief-r-programming-crash-course.html#cb12-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-21"><a href="a-brief-r-programming-crash-course.html#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 5</span></span>
+<span id="cb12-22"><a href="a-brief-r-programming-crash-course.html#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Some text.&quot;</span></span>
+<span id="cb12-23"><a href="a-brief-r-programming-crash-course.html#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 6</span></span>
+<span id="cb12-24"><a href="a-brief-r-programming-crash-course.html#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Some text.&quot;</span></span>
+<span id="cb12-25"><a href="a-brief-r-programming-crash-course.html#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 7</span></span>
+<span id="cb12-26"><a href="a-brief-r-programming-crash-course.html#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Some text.&quot;</span></span>
+<span id="cb12-27"><a href="a-brief-r-programming-crash-course.html#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 8</span></span>
+<span id="cb12-28"><a href="a-brief-r-programming-crash-course.html#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Some text.&quot;</span></span>
+<span id="cb12-29"><a href="a-brief-r-programming-crash-course.html#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 9</span></span>
+<span id="cb12-30"><a href="a-brief-r-programming-crash-course.html#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Some text.&quot;</span></span>
+<span id="cb12-31"><a href="a-brief-r-programming-crash-course.html#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 10</span></span>
+<span id="cb12-32"><a href="a-brief-r-programming-crash-course.html#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Some text.&quot;</span></span></code></pre></div>
+<p>From the printed output, you see that the <code>iterator</code> gets a new value every time the loop goes round. The message <code>"Some text"</code> is also repeatedly printed, but this value does not change.</p>
+<div id="dissecting-the-for-loop" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Dissecting the for loop</h3>
+<p>The loop starts with the keyword <code>for</code>, followed by parentheses <code>()</code>. Within those parentheses, we always start by declaring a new variable, which – in this case – I have called <code>iterator</code>, but you could have given it <em>any</em> valid name, like <code>index</code> or <code>boring.practical</code>.</p>
+<p>Each time the <code>for</code> loop goes round, the <code>iterator</code> variable gets assigned a new value. Which value? An element from a vector, which we have called here <code>some.vec</code>. The <code>in</code> keyword in between <code>iterator</code> and <code>some.vec</code> performs the assigning of these consecutive elements from <code>some.vec</code> to <code>iterator</code>.</p>
+<p>Hence, the first time the loop goes round, <code>iterator</code> receives the value of <code>5</code>, as this is the first element of <code>some.vec</code>. Subsequently, the <code>for</code> loop enters the bit in between curly braces <code>{}</code>. The code in this part will be executed every time <code>iterator</code> gets a new value. In this case, the code is <code>print(iterator)</code>, meaning it prints the <em>current</em> value of the <code>iterator</code> variable (which is <code>5</code>) is printed to the screen. After this the subsequent <code>print()</code> statement is executed, which prints <code>"Some text"</code> to the screen.</p>
+<p>Next, the loop goes round again. Now the value of <code>iterator</code> will be 6. Again, <code>6</code> is printed by the <code>print()</code> statements in the <code>{}</code>-part and this goes on until all elements from <code>some.vec</code> have been assigned to <code>iterator</code>. Hence, the last value printed will be <code>10</code>, after which the <code>for</code> loop exits.</p>
+</div>
+<div id="another-example" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Another example</h3>
+<p>Just to throw in another example that is slightly different, let us calculate the product of elements of two vectors and sum those products:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="a-brief-r-programming-crash-course.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate two vectors with numbers; </span></span>
+<span id="cb13-2"><a href="a-brief-r-programming-crash-course.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vectors have the same length</span></span>
+<span id="cb13-3"><a href="a-brief-r-programming-crash-course.html#cb13-3" aria-hidden="true" tabindex="-1"></a>vec<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">0.9</span>,<span class="fl">1.2</span>,<span class="fl">0.1</span>,<span class="fl">3.5</span>)</span>
+<span id="cb13-4"><a href="a-brief-r-programming-crash-course.html#cb13-4" aria-hidden="true" tabindex="-1"></a>vec<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">3</span>,<span class="dv">7</span>)</span>
+<span id="cb13-5"><a href="a-brief-r-programming-crash-course.html#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="a-brief-r-programming-crash-course.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check whether the length is indeed the same</span></span>
+<span id="cb13-7"><a href="a-brief-r-programming-crash-course.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(vec<span class="fl">.1</span>) <span class="sc">==</span> <span class="fu">length</span>(vec<span class="fl">.2</span>))</span>
+<span id="cb13-8"><a href="a-brief-r-programming-crash-course.html#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="a-brief-r-programming-crash-course.html#cb13-9" aria-hidden="true" tabindex="-1"></a>sum <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb13-10"><a href="a-brief-r-programming-crash-course.html#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="a-brief-r-programming-crash-course.html#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># loop not over the elements of the list</span></span>
+<span id="cb13-12"><a href="a-brief-r-programming-crash-course.html#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># but over the element indices</span></span>
+<span id="cb13-13"><a href="a-brief-r-programming-crash-course.html#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># (we can do so by creating a list from </span></span>
+<span id="cb13-14"><a href="a-brief-r-programming-crash-course.html#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 to the length of one of the vectors,</span></span>
+<span id="cb13-15"><a href="a-brief-r-programming-crash-course.html#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># i.e., 1,2,3,...)</span></span>
+<span id="cb13-16"><a href="a-brief-r-programming-crash-course.html#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (idx <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(vec<span class="fl">.1</span>))</span>
+<span id="cb13-17"><a href="a-brief-r-programming-crash-course.html#cb13-17" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb13-18"><a href="a-brief-r-programming-crash-course.html#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use idx to obtain elements of both vectors</span></span>
+<span id="cb13-19"><a href="a-brief-r-programming-crash-course.html#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and add them to the total</span></span>
+<span id="cb13-20"><a href="a-brief-r-programming-crash-course.html#cb13-20" aria-hidden="true" tabindex="-1"></a>    sum <span class="ot">&lt;-</span> sum <span class="sc">+</span> </span>
+<span id="cb13-21"><a href="a-brief-r-programming-crash-course.html#cb13-21" aria-hidden="true" tabindex="-1"></a>        vec<span class="fl">.1</span>[[idx]] <span class="sc">*</span> vec<span class="fl">.2</span>[[idx]]</span>
+<span id="cb13-22"><a href="a-brief-r-programming-crash-course.html#cb13-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-23"><a href="a-brief-r-programming-crash-course.html#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sum)</span>
+<span id="cb13-24"><a href="a-brief-r-programming-crash-course.html#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 47.9</span></span></code></pre></div>
+</div>
+<div id="exercises-1" class="section level3" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Exercises</h3>
+<ul>
+<li>Can you think of why we don’t we write <code>for (idx in vec.1)</code> as in the previous example?</li>
+<li>Could you change the code to store the sum that you obtain
+in each iteration in a list? I.e., that list should have the values</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="a-brief-r-programming-crash-course.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cumul.list)</span></code></pre></div>
+<pre><code>## [1]  1.5  8.7 23.1 23.4 47.9</code></pre>
+<p>OK now that we have some tools under our belts, let’s get going with evolution!!</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="an-evolutionary-model-of-the-hawk-dove-game.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bramkuijper/01-r-crash-course.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

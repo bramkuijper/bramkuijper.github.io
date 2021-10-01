@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 An evolutionary model of the hawk-dove game | Evolutionary Behavioural Ecology: practical on Modeling Evolution</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 An evolutionary model of the hawk-dove game | Evolutionary Behavioural Ecology: practical on Modeling Evolution" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 An evolutionary model of the hawk-dove game | Evolutionary Behavioural Ecology: practical on Modeling Evolution" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Bram Kuijper" />
+
+
+<meta name="date" content="2021-09-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="a-brief-r-programming-crash-course.html"/>
+
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Practical EBE handout</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Practicals on evolutionary models using R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#opening-the-r-environment"><i class="fa fa-check"></i><b>1.2</b> Opening the R environment</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html"><i class="fa fa-check"></i><b>2</b> A brief R programming crash course</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#naming-variables"><i class="fa fa-check"></i><b>2.1.1</b> Naming variables</a></li>
+<li class="chapter" data-level="2.1.2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#changing-the-value-stored-by-variables"><i class="fa fa-check"></i><b>2.1.2</b> Changing the value stored by variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#vectors-and-element-selection"><i class="fa fa-check"></i><b>2.2</b> Vectors and element selection</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#exercises"><i class="fa fa-check"></i><b>2.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#information-about-your-vector"><i class="fa fa-check"></i><b>2.3</b> Information about your vector</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#exercise"><i class="fa fa-check"></i><b>2.3.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#sequences"><i class="fa fa-check"></i><b>2.4</b> Sequences</a></li>
+<li class="chapter" data-level="2.5" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#the-important-bit-for-loops"><i class="fa fa-check"></i><b>2.5</b> The important bit: <code>for</code> loops</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#dissecting-the-for-loop"><i class="fa fa-check"></i><b>2.5.1</b> Dissecting the for loop</a></li>
+<li class="chapter" data-level="2.5.2" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#another-example"><i class="fa fa-check"></i><b>2.5.2</b> Another example</a></li>
+<li class="chapter" data-level="2.5.3" data-path="a-brief-r-programming-crash-course.html"><a href="a-brief-r-programming-crash-course.html#exercises-1"><i class="fa fa-check"></i><b>2.5.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html"><i class="fa fa-check"></i><b>3</b> An evolutionary model of the hawk-dove game</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#payoff-matrices"><i class="fa fa-check"></i><b>3.1</b> Payoff matrices</a></li>
+<li class="chapter" data-level="3.2" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-1"><i class="fa fa-check"></i><b>3.2</b> Exercise</a></li>
+<li class="chapter" data-level="3.3" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#a-haploid-population-genetical-model-of-the-hawk-dove-game"><i class="fa fa-check"></i><b>3.3</b> A haploid population genetical model of the Hawk-Dove game</a></li>
+<li class="chapter" data-level="3.4" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#alleles"><i class="fa fa-check"></i><b>3.4</b> Alleles</a></li>
+<li class="chapter" data-level="3.5" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#life-cycle"><i class="fa fa-check"></i><b>3.5</b> Life cycle</a></li>
+<li class="chapter" data-level="3.6" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#fitness"><i class="fa fa-check"></i><b>3.6</b> Fitness</a></li>
+<li class="chapter" data-level="3.7" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-2"><i class="fa fa-check"></i><b>3.7</b> Exercise</a></li>
+<li class="chapter" data-level="3.8" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#evolutionary-dynamics"><i class="fa fa-check"></i><b>3.8</b> Evolutionary dynamics</a></li>
+<li class="chapter" data-level="3.9" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested"><i class="fa fa-check"></i><b>3.9</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (skip this if not interested)</a></li>
+<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#implementing-our-evolutionary-algorithm"><i class="fa fa-check"></i><b>3.10</b> Implementing our evolutionary algorithm</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: practical on Modeling Evolution</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="an-evolutionary-model-of-the-hawk-dove-game" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> An evolutionary model of the hawk-dove game</h1>
+<p>Why do we often find that competitors
+exhibit ritualized displays
+(e.g., threats such growling, baring one’s teeth)
+to decide fights with competitors,
+rather than engaging in escalated fights in order to kill the opponent?</p>
+<p>This question has been addressed by a simple evolutionary model,
+called the Hawk-Dove game. This influential model aims to sketch out how
+aggressive versus more restrained behaviours evolve
+when individuals compete with each other over resources.</p>
+<p>Here we analyze a deterministic version of this
+model, by focusing on a population consisting of i) aggressive hawks (denoted by <span class="math inline">\(H\)</span>) who
+always fight and do not retreat; and ii) timid Doves (denoted by <span class="math inline">\(D\)</span>), who may perform some
+threat display, but eventually will always retreat if the other individual
+starts a fight.</p>
+<div id="payoff-matrices" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Payoff matrices</h2>
+<p>We can summarize these interactions in a so-called payoff matrix, where the rows
+reflect the payoff to a focal player who either plays strategy <span class="math inline">\(H\)</span> or <span class="math inline">\(D\)</span>, when it encounters other <span class="math inline">\(H\)</span>s or <span class="math inline">\(D\)</span>s (columns).</p>
+<table>
+<thead>
+<tr class="header">
+<th>focal <span class="math inline">\(\downarrow\)</span> opponent <span class="math inline">\(\rightarrow\)</span></th>
+<th><span class="math inline">\(H\)</span></th>
+<th><span class="math inline">\(D\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H\)</span></td>
+<td><span class="math inline">\(\frac{v-c}{2}\)</span></td>
+<td><span class="math inline">\(v\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(D\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(\frac{v}{2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="exercise-1" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Exercise</h2>
+<p>Can you explain in your words what each of the payoffs mean? Try to search for descriptions of the Hawk Dove game online if unclear. We will discuss the answer in class.</p>
+</div>
+<div id="a-haploid-population-genetical-model-of-the-hawk-dove-game" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> A haploid population genetical model of the Hawk-Dove game</h2>
+<p>Although the Hawk-Dove game is often used as an example of evolutionary game theory, here we start from the ground up by developing a more rigorous model that is based on population genetics. Population genetics deals with all the genetic detail, so is more complete than evolutionary game theory. However, analyzing the formulas of the population genetics model is slightly more challenging, so this is why we will use R to simulate the model instead.</p>
+<p>By comparing whether predictions from evolutionary game theory match our population genetics model, we can see whether genetic detail matters, if at all. If predictions do not match, this may tell us that lack genetic assumptions in evolutionary game theory can lead to erroneous conclusions. Such exercises are worthwhile if you want to predict when a phenotypic gambit may be an accurate vs inaccurate description of the evolution of behaviour.</p>
+</div>
+<div id="alleles" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Alleles</h2>
+<p>For the sake of simplicity, we assume that being a hawk or dove is the result
+of <strong>just two alleles at a single haploid locus</strong>!
+This is crazy of course, hardly any animal traits are haploid! Moreover, even
+fewer are chiefly the result of variation at a single locus only. The question is whether we would learn a similar amount from a hugely convoluted model with 1000s of loci…</p>
+<p>Let <span class="math inline">\(p_{t}\)</span> be the frequency of the allele coding for <span class="math inline">\(H\)</span> in the population at generation <span class="math inline">\(t\)</span>, while <span class="math inline">\(1-p_{t}\)</span> is the frequency of the <span class="math inline">\(D\)</span> allele in the population at generation <span class="math inline">\(t\)</span>. We assume that strategies are <em>pure</em>, meaning that an individual having the <span class="math inline">\(H\)</span> or <span class="math inline">\(D\)</span> allele will always be a hawk or dove respectively. Later on, we will consider a case where strategies are <em>mixed</em>, so that <span class="math inline">\(p_{t}\)</span> does not reflect the frequency of the <span class="math inline">\(H\)</span> allele, but the probability with which each individual plays <span class="math inline">\(H\)</span> at each interaction.</p>
+</div>
+<div id="life-cycle" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Life cycle</h2>
+<p>We assume that generations are discrete, implying that all individuals die after reproduction. Upon birth, a newborn individual fights or displays with other individuals a single time. From this interaction, it will collect a payoff as given in the payoff matrix above. The payoff is then proportional to the number of offspring the individual produces.</p>
+</div>
+<div id="fitness" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Fitness</h2>
+<p>An individual reproduces according to the payoffs it has collected. Let us denote the fitness of a hawk and dove as <span class="math inline">\(W_{H}\)</span> and <span class="math inline">\(W_{D}\)</span> respectively, which we can interpret as the number of offspring produced by each of these types.</p>
+<p>Starting with the fitness of a focal dove <span class="math inline">\(W_{D,t}\)</span> at generation <span class="math inline">\(t\)</span>, we have
+<span class="math display">\[\begin{align}
+W_{D,t} &amp;= w_{0} + p_{t} (0) + \left(1-p_{t} \right) \frac{v}{2}
+\end{align}\]</span></p>
+<ul>
+<li>the first element on the right-hand side of the equation above reflects so-called ‘baseline fitness’, which is the fitness that this individual accrues during other activities than displaying. It is assumed that baseline fitness is similar for hawks and doves.</li>
+<li>the second part reflects the probability that a dove meets a hawk (which has frequency <span class="math inline">\(p_{t}\)</span>). It will then immediately retreat, hence collecting no payoff (but also incurring no costs), reflected by the <span class="math inline">\((0)\)</span>.</li>
+<li>the third part reflects the probability that a dove meets another dove (which has frequency <span class="math inline">\(1-p_{t}\)</span>). In that case they will split the value of the resource, hence <span class="math inline">\(v/2\)</span>.</li>
+</ul>
+</div>
+<div id="exercise-2" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Exercise</h2>
+<ol style="list-style-type: decimal">
+<li>Based on similar reasoning as for <span class="math inline">\(W_{D,t}\)</span> above, can you write down the fitness expression <span class="math inline">\(W_{H,t}\)</span> for a focal hawk in generation <span class="math inline">\(t\)</span>? Again, assume that there is some baseline fitness <span class="math inline">\(w_{0}\)</span> accrued from other activities than fighting:</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+W_{H,t} &amp;= w_{0} + \ldots + \ldots
+\end{align}\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Can fitnesses <span class="math inline">\(W_{H,t}\)</span> and <span class="math inline">\(W_{D,t}\)</span> be negative?</li>
+</ol>
+</div>
+<div id="evolutionary-dynamics" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Evolutionary dynamics</h2>
+<p>Now that we have derived fitness expressions of the dove and hawk alleles, let us consider how the frequencies of these alleles change over time. The frequency <span class="math inline">\(p_{t+1}\)</span> of the hawk allele at time <span class="math inline">\(t+1\)</span> is given by a surprisingly simple equation:</p>
+<p><span class="math display">\[\begin{align}
+p_{t+1} &amp;= p_{t}  \frac{W_{H}}{\bar{W}_{t}}
+\end{align}\]</span></p>
+<p>This is a so-called recursion equation, tracking an allele frequency <em>recursively</em> from one generation to the next. Keep an eye on this equation, as we will need it later on. The term <span class="math inline">\(\bar{W}_{t}\)</span> in the expression above is the average fitness in the population in generation <span class="math inline">\(t\)</span>, given by
+<span class="math display">\[\begin{align}
+\bar{W} &amp;= p_{t} W_{H} + \left(1 - p_{t} \right ) W_{D}
+\end{align}\]</span></p>
+<p>The expression for <span class="math inline">\(p_{t+1}\)</span> above tells you that if hawks do better than the average (<span class="math inline">\(W_{H} &gt; \bar{W}\)</span>), the frequency of the hawk allele will increase from one generation to the next, as <span class="math inline">\(W_{H}/\bar{W} &gt; 1\)</span>. Similarly, if hawks do worse than average, we have <span class="math inline">\(W_{H}/\bar{W} &lt; 1\)</span> and the frequency of the hawk allele decreases.</p>
+<p>One advantage of our super-simple model is that we do not have derive a separate expression for the change in frequency of the dove allele!! This is simply <span class="math inline">\(1-p_{t+1}\)</span>. However, if we would consider more than two alleles per locus (or multiple loci), matters would be (far) more difficult.</p>
+</div>
+<div id="relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (skip this if not interested)</h2>
+<p>In the lecture slides we have seen that the change in allele frequency was given by
+<span class="math display">\[\begin{align}
+\Delta p = p_{t+1} - p_{t} = p_{t} \left ( 1 - p_{t} \right ) \frac{ W_{H} - W_{D}}{\bar{W}}
+\end{align}\]</span></p>
+<p>If you want to know how the above relates to the equation we have seen in the lecture slides, read this! If not interested, please skip ahead to the next section.</p>
+<p>How do we get from our recursion equation $p_{t+1} = $ to the one above?
+The clue is in the <span class="math inline">\(\Delta p = p_{t+1} - p_{t}\)</span>. If we substitute here for our recursion equation of <span class="math inline">\(p_{t+1}\)</span>, we get:</p>
+<p><span class="math display">\[\begin{align}
+\Delta p &amp;= p_{t+1} - p_{t} \\
+&amp;= p_{t}  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \quad \text{substitute for }p_{t+1} \\
+&amp;= p_{t}  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{\bar{W_{t}}}{\bar{W}_{t}} \quad \text{common demoninator} \\
+&amp;= p_{t}  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{p_{t} W_{H} + \left (1  - p_{t}\right ) W_{D} }{\bar{W}_{t}} \quad \text{expanding }\bar{W} \\
+&amp;= p_{t} \left (1 - p_{t} \right )  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{\left (1  - p_{t}\right ) W_{D} }{\bar{W}_{t}} \quad \text{clubbing terms of }W_{H} \\
+&amp;= p_{t} \left (1 - p_{t} \right ) \frac{W_{H} - W_{D}}{\bar{W}_{t}} \quad \text{clubbing terms of }p_{t} \left(1-p_{t} \right) \\
+\end{align}\]</span></p>
+</div>
+<div id="implementing-our-evolutionary-algorithm" class="section level2" number="3.10">
+<h2><span class="header-section-number">3.10</span> Implementing our evolutionary algorithm</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="a-brief-r-programming-crash-course.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bramkuijper/02-hawk-dove.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

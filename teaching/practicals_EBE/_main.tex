@@ -1,0 +1,628 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Evolutionary Behavioural Ecology: practical on Modeling Evolution},
+  pdfauthor={Bram Kuijper},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{Evolutionary Behavioural Ecology: practical on Modeling Evolution}
+\author{Bram Kuijper}
+\date{2021-09-30}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{practicals-on-evolutionary-models-using-r}{%
+\chapter{Practicals on evolutionary models using R}\label{practicals-on-evolutionary-models-using-r}}
+
+During the following two practicals, we will try to implement some basic evolutionary models in R. The first practical will focus on the evolution of aggressive vs evasive behaviour. The second practical will focus on the evolution of cooperation and conflict. I am certainly no R expert myself, so this is as much a learning process for you as it is for me.
+
+\hypertarget{learning-objectives}{%
+\section{Learning objectives}\label{learning-objectives}}
+
+After this practical, you\ldots{}
+
+\begin{itemize}
+\tightlist
+\item
+  should be able to use R to implement short programs
+\item
+  understand how we can develop simple population genetics models in R
+\item
+  should be able to explain why models necessarily include many limiting assumptions
+\item
+  should be able to inspect your model and draw conclusions from it.
+\end{itemize}
+
+\hypertarget{opening-the-r-environment}{%
+\section{Opening the R environment}\label{opening-the-r-environment}}
+
+To provide you with a standardized environment during this practical session, you will have to log into to the University of Exeter's \href{https://rstudio01.cles.ex.ac.uk}{Rstudio server}. Of course, you are welcome to try to do the same using your installation of R on your own computer, but we might run into problems regarding the installation of some packages, hence we ask you to stick to the rstudio server during the practical.
+
+\hypertarget{a-brief-r-programming-crash-course}{%
+\chapter{A brief R programming crash course}\label{a-brief-r-programming-crash-course}}
+
+To get started with making our own evolutionary model, we need to make a simple program in R that tracks an evolving population.
+
+To this end, you need to know something about the ingredients that simple programs use, namely variables, vectors/sequences and for-loops. Some of this may have already featured in your statistics or introduction to data science modules, but at this stage, getting some repetition about the sometimes bamboozling inner workings of R certainly does not hurt. Even the most field-oriented among you will use R extensively during your research projects, so the more exposure you can get to this environment, the better.
+
+Try to type along with the examples below and see whether they work. Give me a shout if something looks odd.
+
+\hypertarget{variables}{%
+\section{Variables}\label{variables}}
+
+A variable provides us with a named storage of data, allowing you to retrieve that bit of data when you want it. A variable in R can contain any type of data (e.g., a single number, a string of text, a vector of multiple values, etc).
+
+We assign data to a variable using a \texttt{=} or \texttt{\textless{}-} operator (both can be used interchangeably) For example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# create a variable named var.1 and assign a value to it using the \textless{}{-} operator}
+\NormalTok{var}\FloatTok{.1} \OtherTok{\textless{}{-}} \DecValTok{25000}
+
+\CommentTok{\# create a variable named var.2 and assign a vector, c(), of numbers to it using the = operator}
+\NormalTok{var}\FloatTok{.2} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\DecValTok{200}\NormalTok{)}
+
+\CommentTok{\# a bit of text, surrounded by single \textquotesingle{}\textquotesingle{} or double "" quotes}
+\NormalTok{some.text }\OtherTok{\textless{}{-}} \StringTok{"Swanpool beach"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{naming-variables}{%
+\subsection{Naming variables}\label{naming-variables}}
+
+Variables can have any name, but cannot start with a number and can only contain dot \texttt{.} and underscore \texttt{\_} characters as special characters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this fails}
+\NormalTok{2times\_song\_release\_year }\OtherTok{\textless{}{-}} \DecValTok{1999}
+\DocumentationTok{\#\# Error: \textless{}text\textgreater{}:2:2: unexpected symbol}
+\DocumentationTok{\#\# 1: \# this fails}
+\DocumentationTok{\#\# 2: 2times\_song\_release\_year}
+\DocumentationTok{\#\#     \^{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this is fine}
+\NormalTok{release\_year\_2times }\OtherTok{\textless{}{-}} \DecValTok{1999}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# this fails too}
+\NormalTok{release\%year }\OtherTok{\textless{}{-}} \DecValTok{1999}
+\DocumentationTok{\#\# Error: \textless{}text\textgreater{}:2:8: unexpected input}
+\DocumentationTok{\#\# 1: \# this fails too}
+\DocumentationTok{\#\# 2: release\%year \textless{}{-} 1999}
+\DocumentationTok{\#\#           \^{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{changing-the-value-stored-by-variables}{%
+\subsection{Changing the value stored by variables}\label{changing-the-value-stored-by-variables}}
+
+You can easily change values of variables, simply by assigning them a new one! The new value can be of a completely different type.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# print the value of a variable, showing its current value}
+\FunctionTok{print}\NormalTok{(var}\FloatTok{.1}\NormalTok{)}
+\DocumentationTok{\#\# [1] 25000}
+
+\CommentTok{\# change the value}
+\NormalTok{var}\FloatTok{.1} \OtherTok{\textless{}{-}} \StringTok{"some text instead!"}
+
+\CommentTok{\# print the new value}
+\FunctionTok{print}\NormalTok{(var}\FloatTok{.1}\NormalTok{)}
+\DocumentationTok{\#\# [1] "some text instead!"}
+\end{Highlighting}
+\end{Shaded}
+
+You can always check the type of your variable using the \texttt{typeof()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{typeof}\NormalTok{(var}\FloatTok{.1}\NormalTok{)}
+\DocumentationTok{\#\# [1] "character"}
+\FunctionTok{typeof}\NormalTok{(var}\FloatTok{.2}\NormalTok{)}
+\DocumentationTok{\#\# [1] "double"}
+\end{Highlighting}
+\end{Shaded}
+
+As you see, \texttt{typeof} does not tell you \texttt{var.2} is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a \texttt{double}, which is another word for floating point value. If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).
+
+\hypertarget{vectors-and-element-selection}{%
+\section{Vectors and element selection}\label{vectors-and-element-selection}}
+
+As you have seen in the example of \texttt{var.2} above, variables can point to collections of multiple values (vectors). To create a vector, we use the \texttt{c()} function. We can subsequently get values of (groups of) individual elements by using the \texttt{{[}{[}{]}{]}} operator:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 1. create a vector of character elements using c()}
+\NormalTok{animals }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Opossum"}\NormalTok{,}\StringTok{"Dog"}\NormalTok{,}\StringTok{"Pallas\textquotesingle{}s leaf warbler"}\NormalTok{)}
+
+\CommentTok{\# 2. select a single element using the double square brackets [[]]}
+\FunctionTok{print}\NormalTok{(animals[[}\DecValTok{3}\NormalTok{]])}
+\DocumentationTok{\#\# [1] "Pallas\textquotesingle{}s leaf warbler"}
+
+
+\CommentTok{\# 3. obtain a selection of }
+\CommentTok{\# multiple values using [] and}
+\CommentTok{\# a vector of elements you want to select}
+\FunctionTok{print}\NormalTok{(animals[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)])}
+\DocumentationTok{\#\# [1] "Dog"                   "Pallas\textquotesingle{}s leaf warbler"}
+
+
+\CommentTok{\# 4. assign a new value to an existing element}
+\NormalTok{animals[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \StringTok{"Click beetle"}
+\FunctionTok{print}\NormalTok{(animals)}
+\DocumentationTok{\#\# [1] "Click beetle"          "Dog"                   "Pallas\textquotesingle{}s leaf warbler"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercises}{%
+\subsection{Exercises}\label{exercises}}
+
+\begin{itemize}
+\item
+  What happens to the vector \texttt{animals} if you assign the name of your favorite animal (in quotes \texttt{""}, because text) to element \texttt{40}?
+\item
+  Assign the number 0.5 to element \texttt{10} of the \texttt{animals} vector. Try to multiple this value by 10, by typing
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{animals[[}\DecValTok{10}\NormalTok{]]}\SpecialCharTok{*}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+what happens? Use \texttt{typeof(animals{[}{[}10{]}{]})} to see what is going on.
+
+\hypertarget{information-about-your-vector}{%
+\section{Information about your vector}\label{information-about-your-vector}}
+
+You can obtain information about your vector by using a range of different functions, such as
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{sum()}: sums all values (only works with numbers obvz)\\
+\item
+  \texttt{unique()} lists all unique values\\
+\item
+  \texttt{sort()} sorts values.
+  and there are lots more.
+\end{itemize}
+
+Most often, however, you will use the \texttt{length()} function to obtain its size:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(}\AttributeTok{x=}\NormalTok{animals)}
+\DocumentationTok{\#\# [1] 40}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise}{%
+\subsection{Exercise}\label{exercise}}
+
+Using the standard \texttt{iris} dataset (available within in \texttt{R} by typing \texttt{iris} on the command line), find out the number of unique values for the column \texttt{Sepal.Width}. If you see \texttt{iris} but don't know how you can access the column, try to search for it on the web.
+
+\hypertarget{sequences}{%
+\section{Sequences}\label{sequences}}
+
+Vectors are also used to contain sequences of numbers, which can either be generated with the from-to operator \texttt{:} or with the more explicit \texttt{seq()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# sequence from 1 to 10}
+\NormalTok{some.seq }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
+
+\CommentTok{\# sequence from 10 to 1}
+\NormalTok{reverse.seq }\OtherTok{\textless{}{-}} \DecValTok{10}\SpecialCharTok{:}\DecValTok{1}
+
+\CommentTok{\# same, but using the sequence in some.seq and the rev() \textquotesingle{}reverse\textquotesingle{} function:}
+\NormalTok{reverse.seq}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{rev}\NormalTok{(some.seq)}
+
+\CommentTok{\# sequence from 10 to 1, using the seq() function, with a negative increment}
+\NormalTok{another.seq }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\DecValTok{10}\NormalTok{,}\AttributeTok{to=}\DecValTok{1}\NormalTok{,}\AttributeTok{by=}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# the seq() function is great if you want to take bigger steps:}
+\NormalTok{steps.of}\FloatTok{.5} \OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\DecValTok{3}\NormalTok{,}\AttributeTok{to=}\DecValTok{29}\NormalTok{,}\AttributeTok{by=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can also make vectors using repetitions of values, through \texttt{rep()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# a vector of 300 zeros}
+\NormalTok{only.zeros }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\AttributeTok{x=}\DecValTok{0}\NormalTok{,}\AttributeTok{times=}\DecValTok{300}\NormalTok{)}
+
+\CommentTok{\# a vector of 0,1 values, repeated until a length of 13 is achieved}
+\NormalTok{zero.one }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{length.out=}\DecValTok{13}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{the-important-bit-for-loops}{%
+\section{\texorpdfstring{The important bit: \texttt{for} loops}{The important bit: for loops}}\label{the-important-bit-for-loops}}
+
+The point about programming is that you want to repeat actions multiple times. To this end, R offers you two different looping constructs: the \texttt{while()} loop and the \texttt{for} loop.
+
+In this practical, we focus on the \texttt{for} loop as it is more commonly used than \texttt{while()}. Best to begin by an example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# you need some vector of something}
+\CommentTok{\# otherwise there will}
+\CommentTok{\# be nothing to loop over}
+\CommentTok{\# Here, I use a vector of numbers from 5 up to (\& including) 10}
+\NormalTok{some.vec }\OtherTok{\textless{}{-}} \DecValTok{5}\SpecialCharTok{:}\DecValTok{10}
+
+\CommentTok{\# component 1: the for statement within }
+\CommentTok{\# parentheses ()}
+\ControlFlowTok{for}\NormalTok{ (iterator }\ControlFlowTok{in}\NormalTok{ some.vec) }
+\NormalTok{\{}
+    \CommentTok{\# component 2: the for body within curly braces \{\} }
+    \CommentTok{\# in which tasks }
+    \CommentTok{\# are performed}
+    \CommentTok{\# repeatedly for each value of iterator}
+    \FunctionTok{print}\NormalTok{(iterator)}
+    
+    \CommentTok{\# I am also printing something else}
+    \CommentTok{\# for the sake of illustration}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Some text."}\NormalTok{)}
+\NormalTok{\}}
+\DocumentationTok{\#\# [1] 5}
+\DocumentationTok{\#\# [1] "Some text."}
+\DocumentationTok{\#\# [1] 6}
+\DocumentationTok{\#\# [1] "Some text."}
+\DocumentationTok{\#\# [1] 7}
+\DocumentationTok{\#\# [1] "Some text."}
+\DocumentationTok{\#\# [1] 8}
+\DocumentationTok{\#\# [1] "Some text."}
+\DocumentationTok{\#\# [1] 9}
+\DocumentationTok{\#\# [1] "Some text."}
+\DocumentationTok{\#\# [1] 10}
+\DocumentationTok{\#\# [1] "Some text."}
+\end{Highlighting}
+\end{Shaded}
+
+From the printed output, you see that the \texttt{iterator} gets a new value every time the loop goes round. The message \texttt{"Some\ text"} is also repeatedly printed, but this value does not change.
+
+\hypertarget{dissecting-the-for-loop}{%
+\subsection{Dissecting the for loop}\label{dissecting-the-for-loop}}
+
+The loop starts with the keyword \texttt{for}, followed by parentheses \texttt{()}. Within those parentheses, we always start by declaring a new variable, which -- in this case -- I have called \texttt{iterator}, but you could have given it \emph{any} valid name, like \texttt{index} or \texttt{boring.practical}.
+
+Each time the \texttt{for} loop goes round, the \texttt{iterator} variable gets assigned a new value. Which value? An element from a vector, which we have called here \texttt{some.vec}. The \texttt{in} keyword in between \texttt{iterator} and \texttt{some.vec} performs the assigning of these consecutive elements from \texttt{some.vec} to \texttt{iterator}.
+
+Hence, the first time the loop goes round, \texttt{iterator} receives the value of \texttt{5}, as this is the first element of \texttt{some.vec}. Subsequently, the \texttt{for} loop enters the bit in between curly braces \texttt{\{\}}. The code in this part will be executed every time \texttt{iterator} gets a new value. In this case, the code is \texttt{print(iterator)}, meaning it prints the \emph{current} value of the \texttt{iterator} variable (which is \texttt{5}) is printed to the screen. After this the subsequent \texttt{print()} statement is executed, which prints \texttt{"Some\ text"} to the screen.
+
+Next, the loop goes round again. Now the value of \texttt{iterator} will be 6. Again, \texttt{6} is printed by the \texttt{print()} statements in the \texttt{\{\}}-part and this goes on until all elements from \texttt{some.vec} have been assigned to \texttt{iterator}. Hence, the last value printed will be \texttt{10}, after which the \texttt{for} loop exits.
+
+\hypertarget{another-example}{%
+\subsection{Another example}\label{another-example}}
+
+Just to throw in another example that is slightly different, let us calculate the product of elements of two vectors and sum those products:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# generate two vectors with numbers; }
+\CommentTok{\# vectors have the same length}
+\NormalTok{vec}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.2}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{3.5}\NormalTok{)}
+\NormalTok{vec}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{7}\NormalTok{)}
+
+\CommentTok{\# check whether the length is indeed the same}
+\FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{length}\NormalTok{(vec}\FloatTok{.1}\NormalTok{) }\SpecialCharTok{==} \FunctionTok{length}\NormalTok{(vec}\FloatTok{.2}\NormalTok{))}
+
+\NormalTok{sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+\CommentTok{\# loop not over the elements of the list}
+\CommentTok{\# but over the element indices}
+\CommentTok{\# (we can do so by creating a list from }
+\CommentTok{\# 1 to the length of one of the vectors,}
+\CommentTok{\# i.e., 1,2,3,...)}
+\ControlFlowTok{for}\NormalTok{ (idx }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(vec}\FloatTok{.1}\NormalTok{))}
+\NormalTok{\{}
+    \CommentTok{\# use idx to obtain elements of both vectors}
+    \CommentTok{\# and add them to the total}
+\NormalTok{    sum }\OtherTok{\textless{}{-}}\NormalTok{ sum }\SpecialCharTok{+} 
+\NormalTok{        vec}\FloatTok{.1}\NormalTok{[[idx]] }\SpecialCharTok{*}\NormalTok{ vec}\FloatTok{.2}\NormalTok{[[idx]]}
+\NormalTok{\}}
+\FunctionTok{print}\NormalTok{(sum)}
+\DocumentationTok{\#\# [1] 47.9}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercises-1}{%
+\subsection{Exercises}\label{exercises-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Can you think of why we don't we write \texttt{for\ (idx\ in\ vec.1)} as in the previous example?
+\item
+  Could you change the code to store the sum that you obtain
+  in each iteration in a list? I.e., that list should have the values
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cumul.list)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  1.5  8.7 23.1 23.4 47.9
+\end{verbatim}
+
+OK now that we have some tools under our belts, let's get going with evolution!!
+
+\hypertarget{an-evolutionary-model-of-the-hawk-dove-game}{%
+\chapter{An evolutionary model of the hawk-dove game}\label{an-evolutionary-model-of-the-hawk-dove-game}}
+
+Why do we often find that competitors
+exhibit ritualized displays
+(e.g., threats such growling, baring one's teeth)
+to decide fights with competitors,
+rather than engaging in escalated fights in order to kill the opponent?
+
+This question has been addressed by a simple evolutionary model,
+called the Hawk-Dove game. This influential model aims to sketch out how
+aggressive versus more restrained behaviours evolve
+when individuals compete with each other over resources.
+
+Here we analyze a deterministic version of this
+model, by focusing on a population consisting of i) aggressive hawks (denoted by \(H\)) who
+always fight and do not retreat; and ii) timid Doves (denoted by \(D\)), who may perform some
+threat display, but eventually will always retreat if the other individual
+starts a fight.
+
+\hypertarget{payoff-matrices}{%
+\section{Payoff matrices}\label{payoff-matrices}}
+
+We can summarize these interactions in a so-called payoff matrix, where the rows
+reflect the payoff to a focal player who either plays strategy \(H\) or \(D\), when it encounters other \(H\)s or \(D\)s (columns).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+focal \(\downarrow\) opponent \(\rightarrow\) & \(H\) & \(D\) \\
+\midrule
+\endhead
+\(H\) & \(\frac{v-c}{2}\) & \(v\) \\
+\(D\) & \(0\) & \(\frac{v}{2}\) \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{exercise-1}{%
+\section{Exercise}\label{exercise-1}}
+
+Can you explain in your words what each of the payoffs mean? Try to search for descriptions of the Hawk Dove game online if unclear. We will discuss the answer in class.
+
+\hypertarget{a-haploid-population-genetical-model-of-the-hawk-dove-game}{%
+\section{A haploid population genetical model of the Hawk-Dove game}\label{a-haploid-population-genetical-model-of-the-hawk-dove-game}}
+
+Although the Hawk-Dove game is often used as an example of evolutionary game theory, here we start from the ground up by developing a more rigorous model that is based on population genetics. Population genetics deals with all the genetic detail, so is more complete than evolutionary game theory. However, analyzing the formulas of the population genetics model is slightly more challenging, so this is why we will use R to simulate the model instead.
+
+By comparing whether predictions from evolutionary game theory match our population genetics model, we can see whether genetic detail matters, if at all. If predictions do not match, this may tell us that lack genetic assumptions in evolutionary game theory can lead to erroneous conclusions. Such exercises are worthwhile if you want to predict when a phenotypic gambit may be an accurate vs inaccurate description of the evolution of behaviour.
+
+\hypertarget{alleles}{%
+\section{Alleles}\label{alleles}}
+
+For the sake of simplicity, we assume that being a hawk or dove is the result
+of \textbf{just two alleles at a single haploid locus}!
+This is crazy of course, hardly any animal traits are haploid! Moreover, even
+fewer are chiefly the result of variation at a single locus only. The question is whether we would learn a similar amount from a hugely convoluted model with 1000s of loci\ldots{}
+
+Let \(p_{t}\) be the frequency of the allele coding for \(H\) in the population at generation \(t\), while \(1-p_{t}\) is the frequency of the \(D\) allele in the population at generation \(t\). We assume that strategies are \emph{pure}, meaning that an individual having the \(H\) or \(D\) allele will always be a hawk or dove respectively. Later on, we will consider a case where strategies are \emph{mixed}, so that \(p_{t}\) does not reflect the frequency of the \(H\) allele, but the probability with which each individual plays \(H\) at each interaction.
+
+\hypertarget{life-cycle}{%
+\section{Life cycle}\label{life-cycle}}
+
+We assume that generations are discrete, implying that all individuals die after reproduction. Upon birth, a newborn individual fights or displays with other individuals a single time. From this interaction, it will collect a payoff as given in the payoff matrix above. The payoff is then proportional to the number of offspring the individual produces.
+
+\hypertarget{fitness}{%
+\section{Fitness}\label{fitness}}
+
+An individual reproduces according to the payoffs it has collected. Let us denote the fitness of a hawk and dove as \(W_{H}\) and \(W_{D}\) respectively, which we can interpret as the number of offspring produced by each of these types.
+
+Starting with the fitness of a focal dove \(W_{D,t}\) at generation \(t\), we have
+\begin{align}
+W_{D,t} &= w_{0} + p_{t} (0) + \left(1-p_{t} \right) \frac{v}{2}
+\end{align}
+
+\begin{itemize}
+\tightlist
+\item
+  the first element on the right-hand side of the equation above reflects so-called `baseline fitness', which is the fitness that this individual accrues during other activities than displaying. It is assumed that baseline fitness is similar for hawks and doves.
+\item
+  the second part reflects the probability that a dove meets a hawk (which has frequency \(p_{t}\)). It will then immediately retreat, hence collecting no payoff (but also incurring no costs), reflected by the \((0)\).
+\item
+  the third part reflects the probability that a dove meets another dove (which has frequency \(1-p_{t}\)). In that case they will split the value of the resource, hence \(v/2\).
+\end{itemize}
+
+\hypertarget{exercise-2}{%
+\section{Exercise}\label{exercise-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Based on similar reasoning as for \(W_{D,t}\) above, can you write down the fitness expression \(W_{H,t}\) for a focal hawk in generation \(t\)? Again, assume that there is some baseline fitness \(w_{0}\) accrued from other activities than fighting:
+\end{enumerate}
+
+\begin{align}
+W_{H,t} &= w_{0} + \ldots + \ldots
+\end{align}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Can fitnesses \(W_{H,t}\) and \(W_{D,t}\) be negative?
+\end{enumerate}
+
+\hypertarget{evolutionary-dynamics}{%
+\section{Evolutionary dynamics}\label{evolutionary-dynamics}}
+
+Now that we have derived fitness expressions of the dove and hawk alleles, let us consider how the frequencies of these alleles change over time. The frequency \(p_{t+1}\) of the hawk allele at time \(t+1\) is given by a surprisingly simple equation:
+
+\begin{align}
+p_{t+1} &= p_{t}  \frac{W_{H}}{\bar{W}_{t}}
+\end{align}
+
+This is a so-called recursion equation, tracking an allele frequency \emph{recursively} from one generation to the next. Keep an eye on this equation, as we will need it later on. The term \(\bar{W}_{t}\) in the expression above is the average fitness in the population in generation \(t\), given by
+\begin{align}
+\bar{W} &= p_{t} W_{H} + \left(1 - p_{t} \right ) W_{D}
+\end{align}
+
+The expression for \(p_{t+1}\) above tells you that if hawks do better than the average (\(W_{H} > \bar{W}\)), the frequency of the hawk allele will increase from one generation to the next, as \(W_{H}/\bar{W} > 1\). Similarly, if hawks do worse than average, we have \(W_{H}/\bar{W} < 1\) and the frequency of the hawk allele decreases.
+
+One advantage of our super-simple model is that we do not have derive a separate expression for the change in frequency of the dove allele!! This is simply \(1-p_{t+1}\). However, if we would consider more than two alleles per locus (or multiple loci), matters would be (far) more difficult.
+
+\hypertarget{relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested}{%
+\section{\texorpdfstring{Relation to \(\Delta p\) in lecture slides (skip this if not interested)}{Relation to \textbackslash Delta p in lecture slides (skip this if not interested)}}\label{relation-to-delta-p-in-lecture-slides-skip-this-if-not-interested}}
+
+In the lecture slides we have seen that the change in allele frequency was given by
+\begin{align}
+\Delta p = p_{t+1} - p_{t} = p_{t} \left ( 1 - p_{t} \right ) \frac{ W_{H} - W_{D}}{\bar{W}}
+\end{align}
+
+If you want to know how the above relates to the equation we have seen in the lecture slides, read this! If not interested, please skip ahead to the next section.
+
+How do we get from our recursion equation \$p\_\{t+1\} = \ldots \$ to the one above?
+The clue is in the \(\Delta p = p_{t+1} - p_{t}\). If we substitute here for our recursion equation of \(p_{t+1}\), we get:
+
+\begin{align}
+\Delta p &= p_{t+1} - p_{t} \\
+&= p_{t}  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \quad \text{substitute for }p_{t+1} \\
+&= p_{t}  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{\bar{W_{t}}}{\bar{W}_{t}} \quad \text{common demoninator} \\
+&= p_{t}  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{p_{t} W_{H} + \left (1  - p_{t}\right ) W_{D} }{\bar{W}_{t}} \quad \text{expanding }\bar{W} \\
+&= p_{t} \left (1 - p_{t} \right )  \frac{W_{H}}{\bar{W}_{t}} - p_{t} \frac{\left (1  - p_{t}\right ) W_{D} }{\bar{W}_{t}} \quad \text{clubbing terms of }W_{H} \\
+&= p_{t} \left (1 - p_{t} \right ) \frac{W_{H} - W_{D}}{\bar{W}_{t}} \quad \text{clubbing terms of }p_{t} \left(1-p_{t} \right) \\
+\end{align}
+
+\hypertarget{implementing-our-evolutionary-algorithm}{%
+\section{Implementing our evolutionary algorithm}\label{implementing-our-evolutionary-algorithm}}
+
+\end{document}
