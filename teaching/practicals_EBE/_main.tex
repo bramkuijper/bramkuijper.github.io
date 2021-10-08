@@ -763,16 +763,16 @@ The \texttt{driftSim} package contains a single function, called \texttt{runSimu
 \begin{Highlighting}[]
 \FunctionTok{runSimulation}\NormalTok{(}\AttributeTok{N=}\DecValTok{10}\NormalTok{,}\AttributeTok{v=}\FloatTok{1.0}\NormalTok{,}\AttributeTok{c=}\FloatTok{2.0}\NormalTok{,}\AttributeTok{is\_pure=}\NormalTok{T,}\AttributeTok{mu=}\DecValTok{0}\NormalTok{,}\AttributeTok{max\_time=}\DecValTok{10}\NormalTok{,}\AttributeTok{pHawk\_init=}\FloatTok{0.25}\NormalTok{,}\AttributeTok{output\_nth\_generation=}\DecValTok{1}\NormalTok{,}\AttributeTok{sd\_pHawkMixed=}\DecValTok{0}\NormalTok{)}
 \DocumentationTok{\#\#    generation freq\_Hawk mean\_pHawkMixed sd\_pHawkMixed}
-\DocumentationTok{\#\# 1           1       0.1               0             0}
-\DocumentationTok{\#\# 2           2       0.4               0             0}
-\DocumentationTok{\#\# 3           3       0.6               0             0}
-\DocumentationTok{\#\# 4           4       0.4               0             0}
-\DocumentationTok{\#\# 5           5       0.6               0             0}
-\DocumentationTok{\#\# 6           6       0.3               0             0}
-\DocumentationTok{\#\# 7           7       0.6               0             0}
-\DocumentationTok{\#\# 8           8       0.5               0             0}
-\DocumentationTok{\#\# 9           9       0.6               0             0}
-\DocumentationTok{\#\# 10         10       0.6               0             0}
+\DocumentationTok{\#\# 1           1         0               0             0}
+\DocumentationTok{\#\# 2           2         0               0             0}
+\DocumentationTok{\#\# 3           3         0               0             0}
+\DocumentationTok{\#\# 4           4         0               0             0}
+\DocumentationTok{\#\# 5           5         0               0             0}
+\DocumentationTok{\#\# 6           6         0               0             0}
+\DocumentationTok{\#\# 7           7         0               0             0}
+\DocumentationTok{\#\# 8           8         0               0             0}
+\DocumentationTok{\#\# 9           9         0               0             0}
+\DocumentationTok{\#\# 10         10         0               0             0}
 \end{Highlighting}
 \end{Shaded}
 
@@ -889,8 +889,8 @@ Rather than using the frequencies \(p_{t}\) and \(1-p_{t}\), we will now modify 
 
 Incorporating these conditional probabilities into the fitness expressions above yields
 \begin{align}
-W_{H} &= w_{0} + \Pr(H\mid H) \frac{v-c}{2} + \left(1 - \Pr (D \mid H ) \right) v \label{eq:wH} \\
-W_{D} &= w_{0} + \Pr (H \mid D) (0) + \left(1 - \Pr ( D \mid D ) \right) \frac{v}{2} \label{eq:wD}\\
+W_{H} &= w_{0} + \Pr(H\mid H) \frac{v-c}{2} +  \Pr (D \mid H ) v \label{eq:wH} \\
+W_{D} &= w_{0} + \Pr (H \mid D) (0) + \Pr ( D \mid D )  \frac{v}{2} \label{eq:wD}\\
 \end{align}
 
 \hypertarget{hamiltons-rule-in-a-hawk-dove-game}{%
@@ -898,7 +898,7 @@ W_{D} &= w_{0} + \Pr (H \mid D) (0) + \left(1 - \Pr ( D \mid D ) \right) \frac{v
 
 If we would follow the example of the Prisoner's dilemma in the lecture slides, would we expect to find something similar to Hamilton's rule when we assess the condition in which more cooperative Doves do better than defecting Hawks, i.e., \(W_{D} > W_{H}\)?
 
-Let us look again at the Prisoner's dilemma: altruists (\(A\)) do better than nonaltruists \(NA\) (originally called `Defect' in the lecture slides but I change notation to avoid confusion with Dove) when \$W\_\{A\} \textgreater{} \(W_{NS}\), which eventually results in (see lecture slides):
+Let us look again at the Prisoner's dilemma: altruists (\(A\)) do better than nonaltruists \(NA\) (originally called `Defect' in the lecture slides but I change notation to avoid confusion with Dove) when \(W_{A} > W_{NA}\), which eventually results in (see lecture slides):
 \begin{align}
 \left( \Pr(A \mid A ) - \Pr(A \mid NA ) \right ) b &> c \\
 \end{align}

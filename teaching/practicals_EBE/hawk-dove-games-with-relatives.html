@@ -302,14 +302,14 @@ W_{D} &amp;= w_{0} + p_{t} (0) + \left(1 - p_{t} \right) \frac{v}{2} \tag{5.2}\\
 </ul>
 <p>Incorporating these conditional probabilities into the fitness expressions above yields
 <span class="math display" id="eq:wD" id="eq:wH">\[\begin{align}
-W_{H} &amp;= w_{0} + \Pr(H\mid H) \frac{v-c}{2} + \left(1 - \Pr (D \mid H ) \right) v \tag{5.1} \\
-W_{D} &amp;= w_{0} + \Pr (H \mid D) (0) + \left(1 - \Pr ( D \mid D ) \right) \frac{v}{2} \tag{5.2}\\
+W_{H} &amp;= w_{0} + \Pr(H\mid H) \frac{v-c}{2} +  \Pr (D \mid H ) v \tag{5.1} \\
+W_{D} &amp;= w_{0} + \Pr (H \mid D) (0) + \Pr ( D \mid D )  \frac{v}{2} \tag{5.2}\\
 \end{align}\]</span></p>
 </div>
 <div id="hamiltons-rule-in-a-hawk-dove-game" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Hamilton’s rule in a Hawk Dove game?</h2>
 <p>If we would follow the example of the Prisoner’s dilemma in the lecture slides, would we expect to find something similar to Hamilton’s rule when we assess the condition in which more cooperative Doves do better than defecting Hawks, i.e., <span class="math inline">\(W_{D} &gt; W_{H}\)</span>?</p>
-<p>Let us look again at the Prisoner’s dilemma: altruists (<span class="math inline">\(A\)</span>) do better than nonaltruists <span class="math inline">\(NA\)</span> (originally called ‘Defect’ in the lecture slides but I change notation to avoid confusion with Dove) when $W_{A} &gt; <span class="math inline">\(W_{NS}\)</span>, which eventually results in (see lecture slides):
+<p>Let us look again at the Prisoner’s dilemma: altruists (<span class="math inline">\(A\)</span>) do better than nonaltruists <span class="math inline">\(NA\)</span> (originally called ‘Defect’ in the lecture slides but I change notation to avoid confusion with Dove) when <span class="math inline">\(W_{A} &gt; W_{NA}\)</span>, which eventually results in (see lecture slides):
 <span class="math display">\[\begin{align}
 \left( \Pr(A \mid A ) - \Pr(A \mid NA ) \right ) b &amp;&gt; c \\
 \end{align}\]</span>
