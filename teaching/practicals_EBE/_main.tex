@@ -117,7 +117,7 @@
 
 \title{Evolutionary Behavioural Ecology: practical 1 - Modelling Evolution}
 \author{Bram Kuijper}
-\date{2021-10-01}
+\date{2021-10-08}
 
 \begin{document}
 \maketitle
@@ -504,6 +504,11 @@ We can summarize these interactions in a so-called payoff matrix, where the rows
 reflect the payoff to a focal player who either plays strategy \(H\) or \(D\), when it encounters other \(H\)s or \(D\)s (columns).
 
 \begin{longtable}[]{@{}lll@{}}
+\caption{\label{tab:payoffHD} The payoff matrix of the Hawk-Dove game.}\tabularnewline
+\toprule
+focal \(\downarrow\) opponent \(\rightarrow\) & \(H\) & \(D\) \\
+\midrule
+\endfirsthead
 \toprule
 focal \(\downarrow\) opponent \(\rightarrow\) & \(H\) & \(D\) \\
 \midrule
@@ -717,7 +722,13 @@ In the following exercise we explore such a model, which is provided in an R pac
 
 \FunctionTok{library}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
 \NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"bramkuijper/driftSim"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
+Then we can load the library using:
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(}\StringTok{"driftSim"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -753,15 +764,15 @@ The \texttt{driftSim} package contains a single function, called \texttt{runSimu
 \FunctionTok{runSimulation}\NormalTok{(}\AttributeTok{N=}\DecValTok{10}\NormalTok{,}\AttributeTok{v=}\FloatTok{1.0}\NormalTok{,}\AttributeTok{c=}\FloatTok{2.0}\NormalTok{,}\AttributeTok{is\_pure=}\NormalTok{T,}\AttributeTok{mu=}\DecValTok{0}\NormalTok{,}\AttributeTok{max\_time=}\DecValTok{10}\NormalTok{,}\AttributeTok{pHawk\_init=}\FloatTok{0.25}\NormalTok{,}\AttributeTok{output\_nth\_generation=}\DecValTok{1}\NormalTok{,}\AttributeTok{sd\_pHawkMixed=}\DecValTok{0}\NormalTok{)}
 \DocumentationTok{\#\#    generation freq\_Hawk mean\_pHawkMixed sd\_pHawkMixed}
 \DocumentationTok{\#\# 1           1       0.1               0             0}
-\DocumentationTok{\#\# 2           2       0.2               0             0}
-\DocumentationTok{\#\# 3           3       0.1               0             0}
-\DocumentationTok{\#\# 4           4       0.0               0             0}
-\DocumentationTok{\#\# 5           5       0.0               0             0}
-\DocumentationTok{\#\# 6           6       0.0               0             0}
-\DocumentationTok{\#\# 7           7       0.0               0             0}
-\DocumentationTok{\#\# 8           8       0.0               0             0}
-\DocumentationTok{\#\# 9           9       0.0               0             0}
-\DocumentationTok{\#\# 10         10       0.0               0             0}
+\DocumentationTok{\#\# 2           2       0.4               0             0}
+\DocumentationTok{\#\# 3           3       0.6               0             0}
+\DocumentationTok{\#\# 4           4       0.4               0             0}
+\DocumentationTok{\#\# 5           5       0.6               0             0}
+\DocumentationTok{\#\# 6           6       0.3               0             0}
+\DocumentationTok{\#\# 7           7       0.6               0             0}
+\DocumentationTok{\#\# 8           8       0.5               0             0}
+\DocumentationTok{\#\# 9           9       0.6               0             0}
+\DocumentationTok{\#\# 10         10       0.6               0             0}
 \end{Highlighting}
 \end{Shaded}
 
@@ -793,5 +804,258 @@ Now, change the initial frequency of Hawks by changing the value of \texttt{pHaw
 \section{Exercise: increase the population size}\label{exercise-increase-the-population-size}}
 
 Now, try the same with a population size of \(N=500\). What happens now?
+
+\hypertarget{hawk-dove-games-with-relatives}{%
+\chapter{Hawk Dove games with relatives}\label{hawk-dove-games-with-relatives}}
+
+In the previous practical, we used the Hawk Dove game to study the evolution of fighting behaviour. We found that aggression can be limited by costs of fighting, and also that it may be easier for a population of Doves to be invaded by Hawks rather than vice versa (do you remember why?).
+
+In this practical, we take the Hawk Dove game a step further by considering how interactions among relatives affect the evolution of aggression. Indeed, one could argue that a Hawk could be analogous to a defector that exploits cooperative Doves.
+
+In the simple model we used previously, interactions were entirely driven by \emph{random} encounters, so that the probability of encountering one type vs the other was given by the frequencies of Hawks \(p_{t}\) and Doves \(1-p_{t}\) in generation \(t\).
+
+Now we study the case where interactions are not random, but some assortment takes place. Hence, we need to change the model in the same way the prisoner's dilemma model is changed to account for non-random interactions.
+
+While we will use the same payoff matrix as before (see \protect\hyperlink{tab:payoffHD}{the table in chapter 2}), let us now change the interaction probabilities between the individuals. Recall the previous fitness expressions \(W_{H}\) and \(W_{D}\) for Hawks and Doves respectively:
+\begin{align}
+W_{H} &= w_{0} + p_{t} \frac{v-c}{2} + \left(1 - p_{t} \right) v \label{eq:wH} \\
+W_{D} &= w_{0} + p_{t} (0) + \left(1 - p_{t} \right) \frac{v}{2} \label{eq:wD}\\
+\end{align}
+
+Below you find the R code that we used to iterate the system of equations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# broken code on the evolution of hawks vs doves}
+\CommentTok{\# we intend to iterate the haploid population genetics}
+\CommentTok{\# recursion p(t+1) = p(t)*...}
+\CommentTok{\# but quite some things are missing or are wrong.}
+\CommentTok{\# Can you spot the errors / omissions?}
+
+\CommentTok{\# parameters coding the payoffs}
+\NormalTok{c }\OtherTok{\textless{}{-}} \FloatTok{2.0}
+\NormalTok{v }\OtherTok{\textless{}{-}} \FloatTok{1.0}
+
+\CommentTok{\# baseline fitness}
+\NormalTok{w0 }\OtherTok{\textless{}{-}} \DecValTok{10}
+
+\CommentTok{\# maximum time the simulation should run for}
+\NormalTok{max\_time }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\CommentTok{\# a vector containing allele frequencies}
+\CommentTok{\# for all time steps}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\AttributeTok{x=}\ConstantTok{NA}\NormalTok{, }\AttributeTok{times=}\NormalTok{max\_time)}
+
+\CommentTok{\# set the initial frequency of the hawks}
+\CommentTok{\# at time step 1}
+\NormalTok{p[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \FloatTok{0.1}
+
+\CommentTok{\# a for loop to iterate the recursion equation}
+\CommentTok{\# over multiple timesteps}
+\ControlFlowTok{for}\NormalTok{ (time\_idx }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{(max\_time}\DecValTok{{-}1}\NormalTok{))}
+\NormalTok{\{}
+\NormalTok{  wH }\OtherTok{\textless{}{-}}\NormalTok{ w0 }\SpecialCharTok{+}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{*}\NormalTok{ (v}\SpecialCharTok{{-}}\NormalTok{c)}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p[[time\_idx]]) }\SpecialCharTok{*}\NormalTok{ v}
+\NormalTok{  wD }\OtherTok{\textless{}{-}}\NormalTok{ w0 }\SpecialCharTok{+}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{*} \DecValTok{0} \SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p[[time\_idx]]) }\SpecialCharTok{*}\NormalTok{ v}\SpecialCharTok{/}\DecValTok{2}
+  
+\NormalTok{  wBar }\OtherTok{\textless{}{-}}\NormalTok{ wH }\SpecialCharTok{*}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{+}\NormalTok{ wD }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p[[time\_idx]])}
+  
+  \CommentTok{\# recursion equation}
+\NormalTok{  p[[time\_idx }\SpecialCharTok{+} \DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{*}\NormalTok{ wH }\SpecialCharTok{/}\NormalTok{ wBar}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-6}{%
+\section{Exercise}\label{exercise-6}}
+
+Just to get yourself familiar with the model again, try to run it for different values of \(v\) and \(c\) and see what happens.
+
+\hypertarget{interactions-among-relatives}{%
+\section{Interactions among relatives}\label{interactions-among-relatives}}
+
+Rather than using the frequencies \(p_{t}\) and \(1-p_{t}\), we will now modify the Hawk Dove game by using \emph{conditional probabilities} reflecting non-random encounter rates, replacing the random encounter rates.
+
+\begin{itemize}
+\tightlist
+\item
+  \[ \Pr(H \mid H)\] probability of encounter between a focal Hawk and non-focal Hawk.
+\item
+  \[ \Pr(D \mid H)\] probability of encounter between a focal Hawk and a Dove (note again, that \(\Pr(H \mid H) + Pr(D \mid H) = 1\)).
+\item
+  \[ \Pr(H \mid D)\] probability of encounter between a focal Dove and a Hawk.
+\item
+  \[ \Pr(D \mid D)\] probability of encounter between a focal Dove and a non-focal Dove (\(\Pr(H \mid D) + \Pr(D \mid D) = 1\)).
+\end{itemize}
+
+Incorporating these conditional probabilities into the fitness expressions above yields
+\begin{align}
+W_{H} &= w_{0} + \Pr(H\mid H) \frac{v-c}{2} + \left(1 - \Pr (D \mid H ) \right) v \label{eq:wH} \\
+W_{D} &= w_{0} + \Pr (H \mid D) (0) + \left(1 - \Pr ( D \mid D ) \right) \frac{v}{2} \label{eq:wD}\\
+\end{align}
+
+\hypertarget{hamiltons-rule-in-a-hawk-dove-game}{%
+\section{Hamilton's rule in a Hawk Dove game?}\label{hamiltons-rule-in-a-hawk-dove-game}}
+
+If we would follow the example of the Prisoner's dilemma in the lecture slides, would we expect to find something similar to Hamilton's rule when we assess the condition in which more cooperative Doves do better than defecting Hawks, i.e., \(W_{D} > W_{H}\)?
+
+Let us look again at the Prisoner's dilemma: altruists (\(A\)) do better than nonaltruists \(NA\) (originally called `Defect' in the lecture slides but I change notation to avoid confusion with Dove) when \$W\_\{A\} \textgreater{} \(W_{NS}\), which eventually results in (see lecture slides):
+\begin{align}
+\left( \Pr(A \mid A ) - \Pr(A \mid NA ) \right ) b &> c \\
+\end{align}
+where the term \(\Pr(A \mid A ) - \Pr(A \mid NA )\) can be shown to reflect the coefficient of relatedness \(r\).
+
+In case Hamilton's rule would apply to the Hawk Dove game, we would thus expect an expression of the form
+\begin{align}
+\left(\Pr(D \mid D) - \Pr(D \mid H ) \right ) x &> y \\
+\end{align}
+where \(x\) and \(y\) would be coefficients that would result from combinations of payoffs in the Hawk Dove game.
+
+Yet, actually working out the same tricks on the Hawk Dove game as was done on the Prisoner's Dilemma in the preceding lecture, we obtain something rather different, namely
+\begin{align}
+\left [ \Pr (D \mid D) - \Pr ( D \mid H) \right ] v - \Pr (D \mid H) v > \Pr ( H \mid H ) \left (v - c \right )
+\end{align}
+
+Clearly, coefficients are not simply \(v\) on the left hand side and \(c\) on the right, but that is obvious as costs are not carried by the cooperators, but rather by pairs of interacting Hawks. But beyond this, there is something more important to note in the expression above, namely that next to the relatedness coefficient \(\Pr(D \mid D) - \Pr(D \mid H )\) there is an additional coefficient on the left-hand side (and the right-hand side is multiplied by \(\Pr(H\mid H)\)).
+
+Hence, rather than anything like \(r x > y\) we now have \(r x + k z > g y\) (i.e., lots more terms)!! And that despite it being a super simple 2 player game! What is going on??
+
+\hypertarget{exercise-7}{%
+\section{Exercise}\label{exercise-7}}
+
+Can you think of why a simple expression like \(r x > y\) does not apply to the Hawk Dove game? Specifically, compare the payoff matrix for the Prisoner's dilemma (see lecture slides) with the one of the Hawk dove game (see \protect\hyperlink{tab:payoffHD}{the table in chapter 2}). What happens if you move from the top row to the bottom row in the payoff matrix, does the payoff increase / decrease by the same amount in the Hawk Dove game vs the Prisoner's Dilemma? What happens if you move from the left column to the right column? Discuss.
+
+\hypertarget{evolution-of-aggression-when-relatives-interact-in-r}{%
+\section{Evolution of aggression when relatives interact in R}\label{evolution-of-aggression-when-relatives-interact-in-r}}
+
+Now that we know we cannot really use Hamilton's rule to predict when Doves will outlive Hawks, we have to resort to our previously used method of iterating a population genetics recursion equation in R to predict how interactions among relatives affects aggression. It turns out, relatedness \(r\) comes into this in another way, namely directly through the conditional probabilities. If we interpret \(r\) as being the chance of interacting with an individual that shares an allele identical by descent, we have
+
+\begin{itemize}
+\tightlist
+\item
+  \[ \Pr(H \mid H) = r \times 1 + (1-r ) p_{t} \] probability of encounter between a focal Hawk and non-focal Hawk.
+\item
+  \[ \Pr(D \mid H) = r \times 0 + (1-r) (1-p_{t}) \] probability of encounter between a focal Hawk and a Dove (note that \(\Pr(H \mid H) + Pr(D \mid H) = 1\)).
+\item
+  \[ \Pr(H \mid D) = r \times 0 + (1-r) p_{t} \] probability of encounter between a focal Dove and a Hawk
+\item
+  \[ \Pr(D \mid D) = r \times 1 + (1- r) (1-p_{t} ) \] probability of encounter between a focal Dove and a non-focal Dove (\(\Pr(H \mid D) + \Pr(D \mid D) = 1\)).
+\end{itemize}
+
+\hypertarget{exercise-8}{%
+\section{Exercise}\label{exercise-8}}
+
+Can you try to explain what is going on in the expressions above? Why do allele frequencies \(p_{t}\) still feature here?
+
+\hypertarget{exercise-9}{%
+\section{Exercise}\label{exercise-9}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Copy-paste the code of the correct numerical iterations of the hawk dove game above and modify the encounter rates to allow for nonrandom interactions. While \(p_{t}\) is still the allele frequency of the Hawk allele, you have to add \(r\) as a constant parameter, which you can give any value between \(0 \leq r \leq 1\) before you start the iteration. Start with \(r=0.5\), for example, what does this mean about the relatives any individual is most likely to interact?
+\item
+  Is it reasonable to think as \(r\) as a constant parameter?
+\end{enumerate}
+
+\hypertarget{exercise-10}{%
+\section{Exercise}\label{exercise-10}}
+
+Plot your results for different values of \(r\), either in Excel or by using one of the plotting packages in R. Is the relationship between aggression and \(r\) in line with your expectations?
+
+\hypertarget{spatially-explicit-models-of-the-hawk-dove-game}{%
+\chapter{Spatially explicit models of the Hawk Dove game}\label{spatially-explicit-models-of-the-hawk-dove-game}}
+
+In the previous set of exercises, we discussed our assumption of \(r\) being constant. While this allows you to assess the role of specific values of \(r\), in reality \(r\) emerges as a result of the ecology of a population, allowing us to focus on the ecological factors that drive the evolution of sociality. Models in which \(r\) is not treated at a constant, but \emph{emerges} are called \emph{demographically consistent}.
+
+One major ecological factor that affects \(r\) is the probability of dispersal: if few individuals disperse, while most just stick around in their natal environment, relatedness among randomly sampled individuals is likely to be much higher than when most individuals disperse and go elsewhere.
+
+\hypertarget{exercise-11}{%
+\section{Exercise}\label{exercise-11}}
+
+Can you think of other ecological factors that influence \(r\)?
+
+\hypertarget{investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game}{%
+\section{Investigating how dispersal affects aggression: adding space to the Hawk Dove game}\label{investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game}}
+
+Given the results from the numerical model of the Hawk Dove game among relatives, we would thus predict that reducing the rate of dispersal (which results in an increase in \(r\)) should reduce the evolution of aggression.
+
+To investigate this prediction, we need a model that includes some notion of space, as individuals need to disperse from one patch to another. There lots of different ways to include space in models. Most commonly used are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{two-patch models}: in which a population distributed across (lo-and-behold) two sites, with migration occurring between them (example: island vs mainland). In this case, at least one of the environments typically contains lots of individuals (the mainland), making it unlikely that relatives encounter each other in a large proportion of the population. If this is the ecological setting, interactions between relatives are likely to be less important anyway.
+\item
+  \textbf{lattice models}: individuals migrate around on a grid of patches, moving from one patch to an adjacent one per timestep. If this is the ecology, then interactions among relatives are much more likelyt to occur, as even when individuals migrate, they are still close to the natal site and hence likely to interact with other relatives that have dispersed. However, at the same time, this means that what happens in one patches correlates with what happens in another, which makes these models much more tedious to model. Also there are loads of additional assumptions involved (e.g., what do you do at the edge of a lattice? Do you move to the other side (i.e., a torus world) or do you bounce back?
+\item
+  \textbf{island models}: in this flavour of a spatial model, once individuals migrate, they move to a randomly chosen site in the population. This may well describe taxa such as many insects where individuals move relatively away from their natal patch, while the non-dispersers stay at their natal site. Next to the two-patch case, this is the easiest version of a spatial model, so that is what we will be focusing on here.
+\end{enumerate}
+
+\hypertarget{exercise-12}{%
+\section{Exercise}\label{exercise-12}}
+
+Discuss the pros and cons of each model - what approach has your preference and why?
+
+The life cycle of the island model is similar to that of the numerical one before: 1. individuals are born; 2. they disperse or not and compete for one of \(N_{bp}\) breeding positions with native and immigrant juveniles; 3. they interact with a randomly chosen patch mate and obtain a payoff; 4. the number of offspring that are produced are then proportional to the payoff they have received.
+
+\hypertarget{a-spatial-model-of-the-hawk-dove-game}{%
+\section{A spatial model of the hawk dove game}\label{a-spatial-model-of-the-hawk-dove-game}}
+
+In \texttt{R} (make sure you use version 4.1.1), we now proceed to install the package \texttt{hdIslandModel} which is an individual based simulation of an island model with Hawks and Doves, allowing us to vary the rate of dispersal.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)) }\FunctionTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+
+\FunctionTok{library}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"bramkuijper/hdIslandModel"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then we can load the library using:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"hdIslandModel"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The model contained in the package can be called by the command \texttt{runHDSpace()} which spits out a \texttt{data.frame} containing a bunch of statistics resulting from the simulation that we can save in a variable, say \texttt{sim.standard}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sim.standard }\OtherTok{\textless{}{-}} \FunctionTok{runHDSpace}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-13}{%
+\section{Exercise}\label{exercise-13}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Take a look at the documentation of the function \texttt{runHDSpace()} by typing \texttt{?runHDSpace()}.
+\item
+  Let's run the island model for a payoff in which we would expect an evolutionarily stable strategy (ESS) to occur at \(\hat{p}=0.5\) (frequency Hawks is 50\%) when interactions among relatives are absent. This happens happens when \(\hat{p} = v/c = 1/2\). To run the model, focus on a pure strategy (do you remember what this means?) with a small mutation rate of \(mu=0.01\) and \(N=10\) breeders patch. Set the dispersal rate to something low, like \(d=0.1\), which typically results in quite high relatedness coefficients of \(r\approx 0.3-0.4\) among randomly sampled patch mates. The other parameters can be left at their default values.
+\item
+  In case dispersal indeed increases \(r\), what would we expect to see happen with the proportion of Hawks over time, should it be smaller or larger than 0.5? What is the proportion of Hawks at the end of the simulation? (Run multiple runs, as drift may cause outcomes to vary).
+\item
+  What happens if you set the dispersal rate to \(d=0.8\)? Does this make a difference?
+\end{enumerate}
+
+\hypertarget{exercise-14}{%
+\section{Exercise}\label{exercise-14}}
+
+What can we conclude about the relationship between dispersal and social behaviour from the above? Why does this happen, you think?
+
+\hypertarget{exercise-15}{%
+\section{Exercise}\label{exercise-15}}
+
+Perhaps something different happens if we allow dispersal to evolve? Run your simulation for \(max_time = 20000\) and see what happens with the dispersal rate. Does dispersal evolve in a predictable way?
+
+\hypertarget{exercise-16}{%
+\section{Exercise}\label{exercise-16}}
+
+Now incorporate the modulated
 
 \end{document}

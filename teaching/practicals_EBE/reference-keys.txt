@@ -1,3 +1,4 @@
+tab:payoffHD
 practicals-on-evolutionary-models-using-r
 learning-objectives
 opening-the-r-environment
@@ -36,3 +37,21 @@ running-the-driftsim-package
 plotting-the-output-from-the-driftsim-package
 exercise-change-the-initial-frequency-of-hawks
 exercise-increase-the-population-size
+hawk-dove-games-with-relatives
+exercise-6
+interactions-among-relatives
+hamiltons-rule-in-a-hawk-dove-game
+exercise-7
+evolution-of-aggression-when-relatives-interact-in-r
+exercise-8
+exercise-9
+exercise-10
+spatially-explicit-models-of-the-hawk-dove-game
+exercise-11
+investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game
+exercise-12
+a-spatial-model-of-the-hawk-dove-game
+exercise-13
+exercise-14
+exercise-15
+exercise-16
