@@ -23,10 +23,10 @@ I am a theoretical biologist working at the University of Exeter's Penryn Campus
 * MSc module 'Data Driven Ecology and Evolution' (LESM008) (module coordinator: [Dr Mario Recker](https://biosciences.exeter.ac.uk/staff/profile/index.php?web_id=Mario_Recker))
 
 ### Practical Evolutionary Modelling (BIOM4046)
-Read the [practical handout]({{ site.baseurl }}teaching/practical_evolution/).
+See here for the [practical handout]({{ site.baseurl }}teaching/practicals_EBE/) belonging to the modeling practical in the module Evolutionary Behavioural Ecology (BIOM4046).
 
 ### Exercises on R programming and loops
-A [booklet]({{ site.baseurl }}teaching/exercises_r/) with various exercises to get you up to speed with looping constructs (in progress...)
+A [booklet]({{ site.baseurl }}teaching/exercises_r/) with various exercises to get you up to speed with looping constructs (work in progress)
 
 ## Interested in evolutionary modeling / data analysis? Join us!
 Interested in working on the interface between evolutionary theory and data? Interested in joining the group for a postdoctoral, PhD or MbyRes project? Please get in touch to discuss project ideas and funding options.
