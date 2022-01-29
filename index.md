@@ -25,6 +25,9 @@ I am a theoretical biologist working at the University of Exeter's Penryn Campus
 ### Practical Evolutionary Modelling (BIOM4046)
 Read the [practical handout]({{ site.baseurl }}teaching/practical_evolution/).
 
+### Exercises on R programming and loops
+A [booklet]({{ site.baseurl }}teaching/exercises_r/) with various exercises to get you up to speed with looping constructs (in progress...)
+
 ## Interested in evolutionary modeling / data analysis? Join us!
 Interested in working on the interface between evolutionary theory and data? Interested in joining the group for a postdoctoral, PhD or MbyRes project? Please get in touch to discuss project ideas and funding options.
 We welcome new group members who want to understand more about topics such as social evolution, evolutionary theory, sexual selection, sex allocation or the evolution of inheritance. We also welcome any collaborations in which some theory is done as part of an empirical project. No background in theory is required as long as you are willing to learn cool new things about models, genetics, programming and data.
