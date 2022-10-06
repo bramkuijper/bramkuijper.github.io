@@ -55,3 +55,8 @@ exercise-13
 exercise-14
 exercise-15
 exercise-16
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+relation-to-delta-p-in-lecture-slides-optional
+exercise-implementing-your-first-evolutionary-algorithm-in-r
+exercise-17
+relation-to-delta-p-in-lecture-slides-this-section-is-optional
