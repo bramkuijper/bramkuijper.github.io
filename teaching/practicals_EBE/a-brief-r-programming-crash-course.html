@@ -4,15 +4,14 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practical 1 - Modelling Evolution</title>
+  <title>Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practical 1 - Modelling Evolution" />
+  <meta property="og:title" content="Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -20,7 +19,7 @@ set in the _output.yml file.</p>" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practical 1 - Modelling Evolution" />
+  <meta name="twitter:title" content="Chapter 2 A brief R programming crash course | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -30,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Bram Kuijper" />
 
 
-<meta name="date" content="2021-10-08" />
+<meta name="date" content="2022-10-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -39,7 +38,6 @@ set in the _output.yml file.</p>" />
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="an-evolutionary-model-of-the-hawk-dove-game.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -57,8 +55,9 @@ set in the _output.yml file.</p>" />
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -99,7 +98,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -112,7 +111,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -143,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Practical EBE handout</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Practicals on evolutionary models using R</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning objectives</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#opening-the-r-environment"><i class="fa fa-check"></i><b>1.2</b> Opening the R environment</a></li>
@@ -182,8 +181,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#fitness"><i class="fa fa-check"></i><b>3.7</b> Fitness</a></li>
 <li class="chapter" data-level="3.8" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-2"><i class="fa fa-check"></i><b>3.8</b> Exercise</a></li>
 <li class="chapter" data-level="3.9" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#evolutionary-dynamics"><i class="fa fa-check"></i><b>3.9</b> Evolutionary dynamics</a></li>
-<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-only-if-interested"><i class="fa fa-check"></i><b>3.10</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (only if interested)</a></li>
-<li class="chapter" data-level="3.11" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#implementing-an-evolutionary-algorithm-in-r"><i class="fa fa-check"></i><b>3.11</b> Implementing an evolutionary algorithm in R</a></li>
+<li class="chapter" data-level="3.10" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#relation-to-delta-p-in-lecture-slides-this-section-is-optional"><i class="fa fa-check"></i><b>3.10</b> Relation to <span class="math inline">\(\Delta p\)</span> in lecture slides (this section is optional)</a></li>
+<li class="chapter" data-level="3.11" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-implementing-your-first-evolutionary-algorithm-in-r"><i class="fa fa-check"></i><b>3.11</b> Exercise: implementing your first evolutionary algorithm in R</a></li>
 <li class="chapter" data-level="3.12" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-3"><i class="fa fa-check"></i><b>3.12</b> Exercise</a></li>
 <li class="chapter" data-level="3.13" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-4"><i class="fa fa-check"></i><b>3.13</b> Exercise</a></li>
 <li class="chapter" data-level="3.14" data-path="an-evolutionary-model-of-the-hawk-dove-game.html"><a href="an-evolutionary-model-of-the-hawk-dove-game.html#exercise-5"><i class="fa fa-check"></i><b>3.14</b> Exercise</a></li>
@@ -207,17 +206,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-8"><i class="fa fa-check"></i><b>5.6</b> Exercise</a></li>
 <li class="chapter" data-level="5.7" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-9"><i class="fa fa-check"></i><b>5.7</b> Exercise</a></li>
 <li class="chapter" data-level="5.8" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-10"><i class="fa fa-check"></i><b>5.8</b> Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html"><i class="fa fa-check"></i><b>6</b> Spatially explicit models of the Hawk Dove game</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-11"><i class="fa fa-check"></i><b>6.1</b> Exercise</a></li>
-<li class="chapter" data-level="6.2" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game"><i class="fa fa-check"></i><b>6.2</b> Investigating how dispersal affects aggression: adding space to the Hawk Dove game</a></li>
-<li class="chapter" data-level="6.3" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-12"><i class="fa fa-check"></i><b>6.3</b> Exercise</a></li>
-<li class="chapter" data-level="6.4" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#a-spatial-model-of-the-hawk-dove-game"><i class="fa fa-check"></i><b>6.4</b> A spatial model of the hawk dove game</a></li>
-<li class="chapter" data-level="6.5" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-13"><i class="fa fa-check"></i><b>6.5</b> Exercise</a></li>
-<li class="chapter" data-level="6.6" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-14"><i class="fa fa-check"></i><b>6.6</b> Exercise</a></li>
-<li class="chapter" data-level="6.7" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-15"><i class="fa fa-check"></i><b>6.7</b> Exercise</a></li>
-<li class="chapter" data-level="6.8" data-path="spatially-explicit-models-of-the-hawk-dove-game.html"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-16"><i class="fa fa-check"></i><b>6.8</b> Exercise</a></li>
+<li class="chapter" data-level="5.9" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-11"><i class="fa fa-check"></i><b>5.9</b> Exercise</a></li>
+<li class="chapter" data-level="5.10" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game"><i class="fa fa-check"></i><b>5.10</b> Investigating how dispersal affects aggression: adding space to the Hawk Dove game</a></li>
+<li class="chapter" data-level="5.11" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-12"><i class="fa fa-check"></i><b>5.11</b> Exercise</a></li>
+<li class="chapter" data-level="5.12" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#a-spatial-model-of-the-hawk-dove-game"><i class="fa fa-check"></i><b>5.12</b> A spatial model of the hawk dove game</a></li>
+<li class="chapter" data-level="5.13" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-13"><i class="fa fa-check"></i><b>5.13</b> Exercise</a></li>
+<li class="chapter" data-level="5.14" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-14"><i class="fa fa-check"></i><b>5.14</b> Exercise</a></li>
+<li class="chapter" data-level="5.15" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-15"><i class="fa fa-check"></i><b>5.15</b> Exercise</a></li>
+<li class="chapter" data-level="5.16" data-path="hawk-dove-games-with-relatives.html"><a href="hawk-dove-games-with-relatives.html#exercise-16"><i class="fa fa-check"></i><b>5.16</b> Exercise</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -231,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: practical 1 - Modelling Evolution</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution</a>
           </h1>
         </div>
 
@@ -239,13 +235,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a-brief-r-programming-crash-course" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> A brief R programming crash course</h1>
+<div id="a-brief-r-programming-crash-course" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> A brief R programming crash course<a href="a-brief-r-programming-crash-course.html#a-brief-r-programming-crash-course" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>To get started with making our own evolutionary model, we need to make a simple program in R that tracks an evolving population.</p>
 <p>To this end, you need to know something about the ingredients that simple programs use, namely variables, vectors/sequences and for-loops. Some of this may have already featured in your statistics or introduction to data science modules, but at this stage, getting some repetition about the sometimes bamboozling inner workings of R certainly does not hurt. Even the most field-oriented among you will use R extensively during your research projects, so the more exposure you can get to this environment, the better.</p>
 <p>Try to type along with the examples below and see whether they work. Give me a shout if something looks odd.</p>
-<div id="variables" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Variables</h2>
+<div id="variables" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Variables<a href="a-brief-r-programming-crash-course.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A variable provides us with a named storage of data, allowing you to retrieve that bit of data when you want it. A variable in R can contain any type of data (e.g., a single number, a string of text, a vector of multiple values, etc).</p>
 <p>We assign data to a variable using a <code>=</code> or <code>&lt;-</code> operator (both can be used interchangeably) For example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-brief-r-programming-crash-course.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a variable named var.1 and assign a value to it using the &lt;- operator</span></span>
@@ -256,8 +252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="a-brief-r-programming-crash-course.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="a-brief-r-programming-crash-course.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># a bit of text, surrounded by single &#39;&#39; or double &quot;&quot; quotes</span></span>
 <span id="cb1-8"><a href="a-brief-r-programming-crash-course.html#cb1-8" aria-hidden="true" tabindex="-1"></a>some.text <span class="ot">&lt;-</span> <span class="st">&quot;Swanpool beach&quot;</span></span></code></pre></div>
-<div id="naming-variables" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Naming variables</h3>
+<div id="naming-variables" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Naming variables<a href="a-brief-r-programming-crash-course.html#naming-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Variables can have any name, but cannot start with a number and can only contain dot <code>.</code> and underscore <code>_</code> characters as special characters.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="a-brief-r-programming-crash-course.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this fails</span></span>
 <span id="cb2-2"><a href="a-brief-r-programming-crash-course.html#cb2-2" aria-hidden="true" tabindex="-1"></a>2times_song_release_year <span class="ot">&lt;-</span> <span class="dv">1999</span></span>
@@ -274,8 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-5"><a href="a-brief-r-programming-crash-course.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2: release%year &lt;- 1999</span></span>
 <span id="cb4-6"><a href="a-brief-r-programming-crash-course.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">##           ^</span></span></code></pre></div>
 </div>
-<div id="changing-the-value-stored-by-variables" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Changing the value stored by variables</h3>
+<div id="changing-the-value-stored-by-variables" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Changing the value stored by variables<a href="a-brief-r-programming-crash-course.html#changing-the-value-stored-by-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can easily change values of variables, simply by assigning them a new one! The new value can be of a completely different type.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="a-brief-r-programming-crash-course.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the value of a variable, showing its current value</span></span>
 <span id="cb5-2"><a href="a-brief-r-programming-crash-course.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var<span class="fl">.1</span>)</span>
@@ -287,16 +283,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-8"><a href="a-brief-r-programming-crash-course.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print the new value</span></span>
 <span id="cb5-9"><a href="a-brief-r-programming-crash-course.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var<span class="fl">.1</span>)</span>
 <span id="cb5-10"><a href="a-brief-r-programming-crash-course.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;some text instead!&quot;</span></span></code></pre></div>
-<p>You can always check the type of your variable using the <code>typeof()</code> function:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-brief-r-programming-crash-course.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(var<span class="fl">.1</span>)</span>
+<p>You can always check the type of your variable using the <code>class()</code> function:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-brief-r-programming-crash-course.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(var<span class="fl">.1</span>)</span>
 <span id="cb6-2"><a href="a-brief-r-programming-crash-course.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;character&quot;</span></span>
-<span id="cb6-3"><a href="a-brief-r-programming-crash-course.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(var<span class="fl">.2</span>)</span>
-<span id="cb6-4"><a href="a-brief-r-programming-crash-course.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;double&quot;</span></span></code></pre></div>
-<p>As you see, <code>typeof</code> does not tell you <code>var.2</code> is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a <code>double</code>, which is another word for floating point value). If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).</p>
+<span id="cb6-3"><a href="a-brief-r-programming-crash-course.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(var<span class="fl">.2</span>)</span>
+<span id="cb6-4"><a href="a-brief-r-programming-crash-course.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;numeric&quot;</span></span></code></pre></div>
+<p>As you see, <code>class()</code> does not tell you that <code>var.2</code> is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a <code>numeric</code>, which is R’s way of saying that we are dealing with a real number). If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).</p>
 </div>
 </div>
-<div id="vectors-and-element-selection" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Vectors and element selection</h2>
+<div id="vectors-and-element-selection" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Vectors and element selection<a href="a-brief-r-programming-crash-course.html#vectors-and-element-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As you have seen in the example of <code>var.2</code> above, variables can point to collections of multiple values (vectors). To create a vector, we use the <code>c()</code> function. We can subsequently get values of (groups of) individual elements by using the <code>[[]]</code> operator:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="a-brief-r-programming-crash-course.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. create a vector of character elements using c()</span></span>
 <span id="cb7-2"><a href="a-brief-r-programming-crash-course.html#cb7-2" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Opossum&quot;</span>,<span class="st">&quot;Dog&quot;</span>,<span class="st">&quot;Pallas&#39;s leaf warbler&quot;</span>)</span>
@@ -317,18 +313,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-17"><a href="a-brief-r-programming-crash-course.html#cb7-17" aria-hidden="true" tabindex="-1"></a>animals[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="st">&quot;Click beetle&quot;</span></span>
 <span id="cb7-18"><a href="a-brief-r-programming-crash-course.html#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals)</span>
 <span id="cb7-19"><a href="a-brief-r-programming-crash-course.html#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Click beetle&quot;          &quot;Dog&quot;                   &quot;Pallas&#39;s leaf warbler&quot;</span></span></code></pre></div>
-<div id="exercises" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Exercises</h3>
+<div id="exercises" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Exercises<a href="a-brief-r-programming-crash-course.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>What happens to the vector <code>animals</code> if you assign the name of your favorite animal (in quotes <code>""</code>, because text) to element <code>40</code>?</p></li>
 <li><p>Assign the number 0.5 to element <code>10</code> of the <code>animals</code> vector. Try to multiply this value by 10, by typing</p></li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="a-brief-r-programming-crash-course.html#cb8-1" aria-hidden="true" tabindex="-1"></a>animals[[<span class="dv">10</span>]]<span class="sc">*</span><span class="dv">10</span></span></code></pre></div>
-<p>what happens? Use <code>typeof(animals[[10]])</code> to see what is going on.</p>
+<p>what happens? Use <code>class(animals[[10]])</code> to see what is going on.</p>
 </div>
 </div>
-<div id="information-about-your-vector" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Information about your vector</h2>
+<div id="information-about-your-vector" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Information about your vector<a href="a-brief-r-programming-crash-course.html#information-about-your-vector" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can obtain information about your vector by using a range of different functions, such as</p>
 <ul>
 <li><code>sum()</code>: sums all values (only works with numbers obvz)<br />
@@ -341,13 +337,13 @@ and there are lots more.</li>
 <p>Most often, however, you will use the <code>length()</code> function to obtain its size:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="a-brief-r-programming-crash-course.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="at">x=</span>animals)</span>
 <span id="cb9-2"><a href="a-brief-r-programming-crash-course.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 40</span></span></code></pre></div>
-<div id="exercise" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Exercise</h3>
+<div id="exercise" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Exercise<a href="a-brief-r-programming-crash-course.html#exercise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Using the standard <code>iris</code> dataset (available within in <code>R</code> by typing <code>iris</code> on the command line), find out the number of unique values for the column <code>Sepal.Width</code>. If you see <code>iris</code> but don’t know how you can access the column, try to search for it on the web.</p>
 </div>
 </div>
-<div id="sequences" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Sequences</h2>
+<div id="sequences" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Sequences<a href="a-brief-r-programming-crash-course.html#sequences" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Vectors are also used to contain sequences of numbers, which can either be generated with the from-to operator <code>:</code> or with the more explicit <code>seq()</code> function:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="a-brief-r-programming-crash-course.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sequence from 1 to 10</span></span>
 <span id="cb10-2"><a href="a-brief-r-programming-crash-course.html#cb10-2" aria-hidden="true" tabindex="-1"></a>some.seq <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -370,8 +366,8 @@ and there are lots more.</li>
 <span id="cb11-4"><a href="a-brief-r-programming-crash-course.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a vector of 0,1 values, repeated until a length of 13 is achieved</span></span>
 <span id="cb11-5"><a href="a-brief-r-programming-crash-course.html#cb11-5" aria-hidden="true" tabindex="-1"></a>zero.one <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">length.out=</span><span class="dv">13</span>)</span></code></pre></div>
 </div>
-<div id="the-important-bit-for-loops" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> The important bit: <code>for</code> loops</h2>
+<div id="the-important-bit-for-loops" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> The important bit: <code>for</code> loops<a href="a-brief-r-programming-crash-course.html#the-important-bit-for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The point about programming is that you want to repeat actions multiple times. To this end, R offers you two different looping constructs: the <code>while()</code> loop and the <code>for</code> loop.</p>
 <p>In this practical, we focus on the <code>for</code> loop as it is more commonly used than <code>while()</code>. Best to begin by an example:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="a-brief-r-programming-crash-course.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you need some vector of something</span></span>
@@ -407,15 +403,15 @@ and there are lots more.</li>
 <span id="cb12-31"><a href="a-brief-r-programming-crash-course.html#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 10</span></span>
 <span id="cb12-32"><a href="a-brief-r-programming-crash-course.html#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Some text.&quot;</span></span></code></pre></div>
 <p>From the printed output, you see that the <code>iterator</code> gets a new value every time the loop goes round. The message <code>"Some text"</code> is also repeatedly printed, but this value does not change.</p>
-<div id="dissecting-the-for-loop" class="section level3" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Dissecting the for loop</h3>
+<div id="dissecting-the-for-loop" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Dissecting the for loop<a href="a-brief-r-programming-crash-course.html#dissecting-the-for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The loop starts with the keyword <code>for</code>, followed by parentheses <code>()</code>. Within those parentheses, we always start by declaring a new variable, which – in this case – I have called <code>iterator</code>, but you could have given it <em>any</em> valid name, like <code>index</code> or <code>boring.practical</code>.</p>
 <p>Each time the <code>for</code> loop goes round, the <code>iterator</code> variable gets assigned a new value. Which value? An element from a vector, which we have called here <code>some.vec</code>. The <code>in</code> keyword in between <code>iterator</code> and <code>some.vec</code> performs the assigning of these consecutive elements from <code>some.vec</code> to <code>iterator</code>.</p>
 <p>Hence, the first time the loop goes round, <code>iterator</code> receives the value of <code>5</code>, as this is the first element of <code>some.vec</code>. Subsequently, the <code>for</code> loop enters the bit in between curly braces <code>{}</code>. The code in this part will be executed every time <code>iterator</code> gets a new value. In this case, the code is <code>print(iterator)</code>, meaning it prints the <em>current</em> value of the <code>iterator</code> variable (which is <code>5</code>) is printed to the screen. After this the subsequent <code>print()</code> statement is executed, which prints <code>"Some text"</code> to the screen.</p>
 <p>Next, the loop goes round again. Now the value of <code>iterator</code> will be 6. Again, <code>6</code> is printed by the <code>print()</code> statements in the <code>{}</code>-part and this goes on until all elements from <code>some.vec</code> have been assigned to <code>iterator</code>. Hence, the last value printed will be <code>10</code>, after which the <code>for</code> loop exits.</p>
 </div>
-<div id="another-example" class="section level3" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span> Another example</h3>
+<div id="another-example" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Another example<a href="a-brief-r-programming-crash-course.html#another-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Just to throw in another example that is slightly different, let us calculate the product of elements of two vectors and sum those products:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="a-brief-r-programming-crash-course.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate two vectors with numbers; </span></span>
 <span id="cb13-2"><a href="a-brief-r-programming-crash-course.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vectors have the same length</span></span>
@@ -442,12 +438,12 @@ and there are lots more.</li>
 <span id="cb13-23"><a href="a-brief-r-programming-crash-course.html#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sum)</span>
 <span id="cb13-24"><a href="a-brief-r-programming-crash-course.html#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 47.9</span></span></code></pre></div>
 </div>
-<div id="exercises-1" class="section level3" number="2.5.3">
-<h3><span class="header-section-number">2.5.3</span> Exercises</h3>
+<div id="exercises-1" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Exercises<a href="a-brief-r-programming-crash-course.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Why we don’t we write <code>for (idx in vec.1)</code>, as in the previous example?</li>
-<li>Could you change the code to store the sum that you obtain
-in each iteration in a list? I.e., that list should have the values</li>
+<li>In the first example of a <code>for</code> loop (right below section 2.5), we used the statement <code>for (iterator in some.vec)</code>. The statement in the second example of a <code>for</code> loop is slightly more complicated, however: <code>for (idx in 1:length(vec.1))</code>. Can you explain the difference between the two statements?</li>
+<li>Could you change the code to store the sum that you obtain in each iteration in a list?
+I.e., that list should have the values</li>
 </ul>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="a-brief-r-programming-crash-course.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cumul.list)</span></code></pre></div>
 <pre><code>## [1]  1.5  8.7 23.1 23.4 47.9</code></pre>
@@ -522,7 +518,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
