@@ -60,3 +60,14 @@ relation-to-delta-p-in-lecture-slides-optional
 exercise-implementing-your-first-evolutionary-algorithm-in-r
 exercise-17
 relation-to-delta-p-in-lecture-slides-this-section-is-optional
+before-you-start-this-practical
+individual-based-models
+life-cycle-1
+exercise-plotting-the-output-from-the-driftsim-package
+exercise-the-downfall-of-hamiltons-rule
+exercise-explaining-these-expressions
+exercise-implementing-it-in-the-numerical-model
+eq:wH
+eq:wD
+exercise-running-the-model
+exercise-varying-the-values-of-r
