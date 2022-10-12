@@ -142,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Practical EBE handout</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Practicals on evolutionary models using R</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning objectives</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#opening-the-r-environment"><i class="fa fa-check"></i><b>1.2</b> Opening the R environment</a></li>
@@ -267,14 +267,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-spatial-model-of-the-hawk-dove-game" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> A spatial model of the hawk dove game<a href="spatially-explicit-models-of-the-hawk-dove-game.html#a-spatial-model-of-the-hawk-dove-game" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In <code>R</code> (make sure you use version 4.1.1), we now proceed to install the package <code>hdIslandModel</code> which is an individual based simulation of an island model with Hawks and Doves, allowing us to vary the rate of dispersal.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb2-2"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb2-4"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb2-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bramkuijper/hdIslandModel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb25-2"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb25-4"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bramkuijper/hdIslandModel&quot;</span>)</span></code></pre></div>
 <p>Then we can load the library using:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;hdIslandModel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;hdIslandModel&quot;</span>)</span></code></pre></div>
 <p>The model contained in the package can be called by the command <code>runHDSpace()</code> which spits out a <code>data.frame</code> containing a bunch of statistics resulting from the simulation that we can save in a variable, say <code>sim.standard</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb4-1" aria-hidden="true" tabindex="-1"></a>sim.standard <span class="ot">&lt;-</span> <span class="fu">runHDSpace</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb27-1" aria-hidden="true" tabindex="-1"></a>sim.standard <span class="ot">&lt;-</span> <span class="fu">runHDSpace</span>() </span></code></pre></div>
 </div>
 <div id="exercise-8" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Exercise<a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
