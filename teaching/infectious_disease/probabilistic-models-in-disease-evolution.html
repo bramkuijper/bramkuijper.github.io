@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Probabilistic models in disease evolution | Epidemiological Modelling: Course Notes</title>
+  <meta name="description" content="Course notes epidemiology" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Probabilistic models in disease evolution | Epidemiological Modelling: Course Notes" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Course notes epidemiology" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Probabilistic models in disease evolution | Epidemiological Modelling: Course Notes" />
+  
+  <meta name="twitter:description" content="Course notes epidemiology" />
+  
+
+<meta name="author" content="Bram Kuijper, Mario Recker" />
+
+
+<meta name="date" content="2024-02-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tutorial-uncertainties.html"/>
+<link rel="next" href="fitting-dynamic-models-to-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.32/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Course notes epidemiological modelling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Lecture notes for lectures 7-10</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#copying-code"><i class="fa fa-check"></i><b>1.1</b> Copying code</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html"><i class="fa fa-check"></i><b>2</b> Tutorial uncertainties</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#estimating-r_0-in-a-risk-heterogenous-population"><i class="fa fa-check"></i><b>2.1</b> Estimating <span class="math inline">\(R_{0}\)</span> in a risk-heterogenous population</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#sis-model-code"><i class="fa fa-check"></i><b>2.1.1</b> SIS model code</a></li>
+<li class="chapter" data-level="2.1.2" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#task-estimate-r0-without-taking-into-account-risk"><i class="fa fa-check"></i><b>2.1.2</b> Task: estimate R0 without taking into account risk</a></li>
+<li class="chapter" data-level="2.1.3" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#task-estimate-r0-while-taking-into-account-risk"><i class="fa fa-check"></i><b>2.1.3</b> Task: estimate R0 while taking into account risk</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#maximum-likelihood-and-age-dependent-seropositivity"><i class="fa fa-check"></i><b>2.2</b> Maximum Likelihood and age-dependent seropositivity</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#the-datasets"><i class="fa fa-check"></i><b>2.2.1</b> The datasets</a></li>
+<li class="chapter" data-level="2.2.2" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#dataset-1-quite-some-susceptibles-in-early-life"><i class="fa fa-check"></i><b>2.2.2</b> Dataset 1: quite some susceptibles in early life</a></li>
+<li class="chapter" data-level="2.2.3" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#dataset-2-few-susceptibles-in-early-life"><i class="fa fa-check"></i><b>2.2.3</b> Dataset 2: few susceptibles in early life</a></li>
+<li class="chapter" data-level="2.2.4" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#dataset-3-loss-of-immunity-in-later-life"><i class="fa fa-check"></i><b>2.2.4</b> Dataset 3: loss of immunity in later life</a></li>
+<li class="chapter" data-level="2.2.5" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#probabilities-and-the-likelihood-function"><i class="fa fa-check"></i><b>2.2.5</b> Probabilities and the likelihood function</a></li>
+<li class="chapter" data-level="2.2.6" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#task-calculating-the-log-likelihood-for-r_0-3"><i class="fa fa-check"></i><b>2.2.6</b> Task: calculating the log-likelihood for <span class="math inline">\(R_{0} = 3\)</span></a></li>
+<li class="chapter" data-level="2.2.7" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#task-calculate-the-log-likelihood-for-a-range-of-r_0-values"><i class="fa fa-check"></i><b>2.2.7</b> Task: calculate the log-likelihood for a range of <span class="math inline">\(R_{0}\)</span> values</a></li>
+<li class="chapter" data-level="2.2.8" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#task-calculate-log-likelihood-for-the-other-datasets"><i class="fa fa-check"></i><b>2.2.8</b> Task: calculate log likelihood for the other datasets</a></li>
+<li class="chapter" data-level="2.2.9" data-path="tutorial-uncertainties.html"><a href="tutorial-uncertainties.html#task-thinking-further-about-the-loss-of-immunity-dataset"><i class="fa fa-check"></i><b>2.2.9</b> Task: thinking further about the loss of immunity dataset</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probabilistic-models-in-disease-evolution.html"><a href="probabilistic-models-in-disease-evolution.html"><i class="fa fa-check"></i><b>3</b> Probabilistic models in disease evolution</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probabilistic-models-in-disease-evolution.html"><a href="probabilistic-models-in-disease-evolution.html#gamma-chain-models"><i class="fa fa-check"></i><b>3.1</b> Gamma chain models</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="probabilistic-models-in-disease-evolution.html"><a href="probabilistic-models-in-disease-evolution.html#gamma-chain-model-code"><i class="fa fa-check"></i><b>3.1.1</b> Gamma chain model code</a></li>
+<li class="chapter" data-level="3.1.2" data-path="probabilistic-models-in-disease-evolution.html"><a href="probabilistic-models-in-disease-evolution.html#task-run-the-gamma-chain-model"><i class="fa fa-check"></i><b>3.1.2</b> Task: run the gamma chain model</a></li>
+<li class="chapter" data-level="3.1.3" data-path="probabilistic-models-in-disease-evolution.html"><a href="probabilistic-models-in-disease-evolution.html#task-lower-the-r_0-value-in-the-gamma-chain-model"><i class="fa fa-check"></i><b>3.1.3</b> Task: lower the <span class="math inline">\(R_{0}\)</span> value in the gamma chain model</a></li>
+<li class="chapter" data-level="3.1.4" data-path="probabilistic-models-in-disease-evolution.html"><a href="probabilistic-models-in-disease-evolution.html#task-increase-n"><i class="fa fa-check"></i><b>3.1.4</b> Task: increase <span class="math inline">\(n\)</span></a></li>
+<li class="chapter" data-level="3.1.5" data-path="probabilistic-models-in-disease-evolution.html"><a href="probabilistic-models-in-disease-evolution.html#extra-increase-n-even-further"><i class="fa fa-check"></i><b>3.1.5</b> Extra: increase <span class="math inline">\(n\)</span> even further</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html"><i class="fa fa-check"></i><b>4</b> Fitting dynamic models to data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#hong-kong-flu-dataset"><i class="fa fa-check"></i><b>4.1</b> Hong Kong flu dataset</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#setting-up-the-sir-model"><i class="fa fa-check"></i><b>4.1.1</b> Setting up the SIR model</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#task-finalize-the-sir_ode-code-above"><i class="fa fa-check"></i><b>4.2</b> Task: finalize the <code>sir_ode</code> code above</a></li>
+<li class="chapter" data-level="4.3" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#interfacing-the-model-with-the-data"><i class="fa fa-check"></i><b>4.3</b> Interfacing the model with the data</a></li>
+<li class="chapter" data-level="4.4" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#task-try-to-finish-the-function-code-above"><i class="fa fa-check"></i><b>4.4</b> Task: try to finish the function code above</a></li>
+<li class="chapter" data-level="4.5" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#task-test-driving-our-function"><i class="fa fa-check"></i><b>4.5</b> Task: test driving our function</a></li>
+<li class="chapter" data-level="4.6" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#task"><i class="fa fa-check"></i><b>4.6</b> Task:</a></li>
+<li class="chapter" data-level="4.7" data-path="fitting-dynamic-models-to-data.html"><a href="fitting-dynamic-models-to-data.html#task-missing-data"><i class="fa fa-check"></i><b>4.7</b> Task: missing data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Epidemiological Modelling: Course Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilistic-models-in-disease-evolution" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Probabilistic models in disease evolution<a href="probabilistic-models-in-disease-evolution.html#probabilistic-models-in-disease-evolution" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here we will focus on two applications:
+1. A so-called ‘gamma-chain’ model which uses more realistic recovery distributions.
+2. The famous Gillespie Model of Stochastic disease modelling</p>
+<div id="gamma-chain-models" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Gamma chain models<a href="probabilistic-models-in-disease-evolution.html#gamma-chain-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the lectures we discussed that more realistic distributions of the recovery time may change the
+spead of the disease onset as well as the peak
+numbers of infected.</p>
+<p>Here we will demonstrate this ourselves by running our own gamma chain model. A key parameter here is <span class="math inline">\(n\)</span>, the number of stages through which an individual has to pass before clearing the disease.</p>
+<div id="gamma-chain-model-code" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Gamma chain model code<a href="probabilistic-models-in-disease-evolution.html#gamma-chain-model-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="probabilistic-models-in-disease-evolution.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;deSolve&quot;</span>)</span>
+<span id="cb6-2"><a href="probabilistic-models-in-disease-evolution.html#cb6-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ─────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ───────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="probabilistic-models-in-disease-evolution.html#cb8-1" tabindex="-1"></a><span class="co"># incorporate a gamma distribution </span></span>
+<span id="cb8-2"><a href="probabilistic-models-in-disease-evolution.html#cb8-2" tabindex="-1"></a><span class="co"># of infection time </span></span>
+<span id="cb8-3"><a href="probabilistic-models-in-disease-evolution.html#cb8-3" tabindex="-1"></a><span class="co"># into an SIR model</span></span>
+<span id="cb8-4"><a href="probabilistic-models-in-disease-evolution.html#cb8-4" tabindex="-1"></a>sir_chain_mod <span class="ot">&lt;-</span> <span class="cf">function</span>(t, init_densities, parameters) </span>
+<span id="cb8-5"><a href="probabilistic-models-in-disease-evolution.html#cb8-5" tabindex="-1"></a>{ </span>
+<span id="cb8-6"><a href="probabilistic-models-in-disease-evolution.html#cb8-6" tabindex="-1"></a>    <span class="co"># vector with all the densities </span></span>
+<span id="cb8-7"><a href="probabilistic-models-in-disease-evolution.html#cb8-7" tabindex="-1"></a>    <span class="co"># received via the command line</span></span>
+<span id="cb8-8"><a href="probabilistic-models-in-disease-evolution.html#cb8-8" tabindex="-1"></a>    x <span class="ot">&lt;-</span> init_densities</span>
+<span id="cb8-9"><a href="probabilistic-models-in-disease-evolution.html#cb8-9" tabindex="-1"></a>   </span>
+<span id="cb8-10"><a href="probabilistic-models-in-disease-evolution.html#cb8-10" tabindex="-1"></a>    <span class="co"># derive the total population size from </span></span>
+<span id="cb8-11"><a href="probabilistic-models-in-disease-evolution.html#cb8-11" tabindex="-1"></a>    <span class="co"># the sum of the densities</span></span>
+<span id="cb8-12"><a href="probabilistic-models-in-disease-evolution.html#cb8-12" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">sum</span>(init_densities)</span>
+<span id="cb8-13"><a href="probabilistic-models-in-disease-evolution.html#cb8-13" tabindex="-1"></a>    </span>
+<span id="cb8-14"><a href="probabilistic-models-in-disease-evolution.html#cb8-14" tabindex="-1"></a>    <span class="co"># number of time steps an individual needs</span></span>
+<span id="cb8-15"><a href="probabilistic-models-in-disease-evolution.html#cb8-15" tabindex="-1"></a>    <span class="co"># to undergo before the infection is cleared</span></span>
+<span id="cb8-16"><a href="probabilistic-models-in-disease-evolution.html#cb8-16" tabindex="-1"></a>    n <span class="ot">&lt;-</span> parameters[<span class="st">&quot;n&quot;</span>]</span>
+<span id="cb8-17"><a href="probabilistic-models-in-disease-evolution.html#cb8-17" tabindex="-1"></a>    </span>
+<span id="cb8-18"><a href="probabilistic-models-in-disease-evolution.html#cb8-18" tabindex="-1"></a>    <span class="co"># we need at least one infected stage</span></span>
+<span id="cb8-19"><a href="probabilistic-models-in-disease-evolution.html#cb8-19" tabindex="-1"></a>    <span class="fu">stopifnot</span>(n <span class="sc">&gt;=</span> <span class="dv">1</span>)</span>
+<span id="cb8-20"><a href="probabilistic-models-in-disease-evolution.html#cb8-20" tabindex="-1"></a>    </span>
+<span id="cb8-21"><a href="probabilistic-models-in-disease-evolution.html#cb8-21" tabindex="-1"></a>    <span class="co"># some bounds checking</span></span>
+<span id="cb8-22"><a href="probabilistic-models-in-disease-evolution.html#cb8-22" tabindex="-1"></a>    <span class="co"># we expect one density for S and R each</span></span>
+<span id="cb8-23"><a href="probabilistic-models-in-disease-evolution.html#cb8-23" tabindex="-1"></a>    <span class="co"># and n densities for I, making n+2</span></span>
+<span id="cb8-24"><a href="probabilistic-models-in-disease-evolution.html#cb8-24" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">length</span>(x) <span class="sc">==</span> n <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb8-25"><a href="probabilistic-models-in-disease-evolution.html#cb8-25" tabindex="-1"></a>    </span>
+<span id="cb8-26"><a href="probabilistic-models-in-disease-evolution.html#cb8-26" tabindex="-1"></a>    <span class="co"># initial density of S, this is only a single value</span></span>
+<span id="cb8-27"><a href="probabilistic-models-in-disease-evolution.html#cb8-27" tabindex="-1"></a>    S <span class="ot">&lt;-</span> x[<span class="dv">1</span>]</span>
+<span id="cb8-28"><a href="probabilistic-models-in-disease-evolution.html#cb8-28" tabindex="-1"></a>    </span>
+<span id="cb8-29"><a href="probabilistic-models-in-disease-evolution.html#cb8-29" tabindex="-1"></a>    <span class="co"># initial density of I, because we have now</span></span>
+<span id="cb8-30"><a href="probabilistic-models-in-disease-evolution.html#cb8-30" tabindex="-1"></a>    <span class="co"># different compartments this is a whole</span></span>
+<span id="cb8-31"><a href="probabilistic-models-in-disease-evolution.html#cb8-31" tabindex="-1"></a>    I <span class="ot">&lt;-</span> x[<span class="dv">2</span><span class="sc">:</span>(n <span class="sc">+</span> <span class="dv">1</span>)]</span>
+<span id="cb8-32"><a href="probabilistic-models-in-disease-evolution.html#cb8-32" tabindex="-1"></a>    </span>
+<span id="cb8-33"><a href="probabilistic-models-in-disease-evolution.html#cb8-33" tabindex="-1"></a>    <span class="co"># then finally get the fraction of resistant</span></span>
+<span id="cb8-34"><a href="probabilistic-models-in-disease-evolution.html#cb8-34" tabindex="-1"></a>    <span class="co"># individuals from the population density vector</span></span>
+<span id="cb8-35"><a href="probabilistic-models-in-disease-evolution.html#cb8-35" tabindex="-1"></a>    R <span class="ot">&lt;-</span> x[n <span class="sc">+</span> <span class="dv">2</span>] </span>
+<span id="cb8-36"><a href="probabilistic-models-in-disease-evolution.html#cb8-36" tabindex="-1"></a>    </span>
+<span id="cb8-37"><a href="probabilistic-models-in-disease-evolution.html#cb8-37" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">as.list</span>(parameters), {</span>
+<span id="cb8-38"><a href="probabilistic-models-in-disease-evolution.html#cb8-38" tabindex="-1"></a>        total_I <span class="ot">&lt;-</span> <span class="fu">sum</span>(I)</span>
+<span id="cb8-39"><a href="probabilistic-models-in-disease-evolution.html#cb8-39" tabindex="-1"></a>        </span>
+<span id="cb8-40"><a href="probabilistic-models-in-disease-evolution.html#cb8-40" tabindex="-1"></a>        <span class="co"># dS/dt is just the same as</span></span>
+<span id="cb8-41"><a href="probabilistic-models-in-disease-evolution.html#cb8-41" tabindex="-1"></a>        <span class="co"># it ever was</span></span>
+<span id="cb8-42"><a href="probabilistic-models-in-disease-evolution.html#cb8-42" tabindex="-1"></a>        dS <span class="ot">&lt;-</span> mu <span class="sc">*</span> N <span class="sc">-</span> beta <span class="sc">*</span> S <span class="sc">*</span> total_I <span class="sc">/</span> N  <span class="sc">-</span> mu <span class="sc">*</span> S</span>
+<span id="cb8-43"><a href="probabilistic-models-in-disease-evolution.html#cb8-43" tabindex="-1"></a>        </span>
+<span id="cb8-44"><a href="probabilistic-models-in-disease-evolution.html#cb8-44" tabindex="-1"></a>        <span class="co"># allocate empty space filled</span></span>
+<span id="cb8-45"><a href="probabilistic-models-in-disease-evolution.html#cb8-45" tabindex="-1"></a>        <span class="co"># with zeros for the n  dI/dts</span></span>
+<span id="cb8-46"><a href="probabilistic-models-in-disease-evolution.html#cb8-46" tabindex="-1"></a>        dI <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length =</span> n)</span>
+<span id="cb8-47"><a href="probabilistic-models-in-disease-evolution.html#cb8-47" tabindex="-1"></a>        </span>
+<span id="cb8-48"><a href="probabilistic-models-in-disease-evolution.html#cb8-48" tabindex="-1"></a>        <span class="co"># dI1/dt is a bit special as it receives</span></span>
+<span id="cb8-49"><a href="probabilistic-models-in-disease-evolution.html#cb8-49" tabindex="-1"></a>        <span class="co"># susceptibles whereas dI2/dt etc do not</span></span>
+<span id="cb8-50"><a href="probabilistic-models-in-disease-evolution.html#cb8-50" tabindex="-1"></a>        <span class="co"># hence write dI1/dt outside</span></span>
+<span id="cb8-51"><a href="probabilistic-models-in-disease-evolution.html#cb8-51" tabindex="-1"></a>        <span class="co"># the for loop</span></span>
+<span id="cb8-52"><a href="probabilistic-models-in-disease-evolution.html#cb8-52" tabindex="-1"></a>        dI[<span class="dv">1</span>] <span class="ot">&lt;-</span> beta <span class="sc">*</span> S <span class="sc">*</span> total_I <span class="sc">/</span> N <span class="sc">-</span> </span>
+<span id="cb8-53"><a href="probabilistic-models-in-disease-evolution.html#cb8-53" tabindex="-1"></a>            (mu <span class="sc">+</span> n <span class="sc">*</span> sigma) <span class="sc">*</span> I[<span class="dv">1</span>]</span>
+<span id="cb8-54"><a href="probabilistic-models-in-disease-evolution.html#cb8-54" tabindex="-1"></a>        </span>
+<span id="cb8-55"><a href="probabilistic-models-in-disease-evolution.html#cb8-55" tabindex="-1"></a>        <span class="co"># evaluate all the the dI_i equations</span></span>
+<span id="cb8-56"><a href="probabilistic-models-in-disease-evolution.html#cb8-56" tabindex="-1"></a>        <span class="cf">if</span> (n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb8-57"><a href="probabilistic-models-in-disease-evolution.html#cb8-57" tabindex="-1"></a>        {</span>
+<span id="cb8-58"><a href="probabilistic-models-in-disease-evolution.html#cb8-58" tabindex="-1"></a>            <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n)</span>
+<span id="cb8-59"><a href="probabilistic-models-in-disease-evolution.html#cb8-59" tabindex="-1"></a>            {</span>
+<span id="cb8-60"><a href="probabilistic-models-in-disease-evolution.html#cb8-60" tabindex="-1"></a>                dI[i] <span class="ot">&lt;-</span> n <span class="sc">*</span> sigma <span class="sc">*</span> I[i <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">-</span> </span>
+<span id="cb8-61"><a href="probabilistic-models-in-disease-evolution.html#cb8-61" tabindex="-1"></a>                    (n <span class="sc">*</span> sigma <span class="sc">+</span> mu) <span class="sc">*</span> I[i]</span>
+<span id="cb8-62"><a href="probabilistic-models-in-disease-evolution.html#cb8-62" tabindex="-1"></a>            }</span>
+<span id="cb8-63"><a href="probabilistic-models-in-disease-evolution.html#cb8-63" tabindex="-1"></a>        }</span>
+<span id="cb8-64"><a href="probabilistic-models-in-disease-evolution.html#cb8-64" tabindex="-1"></a>        </span>
+<span id="cb8-65"><a href="probabilistic-models-in-disease-evolution.html#cb8-65" tabindex="-1"></a>        <span class="co"># and finally dR/dt</span></span>
+<span id="cb8-66"><a href="probabilistic-models-in-disease-evolution.html#cb8-66" tabindex="-1"></a>        dR <span class="ot">&lt;-</span> n <span class="sc">*</span> sigma <span class="sc">*</span> I[n] <span class="sc">-</span> mu <span class="sc">*</span> R</span>
+<span id="cb8-67"><a href="probabilistic-models-in-disease-evolution.html#cb8-67" tabindex="-1"></a>     </span>
+<span id="cb8-68"><a href="probabilistic-models-in-disease-evolution.html#cb8-68" tabindex="-1"></a>        result <span class="ot">&lt;-</span> <span class="fu">c</span>(dS, dI, dR)   </span>
+<span id="cb8-69"><a href="probabilistic-models-in-disease-evolution.html#cb8-69" tabindex="-1"></a>        </span>
+<span id="cb8-70"><a href="probabilistic-models-in-disease-evolution.html#cb8-70" tabindex="-1"></a>        <span class="fu">return</span>(<span class="fu">list</span>(result))</span>
+<span id="cb8-71"><a href="probabilistic-models-in-disease-evolution.html#cb8-71" tabindex="-1"></a>    }) </span>
+<span id="cb8-72"><a href="probabilistic-models-in-disease-evolution.html#cb8-72" tabindex="-1"></a>} <span class="co"># end sir_chain_mod()</span></span>
+<span id="cb8-73"><a href="probabilistic-models-in-disease-evolution.html#cb8-73" tabindex="-1"></a></span>
+<span id="cb8-74"><a href="probabilistic-models-in-disease-evolution.html#cb8-74" tabindex="-1"></a><span class="co"># first define our parameters, including n</span></span>
+<span id="cb8-75"><a href="probabilistic-models-in-disease-evolution.html#cb8-75" tabindex="-1"></a><span class="co"># the number of stages an individual has to go</span></span>
+<span id="cb8-76"><a href="probabilistic-models-in-disease-evolution.html#cb8-76" tabindex="-1"></a><span class="co"># through before clearing the infection</span></span>
+<span id="cb8-77"><a href="probabilistic-models-in-disease-evolution.html#cb8-77" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">sigma =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">20</span>, <span class="at">beta =</span> <span class="dv">1</span>, <span class="at">mu =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">75</span>)</span>
+<span id="cb8-78"><a href="probabilistic-models-in-disease-evolution.html#cb8-78" tabindex="-1"></a></span>
+<span id="cb8-79"><a href="probabilistic-models-in-disease-evolution.html#cb8-79" tabindex="-1"></a>parameters.n1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">n =</span> <span class="dv">1</span>, parameters)</span>
+<span id="cb8-80"><a href="probabilistic-models-in-disease-evolution.html#cb8-80" tabindex="-1"></a></span>
+<span id="cb8-81"><a href="probabilistic-models-in-disease-evolution.html#cb8-81" tabindex="-1"></a><span class="co"># once we have the parameters,</span></span>
+<span id="cb8-82"><a href="probabilistic-models-in-disease-evolution.html#cb8-82" tabindex="-1"></a><span class="co"># produce a vector of initial densities</span></span>
+<span id="cb8-83"><a href="probabilistic-models-in-disease-evolution.html#cb8-83" tabindex="-1"></a><span class="co"># pay attention to how we initialize I</span></span>
+<span id="cb8-84"><a href="probabilistic-models-in-disease-evolution.html#cb8-84" tabindex="-1"></a><span class="co"># there are now n different infected types</span></span>
+<span id="cb8-85"><a href="probabilistic-models-in-disease-evolution.html#cb8-85" tabindex="-1"></a><span class="co"># with I1 = 1, all other I = 0 as initial density</span></span>
+<span id="cb8-86"><a href="probabilistic-models-in-disease-evolution.html#cb8-86" tabindex="-1"></a>initial_densities <span class="ot">=</span> <span class="fu">c</span>(<span class="at">S =</span> <span class="dv">9999</span>,</span>
+<span id="cb8-87"><a href="probabilistic-models-in-disease-evolution.html#cb8-87" tabindex="-1"></a>                      <span class="at">I =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">numeric</span>(<span class="at">length =</span> parameters.n1[<span class="st">&quot;n&quot;</span>]<span class="sc">-</span><span class="dv">1</span>)),</span>
+<span id="cb8-88"><a href="probabilistic-models-in-disease-evolution.html#cb8-88" tabindex="-1"></a>                      <span class="at">R =</span> <span class="dv">0</span></span>
+<span id="cb8-89"><a href="probabilistic-models-in-disease-evolution.html#cb8-89" tabindex="-1"></a>                      )</span>
+<span id="cb8-90"><a href="probabilistic-models-in-disease-evolution.html#cb8-90" tabindex="-1"></a></span>
+<span id="cb8-91"><a href="probabilistic-models-in-disease-evolution.html#cb8-91" tabindex="-1"></a><span class="co"># set the sequence of time points to solve</span></span>
+<span id="cb8-92"><a href="probabilistic-models-in-disease-evolution.html#cb8-92" tabindex="-1"></a><span class="co"># the gamma chain ode over</span></span>
+<span id="cb8-93"><a href="probabilistic-models-in-disease-evolution.html#cb8-93" tabindex="-1"></a>times <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">250</span>, <span class="at">by =</span><span class="fl">0.1</span>)</span>
+<span id="cb8-94"><a href="probabilistic-models-in-disease-evolution.html#cb8-94" tabindex="-1"></a></span>
+<span id="cb8-95"><a href="probabilistic-models-in-disease-evolution.html#cb8-95" tabindex="-1"></a><span class="co"># run the model for n = 1</span></span>
+<span id="cb8-96"><a href="probabilistic-models-in-disease-evolution.html#cb8-96" tabindex="-1"></a>result.n1 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ode</span>(<span class="at">y =</span> initial_densities, </span>
+<span id="cb8-97"><a href="probabilistic-models-in-disease-evolution.html#cb8-97" tabindex="-1"></a>                            <span class="at">times =</span> times, </span>
+<span id="cb8-98"><a href="probabilistic-models-in-disease-evolution.html#cb8-98" tabindex="-1"></a>                            <span class="at">func =</span> sir_chain_mod, </span>
+<span id="cb8-99"><a href="probabilistic-models-in-disease-evolution.html#cb8-99" tabindex="-1"></a>                            <span class="at">parms =</span>parameters.n1)) </span>
+<span id="cb8-100"><a href="probabilistic-models-in-disease-evolution.html#cb8-100" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="probabilistic-models-in-disease-evolution.html#cb8-101" tabindex="-1"></a><span class="co"># now run the model for a higher </span></span>
+<span id="cb8-102"><a href="probabilistic-models-in-disease-evolution.html#cb8-102" tabindex="-1"></a><span class="co"># number of classes that infecteds</span></span>
+<span id="cb8-103"><a href="probabilistic-models-in-disease-evolution.html#cb8-103" tabindex="-1"></a><span class="co"># have to pass through, ie., n &gt; 1</span></span>
+<span id="cb8-104"><a href="probabilistic-models-in-disease-evolution.html#cb8-104" tabindex="-1"></a>parameters.nhigher <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">n =</span> <span class="dv">3</span>, parameters)</span>
+<span id="cb8-105"><a href="probabilistic-models-in-disease-evolution.html#cb8-105" tabindex="-1"></a></span>
+<span id="cb8-106"><a href="probabilistic-models-in-disease-evolution.html#cb8-106" tabindex="-1"></a><span class="co"># again set initial densities, but now </span></span>
+<span id="cb8-107"><a href="probabilistic-models-in-disease-evolution.html#cb8-107" tabindex="-1"></a>initial_densities <span class="ot">=</span> <span class="fu">c</span>(<span class="at">S =</span> <span class="dv">9999</span>,</span>
+<span id="cb8-108"><a href="probabilistic-models-in-disease-evolution.html#cb8-108" tabindex="-1"></a>                      <span class="at">I =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">numeric</span>(<span class="at">length =</span> parameters.nhigher[<span class="st">&quot;n&quot;</span>]<span class="sc">-</span><span class="dv">1</span>)),</span>
+<span id="cb8-109"><a href="probabilistic-models-in-disease-evolution.html#cb8-109" tabindex="-1"></a>                      <span class="at">R =</span> <span class="dv">0</span></span>
+<span id="cb8-110"><a href="probabilistic-models-in-disease-evolution.html#cb8-110" tabindex="-1"></a>                      )</span>
+<span id="cb8-111"><a href="probabilistic-models-in-disease-evolution.html#cb8-111" tabindex="-1"></a></span>
+<span id="cb8-112"><a href="probabilistic-models-in-disease-evolution.html#cb8-112" tabindex="-1"></a><span class="co"># capture the results of the model</span></span>
+<span id="cb8-113"><a href="probabilistic-models-in-disease-evolution.html#cb8-113" tabindex="-1"></a>result.nhigher <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ode</span>(<span class="at">y =</span> initial_densities, </span>
+<span id="cb8-114"><a href="probabilistic-models-in-disease-evolution.html#cb8-114" tabindex="-1"></a>                            <span class="at">times =</span> times, </span>
+<span id="cb8-115"><a href="probabilistic-models-in-disease-evolution.html#cb8-115" tabindex="-1"></a>                            <span class="at">func =</span> sir_chain_mod, </span>
+<span id="cb8-116"><a href="probabilistic-models-in-disease-evolution.html#cb8-116" tabindex="-1"></a>                            <span class="at">parms =</span>parameters.nhigher)) </span>
+<span id="cb8-117"><a href="probabilistic-models-in-disease-evolution.html#cb8-117" tabindex="-1"></a></span>
+<span id="cb8-118"><a href="probabilistic-models-in-disease-evolution.html#cb8-118" tabindex="-1"></a><span class="co"># now we need to get the total number of infecteds</span></span>
+<span id="cb8-119"><a href="probabilistic-models-in-disease-evolution.html#cb8-119" tabindex="-1"></a><span class="co"># across all the classes</span></span>
+<span id="cb8-120"><a href="probabilistic-models-in-disease-evolution.html#cb8-120" tabindex="-1"></a><span class="co"># we also label the rows of the dataset</span></span>
+<span id="cb8-121"><a href="probabilistic-models-in-disease-evolution.html#cb8-121" tabindex="-1"></a>result.n1 <span class="ot">&lt;-</span> result.n1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb8-122"><a href="probabilistic-models-in-disease-evolution.html#cb8-122" tabindex="-1"></a>    <span class="at">totalI =</span> result.n1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;I&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">rowSums</span>(),</span>
+<span id="cb8-123"><a href="probabilistic-models-in-disease-evolution.html#cb8-123" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;n = 1&quot;</span></span>
+<span id="cb8-124"><a href="probabilistic-models-in-disease-evolution.html#cb8-124" tabindex="-1"></a>)</span>
+<span id="cb8-125"><a href="probabilistic-models-in-disease-evolution.html#cb8-125" tabindex="-1"></a></span>
+<span id="cb8-126"><a href="probabilistic-models-in-disease-evolution.html#cb8-126" tabindex="-1"></a><span class="co"># now we need to get the total number of infecteds</span></span>
+<span id="cb8-127"><a href="probabilistic-models-in-disease-evolution.html#cb8-127" tabindex="-1"></a><span class="co"># across all the classes</span></span>
+<span id="cb8-128"><a href="probabilistic-models-in-disease-evolution.html#cb8-128" tabindex="-1"></a>result.nhigher <span class="ot">&lt;-</span> result.nhigher <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb8-129"><a href="probabilistic-models-in-disease-evolution.html#cb8-129" tabindex="-1"></a>    <span class="at">totalI =</span> result.nhigher <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;I&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">rowSums</span>(),</span>
+<span id="cb8-130"><a href="probabilistic-models-in-disease-evolution.html#cb8-130" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;n &gt; 1&quot;</span></span>
+<span id="cb8-131"><a href="probabilistic-models-in-disease-evolution.html#cb8-131" tabindex="-1"></a>)</span>
+<span id="cb8-132"><a href="probabilistic-models-in-disease-evolution.html#cb8-132" tabindex="-1"></a></span>
+<span id="cb8-133"><a href="probabilistic-models-in-disease-evolution.html#cb8-133" tabindex="-1"></a><span class="co"># finally we need to combine both data.frames</span></span>
+<span id="cb8-134"><a href="probabilistic-models-in-disease-evolution.html#cb8-134" tabindex="-1"></a><span class="co"># so that we can plot the results</span></span>
+<span id="cb8-135"><a href="probabilistic-models-in-disease-evolution.html#cb8-135" tabindex="-1"></a>overall.data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb8-136"><a href="probabilistic-models-in-disease-evolution.html#cb8-136" tabindex="-1"></a>    result.n1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(time, totalI, type)),</span>
+<span id="cb8-137"><a href="probabilistic-models-in-disease-evolution.html#cb8-137" tabindex="-1"></a>    result.nhigher <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(time, totalI, type))</span>
+<span id="cb8-138"><a href="probabilistic-models-in-disease-evolution.html#cb8-138" tabindex="-1"></a>)</span>
+<span id="cb8-139"><a href="probabilistic-models-in-disease-evolution.html#cb8-139" tabindex="-1"></a></span>
+<span id="cb8-140"><a href="probabilistic-models-in-disease-evolution.html#cb8-140" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> overall.data,</span>
+<span id="cb8-141"><a href="probabilistic-models-in-disease-evolution.html#cb8-141" tabindex="-1"></a>       <span class="at">mapping=</span> <span class="fu">aes</span>(<span class="at">x =</span> time, </span>
+<span id="cb8-142"><a href="probabilistic-models-in-disease-evolution.html#cb8-142" tabindex="-1"></a>                    <span class="at">y =</span> totalI)) <span class="sc">+</span></span>
+<span id="cb8-143"><a href="probabilistic-models-in-disease-evolution.html#cb8-143" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">colour=</span>type)) <span class="sc">+</span></span>
+<span id="cb8-144"><a href="probabilistic-models-in-disease-evolution.html#cb8-144" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Total density of I&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-145"><a href="probabilistic-models-in-disease-evolution.html#cb8-145" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Time&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="task-run-the-gamma-chain-model" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Task: run the gamma chain model<a href="probabilistic-models-in-disease-evolution.html#task-run-the-gamma-chain-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Copy the code above to a clean script window in Rstudio and run it. Can you glean at the parameters above and find the value of $R_{0} = / $?</p>
+<p>Do you see any differences between <span class="math inline">\(n = 1\)</span> (the classical SIR) and <span class="math inline">\(n &gt; 1\)</span> (the gamma chain model)?</p>
+</div>
+<div id="task-lower-the-r_0-value-in-the-gamma-chain-model" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Task: lower the <span class="math inline">\(R_{0}\)</span> value in the gamma chain model<a href="probabilistic-models-in-disease-evolution.html#task-lower-the-r_0-value-in-the-gamma-chain-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now run the same model again but for lower values of <span class="math inline">\(R_{0}\)</span> than previously considered. For example, by
+setting <span class="math inline">\(\sigma = 1/4\)</span>. You should see that both lines fluctuate before settling on an equilibrium.</p>
+<p>However, what is different about the fluctuations for <span class="math inline">\(n &gt; 1\)</span>? Why do you think this is?</p>
+</div>
+<div id="task-increase-n" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Task: increase <span class="math inline">\(n\)</span><a href="probabilistic-models-in-disease-evolution.html#task-increase-n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now increase <span class="math inline">\(n\)</span> to, for example, <span class="math inline">\(n = 10\)</span>, so that
+individuals need to pass through more stages before
+clearing the disease.
+Compare your results to the previous task. What has changed?</p>
+</div>
+<div id="extra-increase-n-even-further" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Extra: increase <span class="math inline">\(n\)</span> even further<a href="probabilistic-models-in-disease-evolution.html#extra-increase-n-even-further" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you would change <span class="math inline">\(n\)</span> to even larger values something ‘interesting’ happens, namely that <code>ode()</code>
+now often fails to solve the model or gives spurious results.</p>
+<p>This happens because the densities of infecteds are
+now distributed over so many classes that the per-class
+density becomes too low to solve for <code>ode()</code>. Slightly
+advanced methods are needed, for example by transforming
+the model to a log scale (e.g., see Bjørnstad 2023, p. 27) that are beyond the scope of this practical.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tutorial-uncertainties.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fitting-dynamic-models-to-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-stochasticity.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

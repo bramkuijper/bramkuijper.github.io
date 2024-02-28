@@ -1,0 +1,523 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Epidemiological Modelling: Course Notes},
+  pdfauthor={Bram Kuijper, Mario Recker},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Epidemiological Modelling: Course Notes}
+\author{Bram Kuijper, Mario Recker}
+\date{2024-02-27}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{definition}
+\newtheorem{hypothesis}{Hypothesis}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter{Lecture Notes from uncertainties to curve fitting}\label{lecture-notes-from-uncertainties-to-curve-fitting}
+
+Here the lecture notes with hints to use during the tutorials and the questions for you to solve during the practical.
+
+\section{}\label{section}
+
+\section{Copying code}\label{copying-code}
+
+If you hover over the top right corner of a code block in these lecture notes, a copy button emerges that allows
+you to copy the code (and then paste it into Rstudio) without having to first select all of the code.
+
+\chapter{Tutorial uncertainties}\label{tutorial-uncertainties}
+
+\section{\texorpdfstring{Estimating \(R_{0}\) in a risk-heterogenous population}{Estimating R\_\{0\} in a risk-heterogenous population}}\label{estimating-r_0-in-a-risk-heterogenous-population}
+
+In the first of this tutorial, we will run an SIS model
+of a population heterogenous for risk. We then estimate \(R_{0}\) for different WAIFW matrices (Who Acquires Infection From Whom)
+
+\subsection{SIS model code}\label{sis-model-code}
+
+Inspect the model code below (particularly the set of
+differential equations) and compare the equations with
+the flow diagram of the SIS model in the lecture slides.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{"deSolve"}\NormalTok{)}
+
+\CommentTok{\# set of differential equations }
+\CommentTok{\# of a model in which classes vary}
+\CommentTok{\# in their transmission risk}
+\NormalTok{SIS\_structure }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, y, parameters)}
+\NormalTok{\{}
+    \CommentTok{\# get state variables from}
+    \CommentTok{\# the y function argument}
+\NormalTok{    SL }\OtherTok{=}\NormalTok{ y[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    SH }\OtherTok{=}\NormalTok{ y[}\DecValTok{2}\NormalTok{]}
+\NormalTok{    IL }\OtherTok{=}\NormalTok{ y[}\DecValTok{3}\NormalTok{]}
+\NormalTok{    IH }\OtherTok{=}\NormalTok{ y[}\DecValTok{4}\NormalTok{]}
+    
+    \CommentTok{\# with() creates a \textquotesingle{}sub environment\textquotesingle{}}
+    \CommentTok{\# in which all the named values of the }
+    \CommentTok{\# parameters list are now variables by themselves}
+    \CommentTok{\# hence, we can then evaluate all the gradients}
+    \CommentTok{\# within this environment}
+\NormalTok{    result }\OtherTok{\textless{}{-}} \FunctionTok{with}\NormalTok{(}\AttributeTok{data=}\FunctionTok{as.list}\NormalTok{(parameters),}
+    \AttributeTok{expr =}\NormalTok{ \{}
+        \CommentTok{\# evaluate each of the equations}
+\NormalTok{        dSL }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{mu }\SpecialCharTok{*}\NormalTok{ SL }\SpecialCharTok{{-}}\NormalTok{ betaLL }\SpecialCharTok{*}\NormalTok{ SL }\SpecialCharTok{*}\NormalTok{ IL }\SpecialCharTok{{-}}\NormalTok{ betaHL }\SpecialCharTok{*}\NormalTok{ SL }\SpecialCharTok{*}\NormalTok{ IH }\SpecialCharTok{+}\NormalTok{ gamma }\SpecialCharTok{*}\NormalTok{ IL}
+        
+\NormalTok{        dSH }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{mu }\SpecialCharTok{*}\NormalTok{ SH }\SpecialCharTok{{-}}\NormalTok{ betaLH }\SpecialCharTok{*}\NormalTok{ SH }\SpecialCharTok{*}\NormalTok{ IL }\SpecialCharTok{{-}}\NormalTok{ betaHH }\SpecialCharTok{*}\NormalTok{ SH }\SpecialCharTok{*}\NormalTok{ IH }\SpecialCharTok{+}\NormalTok{ gamma }\SpecialCharTok{*}\NormalTok{ IH}
+        
+\NormalTok{        dIL }\OtherTok{\textless{}{-}}\NormalTok{ betaHL }\SpecialCharTok{*}\NormalTok{ SL }\SpecialCharTok{*}\NormalTok{ IH }\SpecialCharTok{+}\NormalTok{ betaLL }\SpecialCharTok{*}\NormalTok{ SL }\SpecialCharTok{*}\NormalTok{ IL }\SpecialCharTok{{-}}\NormalTok{ (gamma  }\SpecialCharTok{+}\NormalTok{ mu) }\SpecialCharTok{*}\NormalTok{ IL}
+        
+\NormalTok{        dIH }\OtherTok{\textless{}{-}}\NormalTok{ betaLH }\SpecialCharTok{*}\NormalTok{ SH }\SpecialCharTok{*}\NormalTok{ IL }\SpecialCharTok{+}\NormalTok{ betaHH }\SpecialCharTok{*}\NormalTok{ SH }\SpecialCharTok{*}\NormalTok{ IH }\SpecialCharTok{{-}}\NormalTok{ (gamma  }\SpecialCharTok{+}\NormalTok{ mu) }\SpecialCharTok{*}\NormalTok{ IH}
+       
+        \CommentTok{\# then return the gradient values}
+        \FunctionTok{c}\NormalTok{(dSL,dSH,dIL,dIH)}
+\NormalTok{    \})}
+    
+    \CommentTok{\# return list of gradients }
+    \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(result))}
+\NormalTok{\} }\CommentTok{\# end SIR\_structure}
+
+\CommentTok{\# set out the time points }
+\NormalTok{times }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from =} \DecValTok{0}\NormalTok{, }\AttributeTok{to =} \DecValTok{25}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{1000}\NormalTok{)}
+
+\CommentTok{\# make a named vector containing all }
+\CommentTok{\# the parameters used in the model}
+\NormalTok{params }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+    \AttributeTok{betaHH=}\DecValTok{5}\NormalTok{,}
+    \AttributeTok{betaHL=}\FloatTok{0.1}\NormalTok{,}
+    \AttributeTok{betaLH=}\FloatTok{0.1}\NormalTok{,}
+    \AttributeTok{betaLL=}\DecValTok{2}\NormalTok{,}
+    \AttributeTok{gamma=}\DecValTok{1}\NormalTok{,}
+    \AttributeTok{mu=}\DecValTok{0}\NormalTok{,}
+    \AttributeTok{N=}\DecValTok{1}
+\NormalTok{)}
+
+\CommentTok{\# a set of starting values in which we}
+\CommentTok{\# assume that equally frequent}
+\NormalTok{start }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{SL=}\FloatTok{0.495}\NormalTok{,}\AttributeTok{SH=}\FloatTok{0.495}\NormalTok{,}\AttributeTok{IL=}\FloatTok{0.005}\NormalTok{,}\AttributeTok{IH=}\FloatTok{0.005}\NormalTok{)}
+
+\CommentTok{\# run the model and obtain a data.frame}
+\CommentTok{\# with densities over time}
+\NormalTok{output }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{ode}\NormalTok{(}\AttributeTok{y =}\NormalTok{ start}
+\NormalTok{              ,}\AttributeTok{times =}\NormalTok{ times}
+\NormalTok{              ,}\AttributeTok{func=}\NormalTok{SIS\_structure}
+\NormalTok{              ,}\AttributeTok{parms =}\NormalTok{ params))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Task: estimate R0 without taking into account risk}\label{task-estimate-r0-without-taking-into-account-risk}
+
+After having inspected the model code, try to run it.
+There should now be an \texttt{output} variable, which contains a \texttt{data.frame}. This \texttt{data.frame} contains the
+the time evolution of the densities of susceptibles
+and infecteds.
+
+Try to get the total proportion of susceptibles from the \texttt{output} \texttt{data.frame}, by summing the low and high
+risk susceptibles. Use this number as your value of
+\(p_{S}\) and then calculate \(R_{0}\) from that (see
+the lecture slides for the corresponding formula).
+\emph{Hint}: you need to use the equilibrium values of the
+number of susceptibles.
+
+\subsection{Task: estimate R0 while taking into account risk}\label{task-estimate-r0-while-taking-into-account-risk}
+
+Now we will try to obtain a more precise measure of
+\(R_{0}\), by using the WAIFW matrix and the
+equilibrium values of \(S_{H}\) and \(S_{L}\) which you obtained in the previous subsection.
+
+Use R's \texttt{matrix()} command to fill out the following
+\(2 \times 2\) matrix, using the densities \(S_{H}\), \(S_{L}\) and the parameter values of \(\mathbf{beta}\) that you used
+to run the SIS model
+
+\[\begin{aligned}
+\mathbf{R} &= \left [ \begin{matrix} \beta_{HH} S_{H}, \beta_{HL} S_{L} \\
+\beta_{LH} S_{L}, \beta_{LL} S_{L}
+\end{matrix} \right ]
+\end{aligned}\]
+
+Then use the \texttt{eigen()} command on this matrix to calculate
+the dominant (i.e., the largest) eigenvalue, which is \(R_{0}\) as it calculates the overall number of secondary
+cases, while taking into account the different contributions of high and low risk individuals.
+
+Associated to the dominant eigenvalue is the dominant eigenvector, absolute
+values of which inform one about the relative long-term contribution in spreading the epidemic by high versus low-risk individuals.
+
+\section{Maximum Likelihood and age-dependent seropositivity}\label{maximum-likelihood-and-age-dependent-seropositivity}
+
+For a disease with an unknown \(R_{0}\), we provide
+three datasets with ages and whether individuals are seropositive
+or seronegative. We will then use a maximum likelihood
+approach to estimate the value of \(R_{0}\) that results from this data.
+
+\subsection{Probabilities}\label{probabilities}
+
+Let \(P(a_{i}) = \exp \left [-a_{i}\mu \left (R_{0} - 1 \right ) \right ]\) be the probability that the \(i\)th individual sampled of age \(a_{i}\) is still susceptible (i.e., has no antibodies). Similarly, \(Q(a_{i}) = 1 - \exp \left [-a_{i}\mu \left (R_{0} - 1 \right ) \right ]\) reflects the probability
+
+\chapter{Parts}\label{parts}
+
+You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file.
+
+Add a numbered part: \texttt{\#\ (PART)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+
+Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+
+Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
+
+\chapter{Fitting dynamic models to data}\label{fitting-dynamic-models-to-data}
+
+\section{Hong Kong flu dataset}\label{hong-kong-flu-dataset}
+
+Please find a dataset on the 1968 Hong Kong flu outbreak in New York below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flu }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{week =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{13}\NormalTok{,}
+                  \AttributeTok{deaths =} \FunctionTok{c}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{66}\NormalTok{, }\DecValTok{156}\NormalTok{, }\DecValTok{190}\NormalTok{, }\DecValTok{156}\NormalTok{, }\DecValTok{108}\NormalTok{, }\DecValTok{68}\NormalTok{, }\DecValTok{77}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{24}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+We will now use \texttt{optim()} to try and fit this dataset
+and estimate values for the transmission rate \(\beta\)
+and the disease clearance rate \(\gamma\).
+
+\subsection{Setting up the SIR model}\label{setting-up-the-sir-model}
+
+First, we code up a SIR ODE model with frequency-dependent transmission (as in the previous practicals) that can
+be solved by \texttt{deSolve}'s \texttt{ode()} function.
+Again, we ignore demography similar to the SIR model presented on day 1.
+For example, this would be the skeleton of such
+a function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sir\_ode }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, demographic\_variables, parameters)}
+\NormalTok{\{}
+    \FunctionTok{with}\NormalTok{(}\FunctionTok{as.list}\NormalTok{(demographic\_variables, parameters)}
+\NormalTok{         \{}
+\NormalTok{           dS }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\NormalTok{beta }\SpecialCharTok{*}\NormalTok{ S }\SpecialCharTok{*}\NormalTok{ I }\SpecialCharTok{/}\NormalTok{(S }\SpecialCharTok{+}\NormalTok{ I }\SpecialCharTok{+}\NormalTok{ R) }
+\NormalTok{    \}) }
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{Task: finalize the \texttt{sir\_ode} code above}{Task: finalize the sir\_ode code above}}\label{task-finalize-the-sir_ode-code-above}
+
+Please try to finalize the \texttt{sir\_ode} code above taking care that the function should return a list of gradients, i.e., \(\frac{\mathrm{d}S}{\mathrm{d}t},\frac{\mathrm{d}I}{\mathrm{d}t},\frac{\mathrm{d}R}{\mathrm{d}t}\)
+
+\section{Interfacing the model with the data}\label{interfacing-the-model-with-the-data}
+
+The most important part of this tutorial is to
+make a \emph{goal function} which attaches a value to
+how well the model fits the data.
+
+We assume
+that the number of deaths from the flu data
+set above is equal
+to the number of infected individuals produced
+by the ODE model
+
+To this end, the goal
+function should receive the following: (i) the current guess of the parameters \(\beta\) and \(\gamma\)
+(for which it will calculate some measure of goodness-of-fit, such as the sum of squares, SS)
+(ii) some information about initial densities
+and (iii) the actual data of the course of the infection.
+Let's do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"deSolve"}\NormalTok{)}
+\NormalTok{goal.function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(parameters, initial\_densities, data)}
+\NormalTok{\{}
+  \CommentTok{\# first obtain the time points from the dataset}
+\NormalTok{  times\_from\_data }\OtherTok{\textless{}{-}}\NormalTok{ data[,}\StringTok{"week"}\NormalTok{]}
+  
+  \CommentTok{\# solve the SIR ODE over time. }
+  \CommentTok{\# store the result as a data.frame}
+\NormalTok{  the.ode.data }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{ode}\NormalTok{(}
+    \AttributeTok{y =}\NormalTok{ initial\_densities,}
+    \AttributeTok{times =}\NormalTok{ times\_from\_data,}
+    \AttributeTok{func =}\NormalTok{ sir\_ode, }\AttributeTok{parms =}\NormalTok{ parameters))}
+     
+  \CommentTok{\# now extract the numbers of infecteds from }
+  \CommentTok{\# the resulting ode data and compare to }
+  \CommentTok{\# the ODE}
+  \CommentTok{\# and calculate the sum of squares between}
+  \CommentTok{\# the data and the ODE}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Task: try to finish the function code above}\label{task-try-to-finish-the-function-code-above}
+
+Try to finalize the final bit of the \texttt{goal.function} code above, by
+calculating the sum of squares between
+the number of deaths in the \texttt{data} and the density of
+infecteds resulting from the ODE, contained in \texttt{the.ode.data}. \emph{Hint} use R's \texttt{sum()}
+function to sum over the squared difference between the
+data and the ODE.
+
+\section{Task: test driving our function}\label{task-test-driving-our-function}
+
+We can then test-drive our \texttt{goal.function()}
+by simply running it with a bunch of arguments
+that we made up and see whether there are any
+errors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# lucky guess of beta and gamma resulting in}
+\CommentTok{\# an R0 of 1.25}
+\CommentTok{\# we need to provide this as a name{-}value vector}
+\NormalTok{pars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{beta =} \DecValTok{1}\NormalTok{, }\AttributeTok{gamma =} \FloatTok{0.8}\NormalTok{)}
+\CommentTok{\# lets assume a large number of susceptibles}
+\CommentTok{\# but we could potentially vary this later}
+\NormalTok{init\_dens }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\AttributeTok{S=}\FloatTok{1e05}\NormalTok{,}\AttributeTok{I=}\DecValTok{1}\NormalTok{,}\AttributeTok{R=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{goal.function}\NormalTok{(}\AttributeTok{parameters =}\NormalTok{ parameters }
+\NormalTok{              ,}\AttributeTok{initial\_densities =}\NormalTok{ initial\_densities}
+\NormalTok{              ,}\AttributeTok{data =}\NormalTok{ flu}
+\NormalTok{              )}
+\end{Highlighting}
+\end{Shaded}
+
+Now that we have our goal function in hand we
+have to feed the goal function to \texttt{optim()}
+which helps us find the lowest sum of squares
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{optim\_result }\OtherTok{\textless{}{-}} \FunctionTok{optim}\NormalTok{(}
+  \AttributeTok{par =}\NormalTok{ pars}
+\NormalTok{  ,}\AttributeTok{fn =}\NormalTok{ goal.function}
+\NormalTok{  ,}\AttributeTok{initial\_densities =}\NormalTok{ init\_dens}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Task:}\label{task}
+
+\section{Task: missing data}\label{task-missing-data}
+
+Let's imagine that local health services have been slow
+to pick up on the disease, so that the last four data points
+are missing. Hence the data set is now as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{flu }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{week =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{13}\NormalTok{,}
+                  \AttributeTok{deaths =} \FunctionTok{c}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{28}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{66}\NormalTok{, }\DecValTok{156}\NormalTok{, }\DecValTok{190}\NormalTok{, }\DecValTok{156}\NormalTok{, }\DecValTok{108}\NormalTok{, }\DecValTok{68}\NormalTok{, }\DecValTok{77}\NormalTok{, }\DecValTok{33}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{24}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Footnotes and citations}\label{footnotes-and-citations}
+
+\section{Footnotes}\label{footnotes}
+
+Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
+
+\section{Citations}\label{citations}
+
+Reference items in your bibliography file(s) using \texttt{@key}.
+
+For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
+Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
+
+The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
+
+\chapter{Blocks}\label{blocks}
+
+\section{Equations}\label{equations}
+
+Here is an equation.
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \label{eq:binom}
+\end{equation}
+
+You may refer to using \texttt{\textbackslash{}@ref(eq:binom)}, like see Equation \eqref{eq:binom}.
+
+\section{Theorems and proofs}\label{theorems-and-proofs}
+
+Labeled theorems can be referenced in text using \texttt{\textbackslash{}@ref(thm:tri)}, for example, check out this smart theorem \ref{thm:tri}.
+
+\begin{theorem}
+\protect\hypertarget{thm:tri}{}\label{thm:tri}For a right triangle, if \(c\) denotes the \emph{length} of the hypotenuse
+and \(a\) and \(b\) denote the lengths of the \textbf{other} two sides, we have
+\[a^2 + b^2 = c^2\]
+\end{theorem}
+
+Read more here \url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html}.
+
+\section{Callout blocks}\label{callout-blocks}
+
+The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: \url{https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html}
+
+\chapter{Sharing your book}\label{sharing-your-book}
+
+\section{Publishing}\label{publishing}
+
+HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
+
+\section{404 pages}\label{pages}
+
+By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a \texttt{\_404.Rmd} or \texttt{\_404.md} file to your project root and use code and/or Markdown syntax.
+
+\section{Metadata for sharing}\label{metadata-for-sharing}
+
+Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the \texttt{index.Rmd} YAML. To setup, set the \texttt{url} for your book and the path to your \texttt{cover-image} file. Your book's \texttt{title} and \texttt{description} are also used.
+
+This \texttt{gitbook} uses the same social sharing data across all chapters in your book- all links shared will look the same.
+
+Specify your book's source repository on GitHub using the \texttt{edit} key under the configuration options in the \texttt{\_output.yml} file, which allows users to suggest an edit by linking to a chapter's source file.
+
+Read more about the features of this output format here:
+
+\url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
+
+Or use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
+\end{Highlighting}
+\end{Shaded}
+
+
+  \bibliography{book.bib}
+
+\end{document}

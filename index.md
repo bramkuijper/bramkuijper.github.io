@@ -6,6 +6,7 @@ layout: default
 I am a theoretical biologist working at the University of Exeter's Penryn Campus. I use both analytical and computational models to understand a range of evolutionary problems.
 
 ## Interests
+* Evolution of virulence in multihost situations
 * Phenotypic plasticity and adaptation
 * Maternal and paternal effects
 * Cooperation and conflict in the genome
@@ -14,13 +15,16 @@ I am a theoretical biologist working at the University of Exeter's Penryn Campus
 * Sexual selection and conflict
 
 ## Ongoing:
+
+### Practical on Infectious Disease Modelling at Cermel
+See here for the [practical handout]({{ site.baseurl }}/teaching/infectious_disease/).
+
+### Social evolution book reading group led by Dan Sankey 
 * [Book reading group]({{ site.baseurl }}{% link mcelreath_boyd/index.md%}) on McElreath and Boyd (2007) "Mathematical Models of Social Evolution", Chicago University Press 
-* We are starting a new MSc programme in Sept 2021 ['Applied Data Science: Ecology & Evolution'](https://www.exeter.ac.uk/postgraduate/courses/mathematics/appdataeco/) 
  
 ## Teaching
 * BSc 2nd year module ['Behavioural Ecology' (BIO2430)](https://biosciences.exeter.ac.uk/current/modules/description/index.php?moduleCode=BIO2430&ay=2021/2)  (module coordinator: [Prof Jeremy Field](https://biosciences.exeter.ac.uk/staff/profile/index.php?web_id=Jeremy_Field))
-* MSc module 'Evolutionary Behavioural Ecology (BIOM4046)
-* MSc module 'Data Driven Ecology and Evolution' (LESM008) (module coordinator: [Dr Mario Recker](https://biosciences.exeter.ac.uk/staff/profile/index.php?web_id=Mario_Recker))
+* MSc module 'Evolutionary Behavioural Ecology (BIOM4046) 
 
 ### Practical Evolutionary Modelling (BIOM4046)
 See here for the [practical handout]({{ site.baseurl }}teaching/practicals_EBE/).
