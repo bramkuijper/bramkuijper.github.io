@@ -23,7 +23,7 @@
 <meta name="author" content="Bram Kuijper, Mario Recker" />
 
 
-<meta name="date" content="2024-02-29" />
+<meta name="date" content="2024-03-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,16 +201,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html"><i class="fa fa-check"></i><b>4</b> Practical: fitting dynamic models to data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#hong-kong-flu-dataset"><i class="fa fa-check"></i><b>4.1</b> Hong Kong flu dataset</a>
+<li class="chapter" data-level="4.1" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#hong-kong-flu-data-set"><i class="fa fa-check"></i><b>4.1</b> Hong Kong flu data set</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#setting-up-the-sir-model"><i class="fa fa-check"></i><b>4.1.1</b> Setting up the SIR model</a></li>
+<li class="chapter" data-level="4.1.1" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#curve-fitting-code-using-optim"><i class="fa fa-check"></i><b>4.1.1</b> Curve fitting code using <code>optim()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-finalize-the-sir_ode-code-above"><i class="fa fa-check"></i><b>4.2</b> Task: finalize the <code>sir_ode</code> code above</a></li>
-<li class="chapter" data-level="4.3" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#interfacing-the-model-with-the-data"><i class="fa fa-check"></i><b>4.3</b> Interfacing the model with the data</a></li>
-<li class="chapter" data-level="4.4" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-try-to-finish-the-function-code-above"><i class="fa fa-check"></i><b>4.4</b> Task: try to finish the function code above</a></li>
-<li class="chapter" data-level="4.5" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-test-driving-our-function"><i class="fa fa-check"></i><b>4.5</b> Task: test driving our function</a></li>
-<li class="chapter" data-level="4.6" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-missing-data-1"><i class="fa fa-check"></i><b>4.6</b> Task: missing data 1</a></li>
-<li class="chapter" data-level="4.7" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-missing-data-2"><i class="fa fa-check"></i><b>4.7</b> Task: missing data 2</a></li>
+<li class="chapter" data-level="4.2" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-calculate-the-sum-of-squares-for-your-own-wild-guess-of-beta-and-sigma"><i class="fa fa-check"></i><b>4.2</b> Task: calculate the sum of squares for your own wild guess of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="4.3" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-run-optim-to-find-the-best-fit-of-beta-and-sigma"><i class="fa fa-check"></i><b>4.3</b> Task: run <code>optim()</code> to find the best fit of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="4.4" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#plotting-the-data-and-the-best-fit-model"><i class="fa fa-check"></i><b>4.4</b> Plotting the data and the best-fit model</a></li>
+<li class="chapter" data-level="4.5" data-path="practical-fitting-dynamic-models-to-data.html"><a href="practical-fitting-dynamic-models-to-data.html#task-missing-data"><i class="fa fa-check"></i><b>4.5</b> Task: missing data</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -234,123 +232,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="practical-fitting-dynamic-models-to-data" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Practical: fitting dynamic models to data<a href="practical-fitting-dynamic-models-to-data.html#practical-fitting-dynamic-models-to-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="hong-kong-flu-dataset" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Hong Kong flu dataset<a href="practical-fitting-dynamic-models-to-data.html#hong-kong-flu-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hong-kong-flu-data-set" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Hong Kong flu data set<a href="practical-fitting-dynamic-models-to-data.html#hong-kong-flu-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Please find a dataset on the 1968 Hong Kong flu outbreak in New York below:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="practical-fitting-dynamic-models-to-data.html#cb12-1" tabindex="-1"></a>flu <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">week =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>,</span>
 <span id="cb12-2"><a href="practical-fitting-dynamic-models-to-data.html#cb12-2" tabindex="-1"></a>                  <span class="at">deaths =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">28</span>, <span class="dv">50</span>, <span class="dv">66</span>, <span class="dv">156</span>, <span class="dv">190</span>, <span class="dv">156</span>, <span class="dv">108</span>, <span class="dv">68</span>, <span class="dv">77</span>, <span class="dv">33</span>, <span class="dv">65</span>, <span class="dv">24</span>))</span></code></pre></div>
 <p>We will now use <code>optim()</code> to try and fit this dataset
 and estimate values for the transmission rate <span class="math inline">\(\beta\)</span>
 and the disease clearance rate <span class="math inline">\(\sigma\)</span>.</p>
-<div id="setting-up-the-sir-model" class="section level3 hasAnchor" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Setting up the SIR model<a href="practical-fitting-dynamic-models-to-data.html#setting-up-the-sir-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>First, we code up a SIR ODE model with frequency-dependent transmission (as in the previous practicals) that can
-be solved by <code>deSolve</code>’s <code>ode()</code> function.
-Again, we ignore demography similar to the SIR model presented on day 1.
-For example, this would be the skeleton of such
-a function:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="practical-fitting-dynamic-models-to-data.html#cb13-1" tabindex="-1"></a>sir_ode <span class="ot">&lt;-</span> <span class="cf">function</span>(t, demographic_variables, parameters)</span>
-<span id="cb13-2"><a href="practical-fitting-dynamic-models-to-data.html#cb13-2" tabindex="-1"></a>{</span>
-<span id="cb13-3"><a href="practical-fitting-dynamic-models-to-data.html#cb13-3" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">as.list</span>(demographic_variables, parameters)</span>
-<span id="cb13-4"><a href="practical-fitting-dynamic-models-to-data.html#cb13-4" tabindex="-1"></a>         {</span>
-<span id="cb13-5"><a href="practical-fitting-dynamic-models-to-data.html#cb13-5" tabindex="-1"></a>           dS <span class="ot">&lt;-</span> <span class="sc">-</span>beta <span class="sc">*</span> S <span class="sc">*</span> I <span class="sc">/</span>(S <span class="sc">+</span> I <span class="sc">+</span> R) </span>
-<span id="cb13-6"><a href="practical-fitting-dynamic-models-to-data.html#cb13-6" tabindex="-1"></a>    }) </span>
-<span id="cb13-7"><a href="practical-fitting-dynamic-models-to-data.html#cb13-7" tabindex="-1"></a>}</span></code></pre></div>
+<div id="curve-fitting-code-using-optim" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Curve fitting code using <code>optim()</code><a href="practical-fitting-dynamic-models-to-data.html#curve-fitting-code-using-optim" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Copy-paste the code below and use it to get the values of <span class="math inline">\(beta\)</span> and <span class="math inline">\(\sigma\)</span> that best the data.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="practical-fitting-dynamic-models-to-data.html#cb13-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb13-2"><a href="practical-fitting-dynamic-models-to-data.html#cb13-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;deSolve&quot;</span>)</span>
+<span id="cb13-3"><a href="practical-fitting-dynamic-models-to-data.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="practical-fitting-dynamic-models-to-data.html#cb13-4" tabindex="-1"></a><span class="co"># first add a variable that captures time in days</span></span>
+<span id="cb13-5"><a href="practical-fitting-dynamic-models-to-data.html#cb13-5" tabindex="-1"></a><span class="co"># so that estimated rates are events / day instead of events /week</span></span>
+<span id="cb13-6"><a href="practical-fitting-dynamic-models-to-data.html#cb13-6" tabindex="-1"></a>flu <span class="ot">&lt;-</span> flu <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb13-7"><a href="practical-fitting-dynamic-models-to-data.html#cb13-7" tabindex="-1"></a>  <span class="at">day =</span> week <span class="sc">*</span> <span class="dv">7</span></span>
+<span id="cb13-8"><a href="practical-fitting-dynamic-models-to-data.html#cb13-8" tabindex="-1"></a>)</span>
+<span id="cb13-9"><a href="practical-fitting-dynamic-models-to-data.html#cb13-9" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="practical-fitting-dynamic-models-to-data.html#cb13-10" tabindex="-1"></a><span class="co"># define the sir model as before, without demography</span></span>
+<span id="cb13-11"><a href="practical-fitting-dynamic-models-to-data.html#cb13-11" tabindex="-1"></a>sir_ode <span class="ot">&lt;-</span> <span class="cf">function</span>(t, state, parameters) {</span>
+<span id="cb13-12"><a href="practical-fitting-dynamic-models-to-data.html#cb13-12" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(state, parameters)), {</span>
+<span id="cb13-13"><a href="practical-fitting-dynamic-models-to-data.html#cb13-13" tabindex="-1"></a>    </span>
+<span id="cb13-14"><a href="practical-fitting-dynamic-models-to-data.html#cb13-14" tabindex="-1"></a>    dS <span class="ot">&lt;-</span>  <span class="sc">-</span> beta<span class="sc">*</span>I<span class="sc">/</span>(S<span class="sc">+</span>I<span class="sc">+</span>R)<span class="sc">*</span>S </span>
+<span id="cb13-15"><a href="practical-fitting-dynamic-models-to-data.html#cb13-15" tabindex="-1"></a>    dI <span class="ot">&lt;-</span>  beta<span class="sc">*</span>I<span class="sc">/</span>(S<span class="sc">+</span>I<span class="sc">+</span>R)<span class="sc">*</span>S <span class="sc">-</span> sigma<span class="sc">*</span>I</span>
+<span id="cb13-16"><a href="practical-fitting-dynamic-models-to-data.html#cb13-16" tabindex="-1"></a>    dR <span class="ot">&lt;-</span> sigma<span class="sc">*</span>I</span>
+<span id="cb13-17"><a href="practical-fitting-dynamic-models-to-data.html#cb13-17" tabindex="-1"></a>    </span>
+<span id="cb13-18"><a href="practical-fitting-dynamic-models-to-data.html#cb13-18" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="fu">c</span>(dS,dI,dR)))</span>
+<span id="cb13-19"><a href="practical-fitting-dynamic-models-to-data.html#cb13-19" tabindex="-1"></a>  })</span>
+<span id="cb13-20"><a href="practical-fitting-dynamic-models-to-data.html#cb13-20" tabindex="-1"></a>}</span>
+<span id="cb13-21"><a href="practical-fitting-dynamic-models-to-data.html#cb13-21" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="practical-fitting-dynamic-models-to-data.html#cb13-22" tabindex="-1"></a><span class="co"># our goal function calculates the </span></span>
+<span id="cb13-23"><a href="practical-fitting-dynamic-models-to-data.html#cb13-23" tabindex="-1"></a><span class="co"># sum of squares of the difference </span></span>
+<span id="cb13-24"><a href="practical-fitting-dynamic-models-to-data.html#cb13-24" tabindex="-1"></a><span class="co"># between model and data</span></span>
+<span id="cb13-25"><a href="practical-fitting-dynamic-models-to-data.html#cb13-25" tabindex="-1"></a>goal.function <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb13-26"><a href="practical-fitting-dynamic-models-to-data.html#cb13-26" tabindex="-1"></a>        parameters, </span>
+<span id="cb13-27"><a href="practical-fitting-dynamic-models-to-data.html#cb13-27" tabindex="-1"></a>        initial_densities, </span>
+<span id="cb13-28"><a href="practical-fitting-dynamic-models-to-data.html#cb13-28" tabindex="-1"></a>        data)</span>
+<span id="cb13-29"><a href="practical-fitting-dynamic-models-to-data.html#cb13-29" tabindex="-1"></a>{</span>
+<span id="cb13-30"><a href="practical-fitting-dynamic-models-to-data.html#cb13-30" tabindex="-1"></a>    <span class="co"># first obtain the time points from the dataset</span></span>
+<span id="cb13-31"><a href="practical-fitting-dynamic-models-to-data.html#cb13-31" tabindex="-1"></a>    <span class="co">#this produces a list of numbers 0, 0.1, 0.2, ..., 200 </span></span>
+<span id="cb13-32"><a href="practical-fitting-dynamic-models-to-data.html#cb13-32" tabindex="-1"></a>    times_from_data <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fu">max</span>(data[,<span class="st">&quot;day&quot;</span>]), <span class="at">by =</span> <span class="fl">0.1</span>) </span>
+<span id="cb13-33"><a href="practical-fitting-dynamic-models-to-data.html#cb13-33" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="practical-fitting-dynamic-models-to-data.html#cb13-34" tabindex="-1"></a>    <span class="co"># solve the SIR ODE over time</span></span>
+<span id="cb13-35"><a href="practical-fitting-dynamic-models-to-data.html#cb13-35" tabindex="-1"></a>    <span class="co"># store the result as a data.frame</span></span>
+<span id="cb13-36"><a href="practical-fitting-dynamic-models-to-data.html#cb13-36" tabindex="-1"></a>    the.ode.data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ode</span>(</span>
+<span id="cb13-37"><a href="practical-fitting-dynamic-models-to-data.html#cb13-37" tabindex="-1"></a>        <span class="at">y =</span> initial_densities,</span>
+<span id="cb13-38"><a href="practical-fitting-dynamic-models-to-data.html#cb13-38" tabindex="-1"></a>        <span class="at">times =</span> times_from_data,</span>
+<span id="cb13-39"><a href="practical-fitting-dynamic-models-to-data.html#cb13-39" tabindex="-1"></a>        <span class="at">func =</span> sir_ode,</span>
+<span id="cb13-40"><a href="practical-fitting-dynamic-models-to-data.html#cb13-40" tabindex="-1"></a>        <span class="at">parms =</span> parameters))</span>
+<span id="cb13-41"><a href="practical-fitting-dynamic-models-to-data.html#cb13-41" tabindex="-1"></a>    </span>
+<span id="cb13-42"><a href="practical-fitting-dynamic-models-to-data.html#cb13-42" tabindex="-1"></a>    <span class="co"># select I from the ode data set</span></span>
+<span id="cb13-43"><a href="practical-fitting-dynamic-models-to-data.html#cb13-43" tabindex="-1"></a>    <span class="co"># only for those time steps </span></span>
+<span id="cb13-44"><a href="practical-fitting-dynamic-models-to-data.html#cb13-44" tabindex="-1"></a>    <span class="co"># that are in the flu data as well</span></span>
+<span id="cb13-45"><a href="practical-fitting-dynamic-models-to-data.html#cb13-45" tabindex="-1"></a>    I_ode <span class="ot">&lt;-</span> the.ode.data <span class="sc">%&gt;%</span> </span>
+<span id="cb13-46"><a href="practical-fitting-dynamic-models-to-data.html#cb13-46" tabindex="-1"></a>        <span class="fu">filter</span>(time <span class="sc">%in%</span> (data[,<span class="st">&quot;day&quot;</span>])) <span class="sc">%&gt;%</span></span>
+<span id="cb13-47"><a href="practical-fitting-dynamic-models-to-data.html#cb13-47" tabindex="-1"></a>        <span class="fu">select</span>(I)</span>
+<span id="cb13-48"><a href="practical-fitting-dynamic-models-to-data.html#cb13-48" tabindex="-1"></a>    </span>
+<span id="cb13-49"><a href="practical-fitting-dynamic-models-to-data.html#cb13-49" tabindex="-1"></a>    <span class="co"># now extract the numbers of infecteds from </span></span>
+<span id="cb13-50"><a href="practical-fitting-dynamic-models-to-data.html#cb13-50" tabindex="-1"></a>    <span class="co"># the resulting ode data and compare to </span></span>
+<span id="cb13-51"><a href="practical-fitting-dynamic-models-to-data.html#cb13-51" tabindex="-1"></a>    <span class="co"># the ODE</span></span>
+<span id="cb13-52"><a href="practical-fitting-dynamic-models-to-data.html#cb13-52" tabindex="-1"></a>    <span class="co"># and calculate the sum of squares between</span></span>
+<span id="cb13-53"><a href="practical-fitting-dynamic-models-to-data.html#cb13-53" tabindex="-1"></a>    <span class="co"># the data and the ODE</span></span>
+<span id="cb13-54"><a href="practical-fitting-dynamic-models-to-data.html#cb13-54" tabindex="-1"></a>    SS <span class="ot">&lt;-</span> <span class="fu">sum</span>((I_ode <span class="sc">-</span> data[,<span class="st">&quot;deaths&quot;</span>])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb13-55"><a href="practical-fitting-dynamic-models-to-data.html#cb13-55" tabindex="-1"></a>    </span>
+<span id="cb13-56"><a href="practical-fitting-dynamic-models-to-data.html#cb13-56" tabindex="-1"></a>    <span class="fu">return</span>(SS)</span>
+<span id="cb13-57"><a href="practical-fitting-dynamic-models-to-data.html#cb13-57" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
-<div id="task-finalize-the-sir_ode-code-above" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Task: finalize the <code>sir_ode</code> code above<a href="practical-fitting-dynamic-models-to-data.html#task-finalize-the-sir_ode-code-above" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Please try to finalize the <code>sir_ode</code> code above taking care that the function should return a list of gradients, i.e., <span class="math inline">\(\frac{\mathrm{d}S}{\mathrm{d}t},\frac{\mathrm{d}I}{\mathrm{d}t},\frac{\mathrm{d}R}{\mathrm{d}t}\)</span></p>
+<div id="task-calculate-the-sum-of-squares-for-your-own-wild-guess-of-beta-and-sigma" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Task: calculate the sum of squares for your own wild guess of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma\)</span><a href="practical-fitting-dynamic-models-to-data.html#task-calculate-the-sum-of-squares-for-your-own-wild-guess-of-beta-and-sigma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we run <code>optim()</code> and find the value of <span class="math inline">\(\beta\)</span>,
+try to run the goal function above, for your own
+value of <span class="math inline">\(\beta\)</span>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="practical-fitting-dynamic-models-to-data.html#cb14-1" tabindex="-1"></a>pars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">beta =</span> <span class="dv">1</span>, <span class="at">sigma =</span> <span class="fl">0.8</span>)</span>
+<span id="cb14-2"><a href="practical-fitting-dynamic-models-to-data.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="practical-fitting-dynamic-models-to-data.html#cb14-3" tabindex="-1"></a>init_dens <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">S=</span><span class="dv">9999</span>,<span class="at">I=</span><span class="dv">1</span>,<span class="at">R=</span><span class="dv">0</span>)</span>
+<span id="cb14-4"><a href="practical-fitting-dynamic-models-to-data.html#cb14-4" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="practical-fitting-dynamic-models-to-data.html#cb14-5" tabindex="-1"></a><span class="fu">goal.function</span>(<span class="at">parameters =</span> pars, <span class="at">initial_densities =</span> init_dens, <span class="at">data =</span> flu)</span></code></pre></div>
+<p>What is the number that you obtain from your goal function? What does that number represent?</p>
 </div>
-<div id="interfacing-the-model-with-the-data" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Interfacing the model with the data<a href="practical-fitting-dynamic-models-to-data.html#interfacing-the-model-with-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The most important part of this tutorial is to
-make a <em>goal function</em> which attaches a value to
-how well the model fits the data.</p>
-<p>We assume
-that the number of deaths from the flu data
-set above is equal
-to the number of infected individuals produced
-by the ODE model</p>
-<p>To this end, the goal
-function should receive the following: (i) the current guess of the parameters <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma\)</span>
-(for which it will calculate some measure of goodness-of-fit, such as the sum of squares, SS)
-(ii) some information about initial densities
-and (iii) the actual data of the course of the infection.
-Let’s do this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="practical-fitting-dynamic-models-to-data.html#cb14-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;deSolve&quot;</span>)</span>
-<span id="cb14-2"><a href="practical-fitting-dynamic-models-to-data.html#cb14-2" tabindex="-1"></a>goal.function <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters, initial_densities, data)</span>
-<span id="cb14-3"><a href="practical-fitting-dynamic-models-to-data.html#cb14-3" tabindex="-1"></a>{</span>
-<span id="cb14-4"><a href="practical-fitting-dynamic-models-to-data.html#cb14-4" tabindex="-1"></a>  <span class="co"># first obtain the time points from the dataset</span></span>
-<span id="cb14-5"><a href="practical-fitting-dynamic-models-to-data.html#cb14-5" tabindex="-1"></a>  times_from_data <span class="ot">&lt;-</span> data[,<span class="st">&quot;week&quot;</span>]</span>
-<span id="cb14-6"><a href="practical-fitting-dynamic-models-to-data.html#cb14-6" tabindex="-1"></a>  </span>
-<span id="cb14-7"><a href="practical-fitting-dynamic-models-to-data.html#cb14-7" tabindex="-1"></a>  <span class="co"># solve the SIR ODE over time. </span></span>
-<span id="cb14-8"><a href="practical-fitting-dynamic-models-to-data.html#cb14-8" tabindex="-1"></a>  <span class="co"># store the result as a data.frame</span></span>
-<span id="cb14-9"><a href="practical-fitting-dynamic-models-to-data.html#cb14-9" tabindex="-1"></a>  the.ode.data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">ode</span>(</span>
-<span id="cb14-10"><a href="practical-fitting-dynamic-models-to-data.html#cb14-10" tabindex="-1"></a>    <span class="at">y =</span> initial_densities,</span>
-<span id="cb14-11"><a href="practical-fitting-dynamic-models-to-data.html#cb14-11" tabindex="-1"></a>    <span class="at">times =</span> times_from_data,</span>
-<span id="cb14-12"><a href="practical-fitting-dynamic-models-to-data.html#cb14-12" tabindex="-1"></a>    <span class="at">func =</span> sir_ode, <span class="at">parms =</span> parameters))</span>
-<span id="cb14-13"><a href="practical-fitting-dynamic-models-to-data.html#cb14-13" tabindex="-1"></a>     </span>
-<span id="cb14-14"><a href="practical-fitting-dynamic-models-to-data.html#cb14-14" tabindex="-1"></a>  <span class="co"># now extract the numbers of infecteds from </span></span>
-<span id="cb14-15"><a href="practical-fitting-dynamic-models-to-data.html#cb14-15" tabindex="-1"></a>  <span class="co"># the resulting ode data and compare to </span></span>
-<span id="cb14-16"><a href="practical-fitting-dynamic-models-to-data.html#cb14-16" tabindex="-1"></a>  <span class="co"># the ODE</span></span>
-<span id="cb14-17"><a href="practical-fitting-dynamic-models-to-data.html#cb14-17" tabindex="-1"></a>  <span class="co"># and calculate the sum of squares between</span></span>
-<span id="cb14-18"><a href="practical-fitting-dynamic-models-to-data.html#cb14-18" tabindex="-1"></a>  <span class="co"># the data and the ODE</span></span>
-<span id="cb14-19"><a href="practical-fitting-dynamic-models-to-data.html#cb14-19" tabindex="-1"></a>}</span></code></pre></div>
-</div>
-<div id="task-try-to-finish-the-function-code-above" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Task: try to finish the function code above<a href="practical-fitting-dynamic-models-to-data.html#task-try-to-finish-the-function-code-above" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Try to finalize the final bit of the <code>goal.function</code> code above, by
-calculating the sum of squares between
-the number of deaths in the <code>data</code> and the density of
-infecteds resulting from the ODE, contained in <code>the.ode.data</code>. <em>Hint</em> use R’s <code>sum()</code>
-function to sum over the squared difference between the
-data and the ODE.</p>
-</div>
-<div id="task-test-driving-our-function" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Task: test driving our function<a href="practical-fitting-dynamic-models-to-data.html#task-test-driving-our-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can then test-drive our <code>goal.function()</code>
-by simply running it with a bunch of arguments
-that we made up and see whether there are any
-errors.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="practical-fitting-dynamic-models-to-data.html#cb15-1" tabindex="-1"></a><span class="co"># lucky guess of beta and sigma resulting in</span></span>
-<span id="cb15-2"><a href="practical-fitting-dynamic-models-to-data.html#cb15-2" tabindex="-1"></a><span class="co"># an R0 of 1.25</span></span>
-<span id="cb15-3"><a href="practical-fitting-dynamic-models-to-data.html#cb15-3" tabindex="-1"></a><span class="co"># we need to provide this as a name-value vector</span></span>
+<div id="task-run-optim-to-find-the-best-fit-of-beta-and-sigma" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Task: run <code>optim()</code> to find the best fit of <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\sigma\)</span><a href="practical-fitting-dynamic-models-to-data.html#task-run-optim-to-find-the-best-fit-of-beta-and-sigma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>See the code below:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="practical-fitting-dynamic-models-to-data.html#cb15-1" tabindex="-1"></a><span class="co"># we need to provide optim()</span></span>
+<span id="cb15-2"><a href="practical-fitting-dynamic-models-to-data.html#cb15-2" tabindex="-1"></a><span class="co"># with some initial guesses upon which</span></span>
+<span id="cb15-3"><a href="practical-fitting-dynamic-models-to-data.html#cb15-3" tabindex="-1"></a><span class="co"># it tries to improve the fit</span></span>
 <span id="cb15-4"><a href="practical-fitting-dynamic-models-to-data.html#cb15-4" tabindex="-1"></a>pars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">beta =</span> <span class="dv">1</span>, <span class="at">sigma =</span> <span class="fl">0.8</span>)</span>
-<span id="cb15-5"><a href="practical-fitting-dynamic-models-to-data.html#cb15-5" tabindex="-1"></a><span class="co"># lets assume a large number of susceptibles</span></span>
-<span id="cb15-6"><a href="practical-fitting-dynamic-models-to-data.html#cb15-6" tabindex="-1"></a><span class="co"># but we could potentially vary this later</span></span>
-<span id="cb15-7"><a href="practical-fitting-dynamic-models-to-data.html#cb15-7" tabindex="-1"></a>init_dens <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">S=</span><span class="fl">1e05</span>,<span class="at">I=</span><span class="dv">1</span>,<span class="at">R=</span><span class="dv">0</span>)</span>
-<span id="cb15-8"><a href="practical-fitting-dynamic-models-to-data.html#cb15-8" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="practical-fitting-dynamic-models-to-data.html#cb15-9" tabindex="-1"></a><span class="fu">goal.function</span>(<span class="at">parameters =</span> parameters </span>
-<span id="cb15-10"><a href="practical-fitting-dynamic-models-to-data.html#cb15-10" tabindex="-1"></a>              ,<span class="at">initial_densities =</span> initial_densities</span>
-<span id="cb15-11"><a href="practical-fitting-dynamic-models-to-data.html#cb15-11" tabindex="-1"></a>              ,<span class="at">data =</span> flu</span>
-<span id="cb15-12"><a href="practical-fitting-dynamic-models-to-data.html#cb15-12" tabindex="-1"></a>              )</span></code></pre></div>
-<p>Now that we have our goal function in hand we
-have to feed the goal function to <code>optim()</code>
-which helps us find the lowest sum of squares</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="practical-fitting-dynamic-models-to-data.html#cb16-1" tabindex="-1"></a>optim_result <span class="ot">&lt;-</span> <span class="fu">optim</span>(</span>
-<span id="cb16-2"><a href="practical-fitting-dynamic-models-to-data.html#cb16-2" tabindex="-1"></a>  <span class="at">par =</span> pars</span>
-<span id="cb16-3"><a href="practical-fitting-dynamic-models-to-data.html#cb16-3" tabindex="-1"></a>  ,<span class="at">fn =</span> goal.function</span>
-<span id="cb16-4"><a href="practical-fitting-dynamic-models-to-data.html#cb16-4" tabindex="-1"></a>  ,<span class="at">initial_densities =</span> init_dens</span>
-<span id="cb16-5"><a href="practical-fitting-dynamic-models-to-data.html#cb16-5" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb15-5"><a href="practical-fitting-dynamic-models-to-data.html#cb15-5" tabindex="-1"></a>init_dens <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">S=</span><span class="dv">9999</span>,<span class="at">I=</span><span class="dv">1</span>,<span class="at">R=</span><span class="dv">0</span>)</span>
+<span id="cb15-6"><a href="practical-fitting-dynamic-models-to-data.html#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="practical-fitting-dynamic-models-to-data.html#cb15-7" tabindex="-1"></a><span class="co"># now use optim() to find the </span></span>
+<span id="cb15-8"><a href="practical-fitting-dynamic-models-to-data.html#cb15-8" tabindex="-1"></a><span class="co"># values of beta and sigma </span></span>
+<span id="cb15-9"><a href="practical-fitting-dynamic-models-to-data.html#cb15-9" tabindex="-1"></a><span class="co"># start with parameters above as an initial guess</span></span>
+<span id="cb15-10"><a href="practical-fitting-dynamic-models-to-data.html#cb15-10" tabindex="-1"></a>optim_result <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="at">par =</span> pars </span>
+<span id="cb15-11"><a href="practical-fitting-dynamic-models-to-data.html#cb15-11" tabindex="-1"></a>                      ,<span class="at">fn =</span> goal.function</span>
+<span id="cb15-12"><a href="practical-fitting-dynamic-models-to-data.html#cb15-12" tabindex="-1"></a>                      ,<span class="at">initial_densities=</span>init_dens</span>
+<span id="cb15-13"><a href="practical-fitting-dynamic-models-to-data.html#cb15-13" tabindex="-1"></a>                      ,<span class="at">data=</span>flu)</span>
+<span id="cb15-14"><a href="practical-fitting-dynamic-models-to-data.html#cb15-14" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="practical-fitting-dynamic-models-to-data.html#cb15-15" tabindex="-1"></a>(optim_result)</span></code></pre></div>
+<pre><code>## $par
+##      beta     sigma 
+## 0.7938060 0.6405044 
+## 
+## $value
+## [1] 10430.7
+## 
+## $counts
+## function gradient 
+##       75       NA 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL</code></pre>
+<p>Look at what is contained in the variable <code>optim_result</code>: what are the values of beta and sigma that give the best fit? What is the resulting value of the sum of squares?</p>
 </div>
-<div id="task-missing-data-1" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Task: missing data 1<a href="practical-fitting-dynamic-models-to-data.html#task-missing-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s imagine that funds ran out to monitor this disease after week 8.</p>
-<p>As a consequence, the final half of our data set is missing
-are missing. The question is: is our estimate still as good as it was before? This is called reverse cross-validation: how sensitive are your inferences/predictions to parts of the data missing.</p>
+<div id="plotting-the-data-and-the-best-fit-model" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Plotting the data and the best-fit model<a href="practical-fitting-dynamic-models-to-data.html#plotting-the-data-and-the-best-fit-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="practical-fitting-dynamic-models-to-data.html#cb17-1" tabindex="-1"></a><span class="co"># now we have the parameters that give the best </span></span>
+<span id="cb17-2"><a href="practical-fitting-dynamic-models-to-data.html#cb17-2" tabindex="-1"></a><span class="co"># possible fit, solve the ode </span></span>
+<span id="cb17-3"><a href="practical-fitting-dynamic-models-to-data.html#cb17-3" tabindex="-1"></a><span class="co"># given these parameters so that we can overlay</span></span>
+<span id="cb17-4"><a href="practical-fitting-dynamic-models-to-data.html#cb17-4" tabindex="-1"></a><span class="co"># the solution with the data and visually</span></span>
+<span id="cb17-5"><a href="practical-fitting-dynamic-models-to-data.html#cb17-5" tabindex="-1"></a><span class="co"># inspect the fit</span></span>
+<span id="cb17-6"><a href="practical-fitting-dynamic-models-to-data.html#cb17-6" tabindex="-1"></a>ode_optim_result <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(</span>
+<span id="cb17-7"><a href="practical-fitting-dynamic-models-to-data.html#cb17-7" tabindex="-1"></a>    <span class="fu">ode</span>(<span class="at">y =</span> init_dens,</span>
+<span id="cb17-8"><a href="practical-fitting-dynamic-models-to-data.html#cb17-8" tabindex="-1"></a>                        <span class="at">func =</span> sir_ode,</span>
+<span id="cb17-9"><a href="practical-fitting-dynamic-models-to-data.html#cb17-9" tabindex="-1"></a>                        <span class="at">parms =</span> optim_result<span class="sc">$</span>par,</span>
+<span id="cb17-10"><a href="practical-fitting-dynamic-models-to-data.html#cb17-10" tabindex="-1"></a>                        <span class="at">times =</span> <span class="fu">seq</span>(<span class="dv">1</span>,</span>
+<span id="cb17-11"><a href="practical-fitting-dynamic-models-to-data.html#cb17-11" tabindex="-1"></a>                                    <span class="fu">max</span>(flu[,<span class="st">&quot;day&quot;</span>]),</span>
+<span id="cb17-12"><a href="practical-fitting-dynamic-models-to-data.html#cb17-12" tabindex="-1"></a>                                    <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb17-13"><a href="practical-fitting-dynamic-models-to-data.html#cb17-13" tabindex="-1"></a>                        )</span>
+<span id="cb17-14"><a href="practical-fitting-dynamic-models-to-data.html#cb17-14" tabindex="-1"></a>)</span>
+<span id="cb17-15"><a href="practical-fitting-dynamic-models-to-data.html#cb17-15" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="practical-fitting-dynamic-models-to-data.html#cb17-16" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> flu,</span>
+<span id="cb17-17"><a href="practical-fitting-dynamic-models-to-data.html#cb17-17" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> day, <span class="at">y =</span> deaths)) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="practical-fitting-dynamic-models-to-data.html#cb17-18" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size=</span><span class="fl">1.5</span>, <span class="at">color=</span><span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-19"><a href="practical-fitting-dynamic-models-to-data.html#cb17-19" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb17-20"><a href="practical-fitting-dynamic-models-to-data.html#cb17-20" tabindex="-1"></a>        <span class="at">data =</span> ode_optim_result,</span>
+<span id="cb17-21"><a href="practical-fitting-dynamic-models-to-data.html#cb17-21" tabindex="-1"></a>        <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> I)</span>
+<span id="cb17-22"><a href="practical-fitting-dynamic-models-to-data.html#cb17-22" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb17-23"><a href="practical-fitting-dynamic-models-to-data.html#cb17-23" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="task-missing-data" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Task: missing data<a href="practical-fitting-dynamic-models-to-data.html#task-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s imagine that funds ran out to monitor this disease after week 7.</p>
+<p>As a consequence, the data set only contains rows up to and including week 7. The question is: is our estimate still as good as it was before? This is called cross-validation: how sensitive are your inferences/predictions robust when only half of the data is used?</p>
 <p>Hence the data set is now as follows:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="practical-fitting-dynamic-models-to-data.html#cb17-1" tabindex="-1"></a>flu <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">week =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>,</span>
-<span id="cb17-2"><a href="practical-fitting-dynamic-models-to-data.html#cb17-2" tabindex="-1"></a>                  <span class="at">deaths =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">28</span>, <span class="dv">50</span>, <span class="dv">66</span>, <span class="dv">156</span>, <span class="dv">190</span>, <span class="dv">156</span>, <span class="dv">108</span>, <span class="dv">68</span>, <span class="dv">77</span>, <span class="dv">33</span>, <span class="dv">65</span>, <span class="dv">24</span>))</span>
-<span id="cb17-3"><a href="practical-fitting-dynamic-models-to-data.html#cb17-3" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="practical-fitting-dynamic-models-to-data.html#cb17-4" tabindex="-1"></a>flu <span class="ot">&lt;-</span> flu[flu<span class="sc">$</span>week <span class="sc">&lt;</span> <span class="dv">8</span>, ]</span></code></pre></div>
-<p>What do you conclude about the robustness of our previous estimate?</p>
-</div>
-<div id="task-missing-data-2" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Task: missing data 2<a href="practical-fitting-dynamic-models-to-data.html#task-missing-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now consider the reverse situation in which the first 8 weeks are missing, perhaps because it took a while before
-a monitoring programme could be set up.</p>
-<p>What do you find now? Do you think the previous the estimates of <span class="math inline">\(\sigma\)</span> and <span class="math inline">\(\beta\)</span> are still robust? Why is this so?</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="practical-fitting-dynamic-models-to-data.html#cb18-1" tabindex="-1"></a>flu_first_half <span class="ot">&lt;-</span> flu <span class="sc">%&gt;%</span> <span class="fu">filter</span>(week <span class="sc">&lt;=</span> <span class="dv">5</span>)</span>
+<span id="cb18-2"><a href="practical-fitting-dynamic-models-to-data.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="practical-fitting-dynamic-models-to-data.html#cb18-3" tabindex="-1"></a>optim_result <span class="ot">&lt;-</span> <span class="fu">optim</span>(<span class="at">par =</span> pars </span>
+<span id="cb18-4"><a href="practical-fitting-dynamic-models-to-data.html#cb18-4" tabindex="-1"></a>                      ,<span class="at">fn =</span> goal.function</span>
+<span id="cb18-5"><a href="practical-fitting-dynamic-models-to-data.html#cb18-5" tabindex="-1"></a>                      ,<span class="at">initial_densities=</span>init_dens</span>
+<span id="cb18-6"><a href="practical-fitting-dynamic-models-to-data.html#cb18-6" tabindex="-1"></a>                      ,<span class="at">data=</span>flu_first_half)</span></code></pre></div>
+<p>What do you conclude about the robustness of your previous estimate?</p>
 
 </div>
 </div>

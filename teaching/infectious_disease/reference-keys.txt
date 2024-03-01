@@ -31,11 +31,9 @@ task-running-and-plotting-replicate-sims
 task-what-happens-when-r_0-1
 advanced-task-systematically-vary-population-size-and-look-at-extinction
 practical-fitting-dynamic-models-to-data
-hong-kong-flu-dataset
-setting-up-the-sir-model
-task-finalize-the-sir_ode-code-above
-interfacing-the-model-with-the-data
-task-try-to-finish-the-function-code-above
-task-test-driving-our-function
-task-missing-data-1
-task-missing-data-2
+hong-kong-flu-data-set
+curve-fitting-code-using-optim
+task-calculate-the-sum-of-squares-for-your-own-wild-guess-of-beta-and-sigma
+task-run-optim-to-find-the-best-fit-of-beta-and-sigma
+plotting-the-data-and-the-best-fit-model
+task-missing-data
