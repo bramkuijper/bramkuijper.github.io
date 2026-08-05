@@ -1,7 +1,0 @@
-introduction
-finding-help
-operators
-control-flow
-sumSq
-nested-for-loops
-preliminaries
