@@ -4,32 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Individual-based simulations and drift | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>Chapter 4 Individual-based simulations and drift | Evolutionary Behavioural Ecology: Practical on Modelling Evolution</title>
+  <meta name="description" content="A practical using models of Hawk Dove games to model evolution." />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Individual-based simulations and drift | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution" />
+  <meta property="og:title" content="Chapter 4 Individual-based simulations and drift | Evolutionary Behavioural Ecology: Practical on Modelling Evolution" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="A practical using models of Hawk Dove games to model evolution." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Individual-based simulations and drift | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution" />
+  <meta name="twitter:title" content="Chapter 4 Individual-based simulations and drift | Evolutionary Behavioural Ecology: Practical on Modelling Evolution" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="A practical using models of Hawk Dove games to model evolution." />
   
 
 <meta name="author" content="Bram Kuijper" />
 
 
-<meta name="date" content="2022-10-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,6 +54,7 @@ set in the _output.yml file.</p>" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -125,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -233,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: Practical on Modelling Evolution</a>
           </h1>
         </div>
 
@@ -248,32 +246,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Introducing chance in models of evolution makes these models <strong>stochastic</strong>, meaning that any two runs of the same model (with the same values of the parameters) does not necessarily result in the same outcome. Stochasticity in evolution introduces a phenomenon called ‘genetic drift’ which we will explore in this practical. Genetic drift can – particularly in small populations – dramatically affect the course of evolution!</p>
 <div id="before-you-start-this-practical" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Before you start this practical<a href="individual-based-simulations-and-drift.html#before-you-start-this-practical" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First, please be reminded to use one of the <a href="https://rstudio01.cles.ex.ac.uk">Rstudio servers</a> rather than your local installation of R. This is because we will be using some custom-built R packages, which themselves require extensions like <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> that can be a bit of a pain to install on some computers. Luckily, this should all have been done for you on the Rstudio server.</p>
+<p>First, please be reminded to use one of the <a href="https://posit01.exeter.ac.uk">Posit servers</a> rather than your local installation of R. This is because we will be using some custom-built R packages, which themselves require extensions like <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> that can be a bit of a pain to install on some computers. Luckily, this should all have been done for you on the Rstudio server.</p>
 <p>Next, when logged in on the Rstudio server, please use R version <code>4.1.1.</code></p>
 <p>And finally, it may be worthwhile to remove variables from our previous session, which we do by typing in the following</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="individual-based-simulations-and-drift.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clean all R variables</span></span>
-<span id="cb18-2"><a href="individual-based-simulations-and-drift.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="individual-based-simulations-and-drift.html#cb18-1" tabindex="-1"></a><span class="co"># clean all R variables</span></span>
+<span id="cb18-2"><a href="individual-based-simulations-and-drift.html#cb18-2" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div>
 </div>
 <div id="installing-the-driftsim-package" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Installing the <code>driftSim</code> package<a href="individual-based-simulations-and-drift.html#installing-the-driftsim-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, let’s get started. In this part of the practical, we will explore a model that includes stochasticity. Such a model is provided in the R package <code>driftSim</code>. To install this package, do the following:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="individual-based-simulations-and-drift.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb19-2"><a href="individual-based-simulations-and-drift.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="individual-based-simulations-and-drift.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>) </span>
-<span id="cb19-4"><a href="individual-based-simulations-and-drift.html#cb19-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bramkuijper/driftSim&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="individual-based-simulations-and-drift.html#cb19-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb19-2"><a href="individual-based-simulations-and-drift.html#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="individual-based-simulations-and-drift.html#cb19-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>) </span>
+<span id="cb19-4"><a href="individual-based-simulations-and-drift.html#cb19-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bramkuijper/driftSim&quot;</span>)</span></code></pre></div>
 <p>If you get a message like <code>Skipping install of 'driftSim' from a github remote, the SHA1 (27e9c52c) has not changed since last install. Use</code>force = TRUE<code>to force installation</code>, R is simply telling you the package has already been installed. Consequently, you can just move on to the next step.</p>
 <p>Then we can load the library using:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="individual-based-simulations-and-drift.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;driftSim&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="individual-based-simulations-and-drift.html#cb20-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;driftSim&quot;</span>)</span></code></pre></div>
 </div>
 <div id="individual-based-models" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Individual-based models<a href="individual-based-simulations-and-drift.html#individual-based-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This package contains what we call an <em>individual-based simulation</em>, which is nothing more than a computer program that models individuals and their actions (e.g., surviving, fighting, reproducing). By contrast, in the previous set of exercises, we did not focus on individuals too much, but rather on an <em>analytical model</em> which tracked the population-wide frequency <span class="math inline">\(p_{t}\)</span> of hawks. Indeed, keeping track of a single population-wide frequency <span class="math inline">\(p_{t}\)</span> is a lot simpler than keeping track of thousands or even millions of individuals. However, such simplicity also comes also at a price, which will be the focus of this chapter.</p>
 <p>While the simulation package <code>driftSim</code> runs within R, under the hood it is coded in the low-level programming language <a href="https://cplusplus.com/doc/tutorial/">C++</a>. This is because large simulations tend to be very slow in R, but run much faster in C++. Below you see a little snippet from this package, reflecting the properties of single individual:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="individual-based-simulations-and-drift.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Individual <span class="op">{</span></span>
-<span id="cb21-2"><a href="individual-based-simulations-and-drift.html#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> is_hawk<span class="op">;</span> <span class="co">// TRUE/FALSE individual is hawk or dove</span></span>
-<span id="cb21-3"><a href="individual-based-simulations-and-drift.html#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> payoff<span class="op">;</span> <span class="co">// the value of the payoff</span></span>
-<span id="cb21-4"><a href="individual-based-simulations-and-drift.html#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> prob_hawk<span class="op">;</span> <span class="co">// the probability that this individual develops as a hawk in early life (only used when strategies are mixed)</span></span>
-<span id="cb21-5"><a href="individual-based-simulations-and-drift.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="individual-based-simulations-and-drift.html#cb21-1" tabindex="-1"></a><span class="kw">struct</span> Individual <span class="op">{</span></span>
+<span id="cb21-2"><a href="individual-based-simulations-and-drift.html#cb21-2" tabindex="-1"></a>    <span class="dt">bool</span> is_hawk<span class="op">;</span> <span class="co">// TRUE/FALSE individual is hawk or dove</span></span>
+<span id="cb21-3"><a href="individual-based-simulations-and-drift.html#cb21-3" tabindex="-1"></a>    <span class="dt">double</span> payoff<span class="op">;</span> <span class="co">// the value of the payoff</span></span>
+<span id="cb21-4"><a href="individual-based-simulations-and-drift.html#cb21-4" tabindex="-1"></a>    <span class="dt">double</span> prob_hawk<span class="op">;</span> <span class="co">// the probability that this individual develops as a hawk in early life (only used when strategies are mixed)</span></span>
+<span id="cb21-5"><a href="individual-based-simulations-and-drift.html#cb21-5" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
 <p>The program then simulates a <strong>finite</strong> population of <span class="math inline">\(N\)</span> of these individuals. You might remember that the analytical model in the previous chapter assumed infinitely many individuals, so while the individual-based model is an absolute loser when it comes to speed, it is already a winner when it comes to increased realism!</p>
 </div>
 <div id="life-cycle-1" class="section level2 hasAnchor" number="4.4">
@@ -289,20 +287,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.6</span> Running the <code>driftSim</code> package<a href="individual-based-simulations-and-drift.html#running-the-driftsim-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>driftSim</code> package contains a single function, called <code>runSimulation()</code>. Before running this function, please inspect the documentation by typing <code>?runSimulation()</code> in your R console, after which a help page should show up.</p>
 <p>Let us start with a simple example run with a population size of <span class="math inline">\(N=10\)</span>, <span class="math inline">\(v=1.0\)</span>, <span class="math inline">\(c=2.0\)</span> and a bunch of different parameters. Most are not so important, except that the initial frequency <span class="math inline">\(p_{t=0}\)</span> of hawks which is set at <span class="math inline">\(p_{t=0} = 0.25\)</span>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="individual-based-simulations-and-drift.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runSimulation</span>(<span class="at">N=</span><span class="dv">10</span>,<span class="at">v=</span><span class="fl">1.0</span>,<span class="at">c=</span><span class="fl">2.0</span>,<span class="at">is_pure=</span>T,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">max_time=</span><span class="dv">10</span>,<span class="at">pHawk_init=</span><span class="fl">0.25</span>,<span class="at">output_nth_generation=</span><span class="dv">1</span>,<span class="at">sd_pHawkMixed=</span><span class="dv">0</span>)</span>
-<span id="cb22-2"><a href="individual-based-simulations-and-drift.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    generation freq_Hawk mean_pHawkMixed sd_pHawkMixed</span></span>
-<span id="cb22-3"><a href="individual-based-simulations-and-drift.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1           1       0.1               0             0</span></span>
-<span id="cb22-4"><a href="individual-based-simulations-and-drift.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 2           2       0.2               0             0</span></span>
-<span id="cb22-5"><a href="individual-based-simulations-and-drift.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3           3       0.3               0             0</span></span>
-<span id="cb22-6"><a href="individual-based-simulations-and-drift.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 4           4       0.4               0             0</span></span>
-<span id="cb22-7"><a href="individual-based-simulations-and-drift.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 5           5       0.3               0             0</span></span>
-<span id="cb22-8"><a href="individual-based-simulations-and-drift.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 6           6       0.3               0             0</span></span>
-<span id="cb22-9"><a href="individual-based-simulations-and-drift.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 7           7       0.4               0             0</span></span>
-<span id="cb22-10"><a href="individual-based-simulations-and-drift.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 8           8       0.3               0             0</span></span>
-<span id="cb22-11"><a href="individual-based-simulations-and-drift.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 9           9       0.5               0             0</span></span>
-<span id="cb22-12"><a href="individual-based-simulations-and-drift.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 10         10       0.7               0             0</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="individual-based-simulations-and-drift.html#cb22-1" tabindex="-1"></a><span class="fu">runSimulation</span>(<span class="at">N=</span><span class="dv">10</span>,<span class="at">v=</span><span class="fl">1.0</span>,<span class="at">c=</span><span class="fl">2.0</span>,<span class="at">is_pure=</span>T,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">max_time=</span><span class="dv">10</span>,<span class="at">pHawk_init=</span><span class="fl">0.25</span>,<span class="at">output_nth_generation=</span><span class="dv">1</span>,<span class="at">sd_pHawkMixed=</span><span class="dv">0</span>)</span>
+<span id="cb22-2"><a href="individual-based-simulations-and-drift.html#cb22-2" tabindex="-1"></a><span class="do">##    generation freq_Hawk mean_pHawkMixed sd_pHawkMixed</span></span>
+<span id="cb22-3"><a href="individual-based-simulations-and-drift.html#cb22-3" tabindex="-1"></a><span class="do">## 1           1       0.3               0             0</span></span>
+<span id="cb22-4"><a href="individual-based-simulations-and-drift.html#cb22-4" tabindex="-1"></a><span class="do">## 2           2       0.3               0             0</span></span>
+<span id="cb22-5"><a href="individual-based-simulations-and-drift.html#cb22-5" tabindex="-1"></a><span class="do">## 3           3       0.2               0             0</span></span>
+<span id="cb22-6"><a href="individual-based-simulations-and-drift.html#cb22-6" tabindex="-1"></a><span class="do">## 4           4       0.1               0             0</span></span>
+<span id="cb22-7"><a href="individual-based-simulations-and-drift.html#cb22-7" tabindex="-1"></a><span class="do">## 5           5       0.0               0             0</span></span>
+<span id="cb22-8"><a href="individual-based-simulations-and-drift.html#cb22-8" tabindex="-1"></a><span class="do">## 6           6       0.0               0             0</span></span>
+<span id="cb22-9"><a href="individual-based-simulations-and-drift.html#cb22-9" tabindex="-1"></a><span class="do">## 7           7       0.0               0             0</span></span>
+<span id="cb22-10"><a href="individual-based-simulations-and-drift.html#cb22-10" tabindex="-1"></a><span class="do">## 8           8       0.0               0             0</span></span>
+<span id="cb22-11"><a href="individual-based-simulations-and-drift.html#cb22-11" tabindex="-1"></a><span class="do">## 9           9       0.0               0             0</span></span>
+<span id="cb22-12"><a href="individual-based-simulations-and-drift.html#cb22-12" tabindex="-1"></a><span class="do">## 10         10       0.0               0             0</span></span></code></pre></div>
 <p>In this way, however, we cannot use the data from the <code>runSimulation()</code> function, as it will simply be printed out to the console, but it is not stored anywhere. To make sure that the resulting data will be contained in a <code>data.frame</code>, we assign the return values from the <code>runSimulation()</code> function to a variable, like this:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="individual-based-simulations-and-drift.html#cb23-1" aria-hidden="true" tabindex="-1"></a>my.data <span class="ot">&lt;-</span> <span class="fu">runSimulation</span>(<span class="at">N=</span><span class="dv">10</span>,<span class="at">v=</span><span class="fl">1.0</span>,<span class="at">c=</span><span class="fl">2.0</span>,<span class="at">is_pure=</span>T,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">max_time=</span><span class="dv">10</span>,<span class="at">pHawk_init=</span><span class="fl">0.25</span>,<span class="at">output_nth_generation=</span><span class="dv">1</span>,<span class="at">sd_pHawkMixed=</span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="individual-based-simulations-and-drift.html#cb23-1" tabindex="-1"></a>my.data <span class="ot">&lt;-</span> <span class="fu">runSimulation</span>(<span class="at">N=</span><span class="dv">10</span>,<span class="at">v=</span><span class="fl">1.0</span>,<span class="at">c=</span><span class="fl">2.0</span>,<span class="at">is_pure=</span>T,<span class="at">mu=</span><span class="dv">0</span>,<span class="at">max_time=</span><span class="dv">10</span>,<span class="at">pHawk_init=</span><span class="fl">0.25</span>,<span class="at">output_nth_generation=</span><span class="dv">1</span>,<span class="at">sd_pHawkMixed=</span><span class="dv">0</span>)</span></code></pre></div>
 <p>The <code>my.data</code> variable points to a <code>data.frame</code> with the following columns:
 1. <code>generation</code>: generation time point
 2. <code>freq_Hawk</code>: the frequency of hawks in the population, the variable of interest
@@ -343,42 +341,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/bramkuijper/03-drift.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/bramkuijper/03-drift.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

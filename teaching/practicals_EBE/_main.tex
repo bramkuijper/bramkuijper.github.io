@@ -1,20 +1,24 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
 ]{book}
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -32,7 +36,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -44,13 +47,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -58,7 +61,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -67,57 +70,59 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
 \patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
 \makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-\usepackage{booktabs}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{booktabs}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
 \hypersetup{
-  pdftitle={Evolutionary Behavioural Ecology: practicals 1 \& 2 - Modelling Evolution},
+  pdftitle={Evolutionary Behavioural Ecology: Practical on Modelling Evolution},
   pdfauthor={Bram Kuijper},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Evolutionary Behavioural Ecology: practicals 1 \& 2 - Modelling Evolution}
+\title{Evolutionary Behavioural Ecology: Practical on Modelling Evolution}
 \author{Bram Kuijper}
-\date{2022-10-12}
+\date{}
 
 \begin{document}
 \maketitle
@@ -126,13 +131,11 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{practicals-on-evolutionary-models-using-r}{%
-\chapter{Practicals on evolutionary models using R}\label{practicals-on-evolutionary-models-using-r}}
+\chapter{Practicals on evolutionary models using R}\label{practicals-on-evolutionary-models-using-r}
 
-During the following two practicals, we will try to implement some basic evolutionary models in R. The first practical will focus on the evolution of aggressive vs evasive behaviour. The second practical will focus on the evolution of cooperation and conflict. Along the way you get exposed to working with R, which is never a bad thing as you are likely to use this program a lot of times during this year.
+In this practical, we will try to implement a basic evolutionary model in R, using a model that focuses on the evolution of aggressive vs evasive behaviour. Along the way you get exposed to working with R, which is never a bad thing as you are likely to use this program a lot of times during this year.
 
-\hypertarget{learning-objectives}{%
-\section{Learning objectives}\label{learning-objectives}}
+\section{Learning objectives}\label{learning-objectives}
 
 After this practical, you\ldots{}
 
@@ -145,16 +148,16 @@ After this practical, you\ldots{}
 \item
   should be able to explain why models necessarily include many limiting assumptions
 \item
+  should be able to explain the statement `all models are false, yet still useful'
+\item
   should be able to inspect your model and draw conclusions from it
 \end{itemize}
 
-\hypertarget{opening-the-r-environment}{%
-\section{Opening the R environment}\label{opening-the-r-environment}}
+\section{Opening the R environment}\label{opening-the-r-environment}
 
-To provide you with a standardized environment during this practical session, you will have to log into to the University of Exeter's \href{https://rstudio01.cles.ex.ac.uk}{Rstudio server}. Of course, you are welcome to try to do the same using your installation of R on your own computer, but we might run into problems regarding the installation of some packages, hence we ask you to stick to the rstudio server during the practical.
+To provide you with a standardized environment during this practical session, you will have to log into to the University of Exeter's \href{https://posit01.exeter.ac.uk}{Posit server}. Of course, you are welcome to try to do the same using your installation of R on your own computer, but we might run into problems regarding the installation of some packages, hence we ask you to stick to the rstudio server during the practical.
 
-\hypertarget{a-brief-r-programming-crash-course}{%
-\chapter{A brief R programming crash course}\label{a-brief-r-programming-crash-course}}
+\chapter{A brief R programming crash course}\label{a-brief-r-programming-crash-course}
 
 To get started with making our own evolutionary model, we need to make a simple program in R that tracks an evolving population.
 
@@ -162,8 +165,7 @@ To this end, you need to know something about the ingredients that simple progra
 
 Try to type along with the examples below and see whether they work. Give me a shout if something looks odd.
 
-\hypertarget{variables}{%
-\section{Variables}\label{variables}}
+\section{Variables}\label{variables}
 
 A variable provides us with a named storage of data, allowing you to retrieve that bit of data when you want it. A variable in R can contain any type of data (e.g., a single number, a string of text, a vector of multiple values, etc).
 
@@ -172,26 +174,25 @@ We assign data to a variable using a \texttt{=} or \texttt{\textless{}-} operato
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# create a variable named var.1 and assign a value to it using the \textless{}{-} operator}
-\NormalTok{var}\FloatTok{.1} \OtherTok{\textless{}{-}} \DecValTok{25000}
+\NormalTok{var.1 }\OtherTok{\textless{}{-}} \DecValTok{25000}
 
 \CommentTok{\# create a variable named var.2 and assign a vector, c(), of numbers to it using the = operator}
-\NormalTok{var}\FloatTok{.2} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\DecValTok{200}\NormalTok{)}
+\NormalTok{var.2 }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\DecValTok{200}\NormalTok{)}
 
 \CommentTok{\# a bit of text, surrounded by single \textquotesingle{}\textquotesingle{} or double "" quotes}
 \NormalTok{some.text }\OtherTok{\textless{}{-}} \StringTok{"Swanpool beach"}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{naming-variables}{%
-\subsection{Naming variables}\label{naming-variables}}
+\subsection{Naming variables}\label{naming-variables}
 
 Variables can have any name, but cannot start with a number and can only contain dot \texttt{.} and underscore \texttt{\_} characters as special characters.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# this fails}
-\NormalTok{2times\_song\_release\_year }\OtherTok{\textless{}{-}} \DecValTok{1999}
-\DocumentationTok{\#\# Error: \textless{}text\textgreater{}:2:2: unexpected symbol}
+\DecValTok{2}\NormalTok{times\_song\_release\_year }\OtherTok{\textless{}{-}} \DecValTok{1999}
+\DocumentationTok{\#\# Error in parse(text = input): \textless{}text\textgreater{}:2:2: unexpected symbol}
 \DocumentationTok{\#\# 1: \# this fails}
 \DocumentationTok{\#\# 2: 2times\_song\_release\_year}
 \DocumentationTok{\#\#     \^{}}
@@ -209,29 +210,28 @@ Variables can have any name, but cannot start with a number and can only contain
 \begin{Highlighting}[]
 \CommentTok{\# this fails too}
 \NormalTok{release\%year }\OtherTok{\textless{}{-}} \DecValTok{1999}
-\DocumentationTok{\#\# Error: \textless{}text\textgreater{}:2:8: unexpected input}
+\DocumentationTok{\#\# Error in parse(text = input): \textless{}text\textgreater{}:2:8: unexpected input}
 \DocumentationTok{\#\# 1: \# this fails too}
 \DocumentationTok{\#\# 2: release\%year \textless{}{-} 1999}
 \DocumentationTok{\#\#           \^{}}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{changing-the-value-stored-by-variables}{%
-\subsection{Changing the value stored by variables}\label{changing-the-value-stored-by-variables}}
+\subsection{Changing the value stored by variables}\label{changing-the-value-stored-by-variables}
 
 You can easily change values of variables, simply by assigning them a new one! The new value can be of a completely different type.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# print the value of a variable, showing its current value}
-\FunctionTok{print}\NormalTok{(var}\FloatTok{.1}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(var.1)}
 \DocumentationTok{\#\# [1] 25000}
 
 \CommentTok{\# change the value}
-\NormalTok{var}\FloatTok{.1} \OtherTok{\textless{}{-}} \StringTok{"some text instead!"}
+\NormalTok{var.1 }\OtherTok{\textless{}{-}} \StringTok{"some text instead!"}
 
 \CommentTok{\# print the new value}
-\FunctionTok{print}\NormalTok{(var}\FloatTok{.1}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(var.1)}
 \DocumentationTok{\#\# [1] "some text instead!"}
 \end{Highlighting}
 \end{Shaded}
@@ -240,17 +240,16 @@ You can always check the type of your variable using the \texttt{class()} functi
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{class}\NormalTok{(var}\FloatTok{.1}\NormalTok{)}
+\FunctionTok{class}\NormalTok{(var.1)}
 \DocumentationTok{\#\# [1] "character"}
-\FunctionTok{class}\NormalTok{(var}\FloatTok{.2}\NormalTok{)}
+\FunctionTok{class}\NormalTok{(var.2)}
 \DocumentationTok{\#\# [1] "numeric"}
 \end{Highlighting}
 \end{Shaded}
 
 As you see, \texttt{class()} does not tell you that \texttt{var.2} is a vector of multiple values, but just focuses on the type of the values contained in them (in this case a \texttt{numeric}, which is R's way of saying that we are dealing with a real number). If you want to find out if something is a vector of values, you have to look at the length of the variable (see below).
 
-\hypertarget{vectors-and-element-selection}{%
-\section{Vectors and element selection}\label{vectors-and-element-selection}}
+\section{Vectors and element selection}\label{vectors-and-element-selection}
 
 As you have seen in the example of \texttt{var.2} above, variables can point to collections of multiple values (vectors). To create a vector, we use the \texttt{c()} function. We can subsequently get values of (groups of) individual elements by using the \texttt{{[}{[}{]}{]}} operator:
 
@@ -278,8 +277,7 @@ As you have seen in the example of \texttt{var.2} above, variables can point to 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises}{%
-\subsection{Exercises}\label{exercises}}
+\subsection{Exercises}\label{exercises}
 
 \begin{itemize}
 \item
@@ -296,8 +294,7 @@ As you have seen in the example of \texttt{var.2} above, variables can point to 
 
 what happens? Use \texttt{class(animals{[}{[}10{]}{]})} to see what is going on.
 
-\hypertarget{information-about-your-vector}{%
-\section{Information about your vector}\label{information-about-your-vector}}
+\section{Information about your vector}\label{information-about-your-vector}
 
 You can obtain information about your vector by using a range of different functions, such as
 
@@ -321,13 +318,11 @@ Most often, however, you will use the \texttt{length()} function to obtain its s
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise}{%
-\subsection{Exercise}\label{exercise}}
+\subsection{Exercise}\label{exercise}
 
 Using the standard \texttt{iris} dataset (available within in \texttt{R} by typing \texttt{iris} on the command line), find out the number of unique values for the column \texttt{Sepal.Width}. If you see \texttt{iris} but don't know how you can access the column, try to search for it on the web.
 
-\hypertarget{sequences}{%
-\section{Sequences}\label{sequences}}
+\section{Sequences}\label{sequences}
 
 Vectors are also used to contain sequences of numbers, which can either be generated with the from-to operator \texttt{:} or with the more explicit \texttt{seq()} function:
 
@@ -340,13 +335,13 @@ Vectors are also used to contain sequences of numbers, which can either be gener
 \NormalTok{reverse.seq }\OtherTok{\textless{}{-}} \DecValTok{10}\SpecialCharTok{:}\DecValTok{1}
 
 \CommentTok{\# same, but using the sequence in some.seq and the rev() \textquotesingle{}reverse\textquotesingle{} function:}
-\NormalTok{reverse.seq}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{rev}\NormalTok{(some.seq)}
+\NormalTok{reverse.seq.2 }\OtherTok{\textless{}{-}} \FunctionTok{rev}\NormalTok{(some.seq)}
 
 \CommentTok{\# sequence from 10 to 1, using the seq() function, with a negative increment}
 \NormalTok{another.seq }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\DecValTok{10}\NormalTok{,}\AttributeTok{to=}\DecValTok{1}\NormalTok{,}\AttributeTok{by=}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
 
 \CommentTok{\# the seq() function is great if you want to take bigger steps:}
-\NormalTok{steps.of}\FloatTok{.5} \OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\DecValTok{3}\NormalTok{,}\AttributeTok{to=}\DecValTok{29}\NormalTok{,}\AttributeTok{by=}\DecValTok{5}\NormalTok{)}
+\NormalTok{steps.of.5 }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\AttributeTok{from=}\DecValTok{3}\NormalTok{,}\AttributeTok{to=}\DecValTok{29}\NormalTok{,}\AttributeTok{by=}\DecValTok{5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -362,8 +357,7 @@ We can also make vectors using repetitions of values, through \texttt{rep()}:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{the-important-bit-for-loops}{%
-\section{\texorpdfstring{The important bit: \texttt{for} loops}{The important bit: for loops}}\label{the-important-bit-for-loops}}
+\section{\texorpdfstring{The important bit: \texttt{for} loops}{The important bit: for loops}}\label{the-important-bit-for-loops}
 
 The point about programming is that you want to repeat actions multiple times. To this end, R offers you two different looping constructs: the \texttt{while()} loop and the \texttt{for} loop.
 
@@ -408,8 +402,7 @@ In this practical, we focus on the \texttt{for} loop as it is more commonly used
 
 From the printed output, you see that the \texttt{iterator} gets a new value every time the loop goes round. The message \texttt{"Some\ text"} is also repeatedly printed, but this value does not change.
 
-\hypertarget{dissecting-the-for-loop}{%
-\subsection{Dissecting the for loop}\label{dissecting-the-for-loop}}
+\subsection{Dissecting the for loop}\label{dissecting-the-for-loop}
 
 The loop starts with the keyword \texttt{for}, followed by parentheses \texttt{()}. Within those parentheses, we always start by declaring a new variable, which -- in this case -- I have called \texttt{iterator}, but you could have given it \emph{any} valid name, like \texttt{index} or \texttt{boring.practical}.
 
@@ -419,8 +412,7 @@ Hence, the first time the loop goes round, \texttt{iterator} receives the value 
 
 Next, the loop goes round again. Now the value of \texttt{iterator} will be 6. Again, \texttt{6} is printed by the \texttt{print()} statements in the \texttt{\{\}}-part and this goes on until all elements from \texttt{some.vec} have been assigned to \texttt{iterator}. Hence, the last value printed will be \texttt{10}, after which the \texttt{for} loop exits.
 
-\hypertarget{another-example}{%
-\subsection{Another example}\label{another-example}}
+\subsection{Another example}\label{another-example}
 
 Just to throw in another example that is slightly different, let us calculate the product of elements of two vectors and sum those products:
 
@@ -428,11 +420,11 @@ Just to throw in another example that is slightly different, let us calculate th
 \begin{Highlighting}[]
 \CommentTok{\# generate two vectors with numbers; }
 \CommentTok{\# vectors have the same length}
-\NormalTok{vec}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.2}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{3.5}\NormalTok{)}
-\NormalTok{vec}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{7}\NormalTok{)}
+\NormalTok{vec.1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.2}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{3.5}\NormalTok{)}
+\NormalTok{vec.2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{7}\NormalTok{)}
 
 \CommentTok{\# check whether the length is indeed the same}
-\FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{length}\NormalTok{(vec}\FloatTok{.1}\NormalTok{) }\SpecialCharTok{==} \FunctionTok{length}\NormalTok{(vec}\FloatTok{.2}\NormalTok{))}
+\FunctionTok{stopifnot}\NormalTok{(}\FunctionTok{length}\NormalTok{(vec.1) }\SpecialCharTok{==} \FunctionTok{length}\NormalTok{(vec.2))}
 
 \NormalTok{sum }\OtherTok{\textless{}{-}} \DecValTok{0}
 
@@ -441,20 +433,19 @@ Just to throw in another example that is slightly different, let us calculate th
 \CommentTok{\# (we can do so by creating a list from }
 \CommentTok{\# 1 to the length of one of the vectors,}
 \CommentTok{\# i.e., 1,2,3,...)}
-\ControlFlowTok{for}\NormalTok{ (idx }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(vec}\FloatTok{.1}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (idx }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(vec.1))}
 \NormalTok{\{}
     \CommentTok{\# use idx to obtain elements of both vectors}
     \CommentTok{\# and add them to the total}
 \NormalTok{    sum }\OtherTok{\textless{}{-}}\NormalTok{ sum }\SpecialCharTok{+} 
-\NormalTok{        vec}\FloatTok{.1}\NormalTok{[[idx]] }\SpecialCharTok{*}\NormalTok{ vec}\FloatTok{.2}\NormalTok{[[idx]]}
+\NormalTok{        vec.1[[idx]] }\SpecialCharTok{*}\NormalTok{ vec.2[[idx]]}
 \NormalTok{\}}
 \FunctionTok{print}\NormalTok{(sum)}
 \DocumentationTok{\#\# [1] 47.9}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-1}{%
-\subsection{Exercises}\label{exercises-1}}
+\subsection{Exercises}\label{exercises-1}
 
 \begin{itemize}
 \tightlist
@@ -477,8 +468,7 @@ Just to throw in another example that is slightly different, let us calculate th
 
 Now that we have some tools under our belts, let's get going with evolution!!
 
-\hypertarget{an-evolutionary-model-of-the-hawk-dove-game}{%
-\chapter{An evolutionary model of the hawk-dove game}\label{an-evolutionary-model-of-the-hawk-dove-game}}
+\chapter{An evolutionary model of the hawk-dove game}\label{an-evolutionary-model-of-the-hawk-dove-game}
 
 Why do we often find that competitors
 exhibit ritualized displays
@@ -497,18 +487,17 @@ always fight and do not retreat; and ii) timid Doves (denoted by \(D\)), who may
 threat display, but eventually will always retreat if the other individual
 starts a fight.
 
-\hypertarget{payoff-matrices}{%
-\section{Payoff matrices}\label{payoff-matrices}}
+\section{Payoff matrices}\label{payoff-matrices}
 
 We can summarize these interactions in a so-called payoff matrix, where the rows
 reflect the payoff to a focal player who either plays strategy \(H\) or \(D\), when it encounters other \(H\)s or \(D\)s (columns).
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5122}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2439}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2439}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5122}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2439}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2439}}@{}}
 \caption{\label{tab:payoffHD} The payoff matrix of the Hawk-Dove game.}\tabularnewline
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 focal \(\downarrow\) opponent \(\rightarrow\)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -516,9 +505,9 @@ focal \(\downarrow\) opponent \(\rightarrow\)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \(D\)
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endfirsthead
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 focal \(\downarrow\) opponent \(\rightarrow\)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -526,27 +515,25 @@ focal \(\downarrow\) opponent \(\rightarrow\)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \(D\)
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(H\) & \(\frac{v-c}{2}\) & \(v\) \\
 \(D\) & \(0\) & \(\frac{v}{2}\) \\
-\bottomrule()
 \end{longtable}
 
-\hypertarget{exercise-1}{%
-\section{Exercise}\label{exercise-1}}
+\section{Exercise}\label{exercise-1}
 
 The parameter \(v\) clearly has something to do with gaining a resource, while \(c\) is a cost. Knowing that, can you explain the biological meaning of each of the payoffs in the table?
 
-\hypertarget{a-haploid-population-genetical-model-of-the-hawk-dove-game}{%
-\section{A haploid population genetical model of the Hawk-Dove game}\label{a-haploid-population-genetical-model-of-the-hawk-dove-game}}
+\section{A haploid population genetical model of the Hawk-Dove game}\label{a-haploid-population-genetical-model-of-the-hawk-dove-game}
 
 Although the Hawk-Dove game is often used as an example of evolutionary game theory, here we start from the ground up by developing a more rigorous model that is based on population genetics. Population genetics deals with genetic detail, so is more complete than evolutionary game theory. However, analyzing the formulas of the population genetics model is slightly more challenging, so this is why we will use R to simulate the model instead.
 
 By comparing whether predictions from evolutionary game theory match our population genetics model, we can see whether genetic detail matters, if at all. If predictions do not match, this may tell us that lack genetic assumptions in evolutionary game theory can lead to erroneous conclusions. Such exercises are worthwhile if you want to predict when a phenotypic gambit may be an accurate vs inaccurate description of the evolution of behaviour.
 
-\hypertarget{lots-of-crazy-assumptions}{%
-\section{Lots of crazy assumptions}\label{lots-of-crazy-assumptions}}
+\section{Lots of crazy assumptions}\label{lots-of-crazy-assumptions}
 
 There we go: for the sake of simplicity, we assume that being a hawk or dove is the result
 of \textbf{just two alleles at a single haploid locus}! Moreover, reproduction occurs asexually. The population sizes are assumed to be infinite.
@@ -555,18 +542,15 @@ fewer are chiefly the result of variation at a single locus only.
 
 The question is whether we would learn a similar amount from a hugely convoluted model in which we track the actual population size, have 1000s of loci or deal with sexual reproduction and all the resulting products of recombination? Sure, it would be more realistic! But is it really full-blown reality we are after with this model? If we would be, why don't we study the real world instead? (Last thing I have heard is that the real world is a far more realistic model of reality). Perhaps the idea of a model is not to replicate reality, but to get a sharper idea about a particular phenomenon (the evolution of ritualization) while isolating lots of unnecessary detail.
 
-\hypertarget{allele-frequencies}{%
-\section{Allele frequencies}\label{allele-frequencies}}
+\section{Allele frequencies}\label{allele-frequencies}
 
 Let \(p_{t}\) be the frequency of the allele coding for \(H\) in the population at generation \(t\), while \(1-p_{t}\) is the frequency of the \(D\) allele in the population at generation \(t\). We assume that strategies are \emph{pure}, meaning that an individual having the \(H\) or \(D\) allele will always be a hawk or dove respectively. Later on, we will consider a case where strategies are \emph{mixed}, so that \(p_{t}\) does not reflect the frequency of the \(H\) allele, but the probability with which each individual plays \(H\) at each interaction.
 
-\hypertarget{life-cycle}{%
-\section{Life cycle}\label{life-cycle}}
+\section{Life cycle}\label{life-cycle}
 
 We assume that generations are discrete, implying that all individuals die after reproduction. Upon birth, a newborn individual fights or displays with other individuals a single time. From this interaction, it will collect a payoff as given in the payoff matrix above. The payoff is then proportional to the number of offspring the individual produces.
 
-\hypertarget{fitness}{%
-\section{Fitness}\label{fitness}}
+\section{Fitness}\label{fitness}
 
 An individual reproduces according to the payoffs it has collected. Let us denote the absolute fitness of a hawk and a dove as \(W_{H}\) and \(W_{D}\) respectively, which we can interpret as the expected number of surviving offspring produced by each of these types.
 
@@ -585,8 +569,7 @@ W_{D,t} &= w_{0} + p_{t} (0) + \left(1-p_{t} \right) \frac{v}{2}
   the third part reflects the probability that a focal dove meets another dove (doves are encountered with a frequency of \(1-p_{t}\)). In that case they will split the value of the resource, hence \(v/2\).
 \end{itemize}
 
-\hypertarget{exercise-2}{%
-\section{Exercise}\label{exercise-2}}
+\section{Exercise}\label{exercise-2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -607,8 +590,7 @@ W_{H,t} &= w_{0} + \ldots + \ldots
   Can you say something about the possible values that fitnesses of hawks \(W_{H,t}\) and doves \(W_{D,t}\) can attain? For example, can an individual have a fitness of \(0.5\) (or can fitness values only be integers)? And a fitness value of \(-1\), would that be possible? Or a fitness value of \(1e08\)?
 \end{enumerate}
 
-\hypertarget{evolutionary-dynamics}{%
-\section{Evolutionary dynamics}\label{evolutionary-dynamics}}
+\section{Evolutionary dynamics}\label{evolutionary-dynamics}
 
 Now that we have derived fitness expressions of the dove and hawk alleles, let us consider how the frequencies of these alleles change over time. The frequency \(p_{t+1}\) of the hawk allele at time \(t+1\) is given by a surprisingly simple equation:
 
@@ -625,8 +607,7 @@ The expression for \(p_{t+1}\) above tells you that if hawks do better than the 
 
 One advantage of our super-simple model is that we do not have derive a separate expression for the change in frequency of the dove allele!! This is simply \(1-p_{t+1}\). However, if we would consider more than two alleles per locus (or multiple loci), matters would be (far) more difficult.
 
-\hypertarget{relation-to-delta-p-in-lecture-slides-this-section-is-optional}{%
-\section{\texorpdfstring{Relation to \(\Delta p\) in lecture slides (this section is optional)}{Relation to \textbackslash Delta p in lecture slides (this section is optional)}}\label{relation-to-delta-p-in-lecture-slides-this-section-is-optional}}
+\section{\texorpdfstring{Relation to \(\Delta p\) in lecture slides (this section is optional)}{Relation to \textbackslash Delta p in lecture slides (this section is optional)}}\label{relation-to-delta-p-in-lecture-slides-this-section-is-optional}
 
 In the lecture slides we have seen that the change in allele frequency was given by
 \begin{align}
@@ -648,8 +629,7 @@ The clue is in the \(\Delta p = p_{t+1} - p_{t}\). If we substitute here for our
 \end{align}
 and we are done. A bit of algebra to show that \(p_{t+1}\) and \(\Delta p\) are just two sides of the same coin, the first one is a \emph{recursion} equation, the second one a \emph{difference} equation.
 
-\hypertarget{exercise-implementing-your-first-evolutionary-algorithm-in-r}{%
-\section{Exercise: implementing your first evolutionary algorithm in R}\label{exercise-implementing-your-first-evolutionary-algorithm-in-r}}
+\section{Exercise: implementing your first evolutionary algorithm in R}\label{exercise-implementing-your-first-evolutionary-algorithm-in-r}
 
 In order to asses whether hawks or doves win out in the long term, in this exercise we are going to build our own evolutionary model! The goal is to iterate the population genetics recursion equation \(p_{t+1} = p_{t} W_{H} / \bar{W}\) that you encountered before. We do so over a large bunch of time steps, so that we can see what happens with evolving populations like these in the long term: Will hawks win or doves? Will both happily coexist? Will frequencies fluctuate over time? Do evolutionary changes happen rapidly or slowly? All pretty important questions if we want to say something about how animals adapt to the behaviours of others.
 
@@ -696,13 +676,11 @@ To get you started, I provide a part of an R-script below. The task at hand is t
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-3}{%
-\section{Exercise}\label{exercise-3}}
+\section{Exercise}\label{exercise-3}
 
 If your model works, try to explore what happens when you vary the parameter values \(v\) and \(c\). And what happens when you vary the value of the baseline fitness \(w_{0}\)?
 
-\hypertarget{exercise-4}{%
-\section{Exercise}\label{exercise-4}}
+\section{Exercise}\label{exercise-4}
 
 Can you try to run your script multiple times, each time for a different initial value of the frequency of hawks? Does it matter where you start? Can you plot the output from your simulation either in \(R\) or in Excel?
 Plotting in R can be done with
@@ -717,15 +695,13 @@ Plotting in R can be done with
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-19-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{_main_files/figure-latex/unnamed-chunk-19-1.pdf}}
 
-\hypertarget{exercise-5}{%
-\section{Exercise}\label{exercise-5}}
+\section{Exercise}\label{exercise-5}
 
 From evolutionary game theory, we know that the equilibrium frequency \(\hat{p}\) of hawks (i.e., the frequency at which there is no further change in the frequency of hawks) is \(\hat{p} = v/c\). Do you get the same answer here? What would you conclude about the importance of genetic detail?
 
-\hypertarget{individual-based-simulations-and-drift}{%
-\chapter{Individual-based simulations and drift}\label{individual-based-simulations-and-drift}}
+\chapter{Individual-based simulations and drift}\label{individual-based-simulations-and-drift}
 
 Previously, the model of the Hawk-Dove game that we have used was \textbf{deterministic}, where multiple runs for the same values of the parameters \(v\) and \(c\) always result in the same outcome.
 
@@ -733,10 +709,9 @@ In reality, however, evolution does not work like that, as quite a number of bio
 
 Introducing chance in models of evolution makes these models \textbf{stochastic}, meaning that any two runs of the same model (with the same values of the parameters) does not necessarily result in the same outcome. Stochasticity in evolution introduces a phenomenon called `genetic drift' which we will explore in this practical. Genetic drift can -- particularly in small populations -- dramatically affect the course of evolution!
 
-\hypertarget{before-you-start-this-practical}{%
-\section{Before you start this practical}\label{before-you-start-this-practical}}
+\section{Before you start this practical}\label{before-you-start-this-practical}
 
-First, please be reminded to use one of the \href{https://rstudio01.cles.ex.ac.uk}{Rstudio servers} rather than your local installation of R. This is because we will be using some custom-built R packages, which themselves require extensions like \href{https://cran.r-project.org/bin/windows/Rtools/}{Rtools} that can be a bit of a pain to install on some computers. Luckily, this should all have been done for you on the Rstudio server.
+First, please be reminded to use one of the \href{https://posit01.exeter.ac.uk}{Posit servers} rather than your local installation of R. This is because we will be using some custom-built R packages, which themselves require extensions like \href{https://cran.r-project.org/bin/windows/Rtools/}{Rtools} that can be a bit of a pain to install on some computers. Luckily, this should all have been done for you on the Rstudio server.
 
 Next, when logged in on the Rstudio server, please use R version \texttt{4.1.1.}
 
@@ -749,8 +724,7 @@ And finally, it may be worthwhile to remove variables from our previous session,
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{installing-the-driftsim-package}{%
-\section{\texorpdfstring{Installing the \texttt{driftSim} package}{Installing the driftSim package}}\label{installing-the-driftsim-package}}
+\section{\texorpdfstring{Installing the \texttt{driftSim} package}{Installing the driftSim package}}\label{installing-the-driftsim-package}
 
 Now, let's get started. In this part of the practical, we will explore a model that includes stochasticity. Such a model is provided in the R package \texttt{driftSim}. To install this package, do the following:
 
@@ -773,8 +747,7 @@ Then we can load the library using:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{individual-based-models}{%
-\section{Individual-based models}\label{individual-based-models}}
+\section{Individual-based models}\label{individual-based-models}
 
 This package contains what we call an \emph{individual-based simulation}, which is nothing more than a computer program that models individuals and their actions (e.g., surviving, fighting, reproducing). By contrast, in the previous set of exercises, we did not focus on individuals too much, but rather on an \emph{analytical model} which tracked the population-wide frequency \(p_{t}\) of hawks. Indeed, keeping track of a single population-wide frequency \(p_{t}\) is a lot simpler than keeping track of thousands or even millions of individuals. However, such simplicity also comes also at a price, which will be the focus of this chapter.
 
@@ -792,20 +765,17 @@ While the simulation package \texttt{driftSim} runs within R, under the hood it 
 
 The program then simulates a \textbf{finite} population of \(N\) of these individuals. You might remember that the analytical model in the previous chapter assumed infinitely many individuals, so while the individual-based model is an absolute loser when it comes to speed, it is already a winner when it comes to increased realism!
 
-\hypertarget{life-cycle-1}{%
-\section{Life cycle}\label{life-cycle-1}}
+\section{Life cycle}\label{life-cycle-1}
 
 At the start of each generation, each individual interacts with a randomly chosen other individual and either attacks (hawk) or displays (dove). It gets its payoffs based on the same payoff matrix as we used in the deterministic model in the previous chapter. Subsequently, we then produce \(N\) newborn offspring from this population. Parents of each of these offspring are sampled from the previous generation, with individuals who have a larger payoff being more likely to be selected than individuals which have a lower payoff.
 
-\hypertarget{exercise-limiting-assumptions}{%
-\section{Exercise: limiting assumptions}\label{exercise-limiting-assumptions}}
+\section{Exercise: limiting assumptions}\label{exercise-limiting-assumptions}
 
 Individual-based simulations are often used to relax many of the limiting assumptions present in deterministic models, as writing computer code allows for much more flexibility than when using mathematical formulas. We have already seen how individual-based simulations have relaxed one assumption of the popoulation genetics mode, namely the fact that population sizes can now be finite, rather than infinite.
 
 Can you list three other limiting assumptions from the deterministic population genetics model that you would like to relax? For each assumption, can you think how relaxing the assumption could potentially affect results? (It is often much easier to spell out what is wrong with a model than to spell out how addressing it will change outcomes!)
 
-\hypertarget{running-the-driftsim-package}{%
-\section{\texorpdfstring{Running the \texttt{driftSim} package}{Running the driftSim package}}\label{running-the-driftsim-package}}
+\section{\texorpdfstring{Running the \texttt{driftSim} package}{Running the driftSim package}}\label{running-the-driftsim-package}
 
 The \texttt{driftSim} package contains a single function, called \texttt{runSimulation()}. Before running this function, please inspect the documentation by typing \texttt{?runSimulation()} in your R console, after which a help page should show up.
 
@@ -815,16 +785,16 @@ Let us start with a simple example run with a population size of \(N=10\), \(v=1
 \begin{Highlighting}[]
 \FunctionTok{runSimulation}\NormalTok{(}\AttributeTok{N=}\DecValTok{10}\NormalTok{,}\AttributeTok{v=}\FloatTok{1.0}\NormalTok{,}\AttributeTok{c=}\FloatTok{2.0}\NormalTok{,}\AttributeTok{is\_pure=}\NormalTok{T,}\AttributeTok{mu=}\DecValTok{0}\NormalTok{,}\AttributeTok{max\_time=}\DecValTok{10}\NormalTok{,}\AttributeTok{pHawk\_init=}\FloatTok{0.25}\NormalTok{,}\AttributeTok{output\_nth\_generation=}\DecValTok{1}\NormalTok{,}\AttributeTok{sd\_pHawkMixed=}\DecValTok{0}\NormalTok{)}
 \DocumentationTok{\#\#    generation freq\_Hawk mean\_pHawkMixed sd\_pHawkMixed}
-\DocumentationTok{\#\# 1           1       0.1               0             0}
-\DocumentationTok{\#\# 2           2       0.2               0             0}
-\DocumentationTok{\#\# 3           3       0.2               0             0}
-\DocumentationTok{\#\# 4           4       0.2               0             0}
-\DocumentationTok{\#\# 5           5       0.2               0             0}
-\DocumentationTok{\#\# 6           6       0.2               0             0}
-\DocumentationTok{\#\# 7           7       0.1               0             0}
-\DocumentationTok{\#\# 8           8       0.2               0             0}
-\DocumentationTok{\#\# 9           9       0.1               0             0}
-\DocumentationTok{\#\# 10         10       0.2               0             0}
+\DocumentationTok{\#\# 1           1       0.4               0             0}
+\DocumentationTok{\#\# 2           2       0.5               0             0}
+\DocumentationTok{\#\# 3           3       0.8               0             0}
+\DocumentationTok{\#\# 4           4       0.9               0             0}
+\DocumentationTok{\#\# 5           5       0.7               0             0}
+\DocumentationTok{\#\# 6           6       0.7               0             0}
+\DocumentationTok{\#\# 7           7       0.9               0             0}
+\DocumentationTok{\#\# 8           8       1.0               0             0}
+\DocumentationTok{\#\# 9           9       1.0               0             0}
+\DocumentationTok{\#\# 10         10       1.0               0             0}
 \end{Highlighting}
 \end{Shaded}
 
@@ -842,23 +812,19 @@ The \texttt{my.data} variable points to a \texttt{data.frame} with the following
 3. \texttt{mean\_pHawkMixed}: in case hawks and doves are the result of a mixed strategy, this is the (evolving) probability that any individual will develop as hawk at the start of its life. This is 0 in case \texttt{is\_pure=T}, when we consider pure strategies of hawks and Doves
 4. \texttt{sd\_pHawkMixed}: variation among individuals in their ability to develop as hawks (only nonzero when \texttt{is\_pure=F})
 
-\hypertarget{exercise-plotting-the-output-from-the-driftsim-package}{%
-\section{\texorpdfstring{Exercise: plotting the output from the \texttt{driftSim} package}{Exercise: plotting the output from the driftSim package}}\label{exercise-plotting-the-output-from-the-driftsim-package}}
+\section{\texorpdfstring{Exercise: plotting the output from the \texttt{driftSim} package}{Exercise: plotting the output from the driftSim package}}\label{exercise-plotting-the-output-from-the-driftsim-package}
 
 Make a plot where plot \texttt{generation} on the \(x\)-axis and \texttt{freq\_Hawk} on the \(y\)-axis. Re-run your simulation at least 10 times. What happens (typically) with the hawk allele?
 
-\hypertarget{exercise-change-the-initial-frequency-of-hawks}{%
-\section{Exercise: change the initial frequency of hawks}\label{exercise-change-the-initial-frequency-of-hawks}}
+\section{Exercise: change the initial frequency of hawks}\label{exercise-change-the-initial-frequency-of-hawks}
 
 Now, change the initial frequency of hawks by changing the value of \texttt{pHawk\_init} to \texttt{pHawk\_init=0.75}. Run the simulation for a long time, for example \texttt{max\_time=500}. What happens now with the frequency of hawks? What does that tell you about the differences between the analytical model and the current one? Do we still reach the predicted equilibrium frequency of hawks \(\hat{p} = v/c\)?
 
-\hypertarget{exercise-increase-the-population-size}{%
-\section{Exercise: increase the population size}\label{exercise-increase-the-population-size}}
+\section{Exercise: increase the population size}\label{exercise-increase-the-population-size}
 
 Now, try the same with a population size of \(N=500\). What happens now?
 
-\hypertarget{hawk-dove-games-with-relatives}{%
-\chapter{Hawk Dove games with relatives}\label{hawk-dove-games-with-relatives}}
+\chapter{Hawk Dove games with relatives}\label{hawk-dove-games-with-relatives}
 
 So far, we used the Hawk Dove game to study the evolution of fighting behaviour in well-mixed populations. We found that aggression can be limited by costs of fighting \(c\).
 
@@ -868,7 +834,7 @@ In the simple model we used previously, interactions were entirely driven by \em
 
 Now we study the case where interactions are not random, but some assortment takes place. Hence, we need to change the model in the same way the prisoner's dilemma model is changed to account for non-random interactions.
 
-While we will use the same payoff matrix as before (see \protect\hyperlink{tab:payoffHD}{the table in chapter 2}), let us now change the interaction probabilities between the individuals. Recall the previous fitness expressions \(W_{H}\) and \(W_{D}\) for Hawks and Doves respectively:
+While we will use the same payoff matrix as before (see \hyperref[tab:payoffHD]{the table in chapter 2}), let us now change the interaction probabilities between the individuals. Recall the previous fitness expressions \(W_{H}\) and \(W_{D}\) for Hawks and Doves respectively:
 \begin{align}
 W_{H} &= w_{0} + p_{t} \frac{v-c}{2} + \left(1 - p_{t} \right) v \label{eq:wH} \\
 W_{D} &= w_{0} + p_{t} (0) + \left(1 - p_{t} \right) \frac{v}{2} \label{eq:wD}\\
@@ -901,7 +867,7 @@ Below you find the R code that we used to iterate the system of equations.
 
 \CommentTok{\# a for loop to iterate the recursion equation}
 \CommentTok{\# over multiple timesteps}
-\ControlFlowTok{for}\NormalTok{ (time\_idx }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{(max\_time}\DecValTok{{-}1}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (time\_idx }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{(max\_time}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{))}
 \NormalTok{\{}
 \NormalTok{  wH }\OtherTok{\textless{}{-}}\NormalTok{ w0 }\SpecialCharTok{+}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{*}\NormalTok{ (v}\SpecialCharTok{{-}}\NormalTok{c)}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p[[time\_idx]]) }\SpecialCharTok{*}\NormalTok{ v}
 \NormalTok{  wD }\OtherTok{\textless{}{-}}\NormalTok{ w0 }\SpecialCharTok{+}\NormalTok{ p[[time\_idx]] }\SpecialCharTok{*} \DecValTok{0} \SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p[[time\_idx]]) }\SpecialCharTok{*}\NormalTok{ v}\SpecialCharTok{/}\DecValTok{2}
@@ -914,26 +880,24 @@ Below you find the R code that we used to iterate the system of equations.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-running-the-model}{%
-\section{Exercise: running the model}\label{exercise-running-the-model}}
+\section{Exercise: running the model}\label{exercise-running-the-model}
 
 Just to get yourself familiar with the model again, try to run it for different values of \(v\) and \(c\) and see what happens.
 
-\hypertarget{interactions-among-relatives}{%
-\section{Interactions among relatives}\label{interactions-among-relatives}}
+\section{Interactions among relatives}\label{interactions-among-relatives}
 
 Rather than using the frequencies \(p_{t}\) and \(1-p_{t}\), we will now modify the Hawk Dove game by using \emph{conditional probabilities} reflecting non-random encounter rates, replacing the random encounter rates.
 
 \begin{itemize}
 \tightlist
 \item
-  \[ \Pr(H \mid H)\] probability of encounter between a focal Hawk and non-focal Hawk.
+  \[\Pr(H \mid H)\] probability of encounter between a focal Hawk and non-focal Hawk.
 \item
-  \[ \Pr(D \mid H)\] probability of encounter between a focal Hawk and a Dove (note again, that \(\Pr(H \mid H) + Pr(D \mid H) = 1\)).
+  \[\Pr(D \mid H)\] probability of encounter between a focal Hawk and a Dove (note again, that \(\Pr(H \mid H) + Pr(D \mid H) = 1\)).
 \item
-  \[ \Pr(H \mid D)\] probability of encounter between a focal Dove and a Hawk.
+  \[\Pr(H \mid D)\] probability of encounter between a focal Dove and a Hawk.
 \item
-  \[ \Pr(D \mid D)\] probability of encounter between a focal Dove and a non-focal Dove (\(\Pr(H \mid D) + \Pr(D \mid D) = 1\)).
+  \[\Pr(D \mid D)\] probability of encounter between a focal Dove and a non-focal Dove (\(\Pr(H \mid D) + \Pr(D \mid D) = 1\)).
 \end{itemize}
 
 Incorporating these conditional probabilities into the fitness expressions above yields
@@ -942,8 +906,7 @@ W_{H} &= w_{0} + \Pr(H\mid H) \frac{v-c}{2} +  \Pr (D \mid H ) v \label{eq:wH} \
 W_{D} &= w_{0} + \Pr (H \mid D) (0) + \Pr ( D \mid D )  \frac{v}{2} \label{eq:wD}\\
 \end{align}
 
-\hypertarget{hamiltons-rule-in-a-hawk-dove-game}{%
-\section{Hamilton's rule in a Hawk Dove game?}\label{hamiltons-rule-in-a-hawk-dove-game}}
+\section{Hamilton's rule in a Hawk Dove game?}\label{hamiltons-rule-in-a-hawk-dove-game}
 
 If we would follow the example of the Prisoner's dilemma in the lecture slides, would we expect to find something similar to Hamilton's rule when we assess the condition in which more cooperative Doves do better than defecting Hawks, i.e., \(W_{D} > W_{H}\)?
 
@@ -968,35 +931,31 @@ Clearly, coefficients are not simply \(v\) on the left hand side and \(c\) on th
 
 Hence, rather than anything like \(r x > y\) we now have \(r x + k z > g y\) (i.e., lots more terms)!! And that despite it being a super simple 2 player game! What is going on??
 
-\hypertarget{exercise-the-downfall-of-hamiltons-rule}{%
-\section{Exercise: the downfall of Hamilton's rule}\label{exercise-the-downfall-of-hamiltons-rule}}
+\section{Exercise: the downfall of Hamilton's rule}\label{exercise-the-downfall-of-hamiltons-rule}
 
-Can you think of why a simple expression like \(r x > y\) does not apply to the Hawk Dove game? Specifically, compare the payoff matrix for the Prisoner's dilemma (see lecture slides) with the one of the Hawk dove game (see \protect\hyperlink{tab:payoffHD}{the table in chapter 2}). What happens if you move from the top row to the bottom row in the payoff matrix, does the payoff increase / decrease by the same amount in the Hawk Dove game vs the Prisoner's Dilemma? What happens if you move from the left column to the right column? Discuss.
+Can you think of why a simple expression like \(r x > y\) does not apply to the Hawk Dove game? Specifically, compare the payoff matrix for the Prisoner's dilemma (see lecture slides) with the one of the Hawk dove game (see \hyperref[tab:payoffHD]{the table in chapter 2}). What happens if you move from the top row to the bottom row in the payoff matrix, does the payoff increase / decrease by the same amount in the Hawk Dove game vs the Prisoner's Dilemma? What happens if you move from the left column to the right column? Discuss.
 
-\hypertarget{evolution-of-aggression-when-relatives-interact-in-r}{%
-\section{Evolution of aggression when relatives interact in R}\label{evolution-of-aggression-when-relatives-interact-in-r}}
+\section{Evolution of aggression when relatives interact in R}\label{evolution-of-aggression-when-relatives-interact-in-r}
 
 Now that we know we cannot really use Hamilton's rule to predict when Doves will outlive Hawks, we have to resort to our previously used method of iterating a population genetics recursion equation in R to predict how interactions among relatives affects aggression. It turns out, relatedness \(r\) comes into this in another way, namely directly through the conditional probabilities. If we interpret \(r\) as being the chance of interacting with an individual that shares an allele identical by descent, we have
 
 \begin{itemize}
 \tightlist
 \item
-  \[ \Pr(H \mid H) = r \times 1 + (1-r ) p_{t} \] probability of encounter between a focal Hawk and non-focal Hawk.
+  \[\Pr(H \mid H) = r \times 1 + (1-r ) p_{t}\] probability of encounter between a focal Hawk and non-focal Hawk.
 \item
-  \[ \Pr(D \mid H) = r \times 0 + (1-r) (1-p_{t}) \] probability of encounter between a focal Hawk and a Dove (note that \(\Pr(H \mid H) + Pr(D \mid H) = 1\)).
+  \[\Pr(D \mid H) = r \times 0 + (1-r) (1-p_{t})\] probability of encounter between a focal Hawk and a Dove (note that \(\Pr(H \mid H) + Pr(D \mid H) = 1\)).
 \item
-  \[ \Pr(H \mid D) = r \times 0 + (1-r) p_{t} \] probability of encounter between a focal Dove and a Hawk
+  \[\Pr(H \mid D) = r \times 0 + (1-r) p_{t}\] probability of encounter between a focal Dove and a Hawk
 \item
-  \[ \Pr(D \mid D) = r \times 1 + (1- r) (1-p_{t} ) \] probability of encounter between a focal Dove and a non-focal Dove (\(\Pr(H \mid D) + \Pr(D \mid D) = 1\)).
+  \[\Pr(D \mid D) = r \times 1 + (1- r) (1-p_{t} )\] probability of encounter between a focal Dove and a non-focal Dove (\(\Pr(H \mid D) + \Pr(D \mid D) = 1\)).
 \end{itemize}
 
-\hypertarget{exercise-explaining-these-expressions}{%
-\section{Exercise: explaining these expressions?}\label{exercise-explaining-these-expressions}}
+\section{Exercise: explaining these expressions?}\label{exercise-explaining-these-expressions}
 
 Can you try to explain what is going on in the expressions above? Why do allele frequencies \(p_{t}\) still feature here?
 
-\hypertarget{exercise-implementing-it-in-the-numerical-model}{%
-\section{Exercise: implementing it in the numerical model}\label{exercise-implementing-it-in-the-numerical-model}}
+\section{Exercise: implementing it in the numerical model}\label{exercise-implementing-it-in-the-numerical-model}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1006,25 +965,21 @@ Can you try to explain what is going on in the expressions above? Why do allele 
   Is it reasonable to think as \(r\) as a constant parameter?
 \end{enumerate}
 
-\hypertarget{exercise-varying-the-values-of-r}{%
-\section{\texorpdfstring{Exercise: varying the values of \(r\)}{Exercise: varying the values of r}}\label{exercise-varying-the-values-of-r}}
+\section{\texorpdfstring{Exercise: varying the values of \(r\)}{Exercise: varying the values of r}}\label{exercise-varying-the-values-of-r}
 
 Plot your results for different values of \(r\), either in Excel or by using one of the plotting packages in R. Is the relationship between aggression and \(r\) in line with your expectations?
 
-\hypertarget{spatially-explicit-models-of-the-hawk-dove-game}{%
-\chapter{Spatially explicit models of the Hawk Dove game}\label{spatially-explicit-models-of-the-hawk-dove-game}}
+\chapter{Spatially explicit models of the Hawk Dove game}\label{spatially-explicit-models-of-the-hawk-dove-game}
 
 In the previous set of exercises, we discussed our assumption of \(r\) being constant. While this allows you to assess the role of specific values of \(r\), in reality \(r\) emerges as a result of the ecology of a population, allowing us to focus on the ecological factors that drive the evolution of sociality. Models in which \(r\) is not treated at a constant, but \emph{emerges} are called \emph{demographically consistent}.
 
 One major ecological factor that affects \(r\) is the probability of dispersal: if few individuals disperse, while most just stick around in their natal environment, relatedness among randomly sampled individuals is likely to be much higher than when most individuals disperse and go elsewhere.
 
-\hypertarget{exercise-6}{%
-\section{Exercise}\label{exercise-6}}
+\section{Exercise}\label{exercise-6}
 
 Can you think of other ecological factors that influence \(r\)?
 
-\hypertarget{investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game}{%
-\section{Investigating how dispersal affects aggression: adding space to the Hawk Dove game}\label{investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game}}
+\section{Investigating how dispersal affects aggression: adding space to the Hawk Dove game}\label{investigating-how-dispersal-affects-aggression-adding-space-to-the-hawk-dove-game}
 
 Given the results from the numerical model of the Hawk Dove game among relatives, we would thus predict that reducing the rate of dispersal (which results in an increase in \(r\)) should reduce the evolution of aggression.
 
@@ -1040,15 +995,13 @@ To investigate this prediction, we need a model that includes some notion of spa
   \textbf{island models}: in this flavour of a spatial model, once individuals migrate, they move to a randomly chosen site in the population. This may well describe taxa such as many insects where individuals move relatively away from their natal patch, while the non-dispersers stay at their natal site. Next to the two-patch case, this is the easiest version of a spatial model, so that is what we will be focusing on here.
 \end{enumerate}
 
-\hypertarget{exercise-7}{%
-\section{Exercise}\label{exercise-7}}
+\section{Exercise}\label{exercise-7}
 
 Discuss the pros and cons of each model - what approach has your preference and why?
 
 The life cycle of the island model is similar to that of the numerical one before: 1. individuals are born; 2. they disperse or not and compete for one of \(N_{bp}\) breeding positions with native and immigrant juveniles; 3. they interact with a randomly chosen patch mate and obtain a payoff; 4. the number of offspring that are produced are then proportional to the payoff they have received.
 
-\hypertarget{a-spatial-model-of-the-hawk-dove-game}{%
-\section{A spatial model of the hawk dove game}\label{a-spatial-model-of-the-hawk-dove-game}}
+\section{A spatial model of the hawk dove game}\label{a-spatial-model-of-the-hawk-dove-game}
 
 In \texttt{R} (make sure you use version 4.1.1), we now proceed to install the package \texttt{hdIslandModel} which is an individual based simulation of an island model with Hawks and Doves, allowing us to vary the rate of dispersal.
 
@@ -1077,8 +1030,7 @@ The model contained in the package can be called by the command \texttt{runHDSpa
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-8}{%
-\section{Exercise}\label{exercise-8}}
+\section{Exercise}\label{exercise-8}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1092,18 +1044,15 @@ The model contained in the package can be called by the command \texttt{runHDSpa
   What happens if you set the dispersal rate to \(d=0.8\)? Does this make a difference?
 \end{enumerate}
 
-\hypertarget{exercise-9}{%
-\section{Exercise}\label{exercise-9}}
+\section{Exercise}\label{exercise-9}
 
 What can we conclude about the relationship between dispersal and social behaviour from the above? Why does this happen, you think?
 
-\hypertarget{exercise-10}{%
-\section{Exercise}\label{exercise-10}}
+\section{Exercise}\label{exercise-10}
 
 Perhaps something different happens if we allow dispersal to evolve? Run your simulation for \(max_time = 20000\) and see what happens with the dispersal rate. Does dispersal evolve in a predictable way?
 
-\hypertarget{exercise-11}{%
-\section{Exercise}\label{exercise-11}}
+\section{Exercise}\label{exercise-11}
 
 Now incorporate the modulated
 

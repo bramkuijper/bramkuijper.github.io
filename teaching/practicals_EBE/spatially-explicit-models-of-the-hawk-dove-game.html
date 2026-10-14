@@ -4,32 +4,25 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Spatially explicit models of the Hawk Dove game | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <title>Chapter 6 Spatially explicit models of the Hawk Dove game | Evolutionary Behavioural Ecology: Practical on Modelling Evolution</title>
+  <meta name="description" content="A practical using models of Hawk Dove games to model evolution." />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Spatially explicit models of the Hawk Dove game | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution" />
+  <meta property="og:title" content="Chapter 6 Spatially explicit models of the Hawk Dove game | Evolutionary Behavioural Ecology: Practical on Modelling Evolution" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="A practical using models of Hawk Dove games to model evolution." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Spatially explicit models of the Hawk Dove game | Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution" />
+  <meta name="twitter:title" content="Chapter 6 Spatially explicit models of the Hawk Dove game | Evolutionary Behavioural Ecology: Practical on Modelling Evolution" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="A practical using models of Hawk Dove games to model evolution." />
   
 
 <meta name="author" content="Bram Kuijper" />
 
 
-<meta name="date" content="2022-10-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,6 +54,7 @@ set in the _output.yml file.</p>" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -125,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -233,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: practicals 1 &amp; 2 - Modelling Evolution</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Evolutionary Behavioural Ecology: Practical on Modelling Evolution</a>
           </h1>
         </div>
 
@@ -267,14 +265,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-spatial-model-of-the-hawk-dove-game" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> A spatial model of the hawk dove game<a href="spatially-explicit-models-of-the-hawk-dove-game.html#a-spatial-model-of-the-hawk-dove-game" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In <code>R</code> (make sure you use version 4.1.1), we now proceed to install the package <code>hdIslandModel</code> which is an individual based simulation of an island model with Hawks and Doves, allowing us to vary the rate of dispersal.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb25-2"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb25-4"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bramkuijper/hdIslandModel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;devtools&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb25-2"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb25-4"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb25-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;bramkuijper/hdIslandModel&quot;</span>)</span></code></pre></div>
 <p>Then we can load the library using:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;hdIslandModel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;hdIslandModel&quot;</span>)</span></code></pre></div>
 <p>The model contained in the package can be called by the command <code>runHDSpace()</code> which spits out a <code>data.frame</code> containing a bunch of statistics resulting from the simulation that we can save in a variable, say <code>sim.standard</code>:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb27-1" aria-hidden="true" tabindex="-1"></a>sim.standard <span class="ot">&lt;-</span> <span class="fu">runHDSpace</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="spatially-explicit-models-of-the-hawk-dove-game.html#cb27-1" tabindex="-1"></a>sim.standard <span class="ot">&lt;-</span> <span class="fu">runHDSpace</span>() </span></code></pre></div>
 </div>
 <div id="exercise-8" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Exercise<a href="spatially-explicit-models-of-the-hawk-dove-game.html#exercise-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -319,42 +317,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/bramkuijper/04-hawk-dove-relatives.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["_main.pdf", "_main.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/bramkuijper/04-hawk-dove-relatives.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
