@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Various exercises on programming in R</title>
+  <meta name="description" content="A brief set of exercises on control flow and loops in R" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Various exercises on programming in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A brief set of exercises on control flow and loops in R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Various exercises on programming in R" />
+  
+  <meta name="twitter:description" content="A brief set of exercises on control flow and loops in R" />
+  
+
+<meta name="author" content="Bram Kuijper" />
+
+
+<meta name="date" content="2022-01-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="using-loops-to-calculate-sums-and-sums-of-squares.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R Exercises</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prior-knowledge-about-r"><i class="fa fa-check"></i><b>1.1</b> Prior knowledge about R</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#finding-help"><i class="fa fa-check"></i><b>1.1.1</b> Finding help</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#different-types-of-variables"><i class="fa fa-check"></i><b>1.1.2</b> Different types of variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#operators"><i class="fa fa-check"></i><b>1.1.3</b> Operators</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#control-flow"><i class="fa fa-check"></i><b>1.1.4</b> Control flow</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#sizes-of-things"><i class="fa fa-check"></i><b>1.1.5</b> Sizes of things</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#selecting-subsets-of-your-data"><i class="fa fa-check"></i><b>1.2</b> Selecting subsets of your data</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#loop-structures"><i class="fa fa-check"></i><b>1.2.1</b> Loop structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#some-additional-coding-tips"><i class="fa fa-check"></i><b>1.3</b> Some additional coding tips:</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#dont-ignore-the-links-and-hints"><i class="fa fa-check"></i><b>1.3.1</b> Don’t ignore the links and hints</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#try-out-examples-for-yourself"><i class="fa fa-check"></i><b>1.3.2</b> Try out examples for yourself</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#search-enginges-are-your-friend"><i class="fa fa-check"></i><b>1.3.3</b> Search enginges are your friend</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#comment-your-code"><i class="fa fa-check"></i><b>1.3.4</b> Comment your code</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#keep-an-error-record"><i class="fa fa-check"></i><b>1.3.5</b> Keep an error record</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#find-out-the-root-of-errors-using-traceback"><i class="fa fa-check"></i><b>1.3.6</b> Find out the root of errors using <code>traceback()</code></a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#inspect-values-using-print-or-use-rs-debugger"><i class="fa fa-check"></i><b>1.3.7</b> Inspect values using <code>print()</code> or use R’s debugger</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html"><i class="fa fa-check"></i><b>2</b> Using loops to calculate sums and sums of squares</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html#printEx"><i class="fa fa-check"></i><b>2.1</b> Exercise: printing elements from a vector</a></li>
+<li class="chapter" data-level="2.2" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html#exercise-printing-every-nth-row-from-a-data.frame"><i class="fa fa-check"></i><b>2.2</b> Exercise: printing every <span class="math inline">\(n\)</span>th row from a <code>data.frame</code></a></li>
+<li class="chapter" data-level="2.3" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html#sum"><i class="fa fa-check"></i><b>2.3</b> Exercise: summing a vector</a></li>
+<li class="chapter" data-level="2.4" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html#sumSq"><i class="fa fa-check"></i><b>2.4</b> Sums of squares</a></li>
+<li class="chapter" data-level="2.5" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html#sum-only-if-larger-than-x"><i class="fa fa-check"></i><b>2.5</b> Sum only if larger than <span class="math inline">\(x\)</span></a></li>
+<li class="chapter" data-level="2.6" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html#separate-sums-for-odd-and-even-numbers"><i class="fa fa-check"></i><b>2.6</b> Separate sums for odd and even numbers</a></li>
+<li class="chapter" data-level="2.7" data-path="using-loops-to-calculate-sums-and-sums-of-squares.html"><a href="using-loops-to-calculate-sums-and-sums-of-squares.html#produce-a-vector-of-cumulative-values"><i class="fa fa-check"></i><b>2.7</b> Produce a vector of cumulative values</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html"><i class="fa fa-check"></i><b>3</b> Slightly more advanced for loops</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#exercise-a-list-of-random-letters"><i class="fa fa-check"></i><b>3.1</b> Exercise: a list of random letters</a></li>
+<li class="chapter" data-level="3.2" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#exercise-changes-in-state-over-time"><i class="fa fa-check"></i><b>3.2</b> Exercise: changes in state over time</a></li>
+<li class="chapter" data-level="3.3" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#exercise-select-columns-of-a-data.frame-containing-floating-point-numbers"><i class="fa fa-check"></i><b>3.3</b> Exercise: select columns of a <code>data.frame</code> containing floating-point numbers</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#hint-1-data-types"><i class="fa fa-check"></i><b>3.3.1</b> Hint 1: data types</a></li>
+<li class="chapter" data-level="3.3.2" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#hint-2-data.frame-dimensions"><i class="fa fa-check"></i><b>3.3.2</b> Hint 2: data.frame dimensions</a></li>
+<li class="chapter" data-level="3.3.3" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#hint-3-select-columns-based-on-a-vector"><i class="fa fa-check"></i><b>3.3.3</b> Hint 3: select columns based on a vector</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#nested-for-loops"><i class="fa fa-check"></i><b>3.4</b> Nested for loops</a></li>
+<li class="chapter" data-level="3.5" data-path="slightly-more-advanced-for-loops.html"><a href="slightly-more-advanced-for-loops.html#parameter-combinations"><i class="fa fa-check"></i><b>3.5</b> Parameter combinations</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html"><i class="fa fa-check"></i><b>4</b> Looping with datasets</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#preliminaries"><i class="fa fa-check"></i><b>4.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="4.2" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#obtaining-a-list-of-files"><i class="fa fa-check"></i><b>4.2</b> Obtaining a list of files</a></li>
+<li class="chapter" data-level="4.3" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#fileList"><i class="fa fa-check"></i><b>4.3</b> Obtaining a list of files with full path names</a></li>
+<li class="chapter" data-level="4.4" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#open-a-single-file"><i class="fa fa-check"></i><b>4.4</b> Open a single file</a></li>
+<li class="chapter" data-level="4.5" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#forLoop"><i class="fa fa-check"></i><b>4.5</b> Getting information about each file within a <code>for</code>-loop</a></li>
+<li class="chapter" data-level="4.6" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#accumulating-all-tibbles-into-a-single-big-tibble"><i class="fa fa-check"></i><b>4.6</b> Accumulating all <code>tibble</code>s into a single big <code>tibble</code></a></li>
+<li class="chapter" data-level="4.7" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#plotting-the-data"><i class="fa fa-check"></i><b>4.7</b> Plotting the data</a></li>
+<li class="chapter" data-level="4.8" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#data-modification-conversion"><i class="fa fa-check"></i><b>4.8</b> Data modification / conversion</a></li>
+<li class="chapter" data-level="4.9" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#a-further-aside-regular-expressions"><i class="fa fa-check"></i><b>4.9</b> A further aside: regular expressions</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="looping-with-datasets.html"><a href="looping-with-datasets.html#regular-expressions-to-the-rescue"><i class="fa fa-check"></i><b>4.9.1</b> Regular expressions to the rescue</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Various exercises on programming in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Various exercises on programming in R</h1>
+<p class="author"><em>Bram Kuijper</em></p>
+<p class="date"><em>2022-01-28</em></p>
+</div>
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>Here a small selection of problems to get some practical exposure to R programming. Some of these exercises may be quite relevant to one’s work, other may be less so. However, relevance to one’s work is not a really good criterion here; we simply want to practice problem solving.</p>
+<div id="prior-knowledge-about-r" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Prior knowledge about R</h2>
+<p>This set of exercises assumes you already have a reasonable understanding of the R basics. Here a bunch of different sources that provide an overview of the R basics:</p>
+<ul>
+<li>Chapters 1-8 of the book <em>The Book of R</em> <span class="citation">(<a href="#ref-Davies2016" role="doc-biblioref">Davies 2016</a>)</span>, which is available in UExeter’s library <a href="https://encore.exeter.ac.uk/iii/encore/record/C__Rb3554370" target="_blank">here</a></li>
+<li><a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.html" target="_blank">An introduction to R</a> freely available from the R website.</li>
+<li>Chapter 2 of the book <em>The R Book</em> <span class="citation">(<a href="#ref-Crawley2013" role="doc-biblioref">Crawley 2013</a>)</span>, which is available in UExeter’s library <a href="https://encore.exeter.ac.uk/iii/encore/record/C__Rb3361719" target="_blank">here</a></li>
+<li>Chapter 1-7 of the book <em>The Art of R Programming</em> <span class="citation">(<a href="#ref-Matloff2011" role="doc-biblioref">Matloff 2011</a>)</span>, which is available in UExeter’s library <a href="https://encore.exeter.ac.uk/iii/encore/record/C__Rb3509192" target="_blank">here</a></li>
+</ul>
+<p>One should not search for pdfs of these books online.</p>
+<div id="finding-help" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Finding help</h3>
+<p>Next to googling everything you don’t understand, you can also find help using the <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/html/Question.html" target="_blank"><code>?</code></a> command in R’s built-in help pages. For example, you can use the <code>?</code> preceding a certain function or variable. For example, in case we want more information about R’s <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/html/str.html"><code>str()</code></a> function, we simply type</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>?str</span></code></pre></div>
+<p>Obviously, next to R’s built-in help pages, search engines are your friend when you hunt for examples.</p>
+<p><strong>Pro-tip: use quotation marks <code>""</code> when consulting help for operators and weird characters</strong> For operators and things with weird characters, using the <code>?</code> help function may not bring you very far. For example, let’s say you are interested in finding out about R’s <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/match.html"><code>%in%</code></a> matching operator:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a>?<span class="sc">%in%</span></span>
+<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: &lt;text&gt;:1:2: unexpected SPECIAL</span></span>
+<span id="cb2-3"><a href="index.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1: ?%in%</span></span>
+<span id="cb2-4"><a href="index.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">##      ^</span></span></code></pre></div>
+<p>Clearly, R chokes on the <code>%</code> character. What now? Easy, just use quotes:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a>?<span class="st">&quot;%in%&quot;</span></span></code></pre></div>
+</div>
+<div id="different-types-of-variables" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Different types of variables</h3>
+<p>You know about variables and different types of data such as <code>character</code>, <code>logical</code>. Also,you know about different data structures such as <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/c.html" target="_blank"><code>c()</code></a> (vectors), <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/data.frame.html" target="_blank"><code>data.frame</code></a>s and <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/list.html" target="_blank"><code>list</code></a>s. Finally, you know that the <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/typeof.html" target="_blank"><code>typeof()</code></a> function can be used to find out what data is contained in a data type. Similarly, also the <a href="https://stat.ethz.ch/R-manual/R-devel/library/utils/html/str.html" target="_blank"><code>str()</code></a> helps you to find out more about the structure of a data type. Please see <a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/" target="_blank">here</a> for a fantastic overview of the different data types and key data structures.</p>
+</div>
+<div id="operators" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Operators</h3>
+<p>Please click the corresponding links if you do not know about <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Arithmetic.html" target="_blank">arithmetic operators</a> such as <code>*</code> (multiplication), <code>^</code> (power), <code>%%</code> (modulo). The same goes for <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html" target="_blank">logical operators</a> such as <code>||</code> (which is the <code>OR</code> operator) and <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Comparison.html" target="_blank">relational operators</a> such as <code>&gt;=</code> (which is the greater-than-or-equal-operator). See <a href="https://bookdown.org/swen/R_for_Everyone/L03.html#r-as-a-calculator" target="_blank">Chapter 4</a> for a brief overview.</p>
+</div>
+<div id="control-flow" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> Control flow</h3>
+<p>Things like <code>if</code>-<code>else</code> statements and <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/ifelse.html" target="_blank"><code>ifelse()</code></a> functions should be understood. Read the freely available <a href="https://adv-r.hadley.nz/control-flow.html" target="_blank">Chapter 5</a> from <span class="citation">(<a href="#ref-Wickham2019" role="doc-biblioref">Wickham 2019</a>)</span> for more information, or chapter 7 of <span class="citation">(<a href="#ref-Matloff2011" role="doc-biblioref">Matloff 2011</a>)</span></p>
+</div>
+<div id="sizes-of-things" class="section level3" number="1.1.5">
+<h3><span class="header-section-number">1.1.5</span> Sizes of things</h3>
+<p>To use loops, knowing the sizes of things in R is important. Hence, you know how to obtain the <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/length.html" target="_blank"><code>length()</code></a> of a vector, or the number of characters in a string of text using <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/nchar.html" target="_blank"><code>nchar()</code></a>. You also know how to obtain the number of rows and columns of a <code>data.frame</code>, using <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/nrow.html" target="_blank"><code>nrow()</code></a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/ncol.html" target="_blank"><code>ncol()</code></a> or its dimensions using <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/dim.html" target="_blank"><code>dim()</code></a>.</p>
+</div>
+</div>
+<div id="selecting-subsets-of-your-data" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Selecting subsets of your data</h2>
+<p>You know the difference between <code>iris[,1]</code>, <code>iris[1,]</code> and <code>iris[1,1]</code>? See <a href="https://adv-r.hadley.nz/subsetting.html" target="_blank">Chapter 4</a> for a great overview of how to subset your data in different ways.</p>
+<div id="loop-structures" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Loop structures</h3>
+<p>You will need to have read about <code>for</code>-loops and potentially also about <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/switch.html" target="_blank"><code>switch()</code></a> statements. Check out chapter 7 of <span class="citation">(<a href="#ref-Matloff2011" role="doc-biblioref">Matloff 2011</a>)</span>, chapter 21 of <span class="citation">(<a href="#ref-Wickham2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span> (available online) or check online for videos on these topics. For example, using the search terms <code>for loops in R</code> provides a bunch of great videos.</p>
+</div>
+</div>
+<div id="some-additional-coding-tips" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Some additional coding tips:</h2>
+<div id="dont-ignore-the-links-and-hints" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Don’t ignore the links and hints</h3>
+<p>Sometimes there are hints provided in the exercises, for example:
+“You can do this by using the <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/paste.html" target="_blank"><code>paste()</code></a> function”, which involves
+you reading the documentation on this function and trying
+some of the provided examples in the documentation. I typically provide hyperlinks to the documentation, which is why the <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/paste.html"><code>paste()</code></a> function here is given in blue. Click on them and read them. Please do.</p>
+</div>
+<div id="try-out-examples-for-yourself" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Try out examples for yourself</h3>
+<p>When reading a book, try the code examples and snippets for yourself, by typing them out (don’t copy-paste them, unless it is a massive amount of code). Only by typing out do you see what’s going on and will you start to memorize the different coding constructs. Moreover, you are bound to make occasional mistakes! And mistakes are good, as the earlier you learn how to hunt for coding errors and solving mistakes the better.</p>
+</div>
+<div id="search-enginges-are-your-friend" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Search enginges are your friend</h3>
+<p>Search engines are your friend. If some function or construct is used that is new to one, google what it is about. Say, one encounters the statement</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X=</span>cars,<span class="at">MARGIN=</span><span class="dv">2</span>,<span class="at">FUN=</span>mean)</span></code></pre></div>
+<p>and one does not know what the <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/apply.html" target="_blank"><code>apply</code></a> statement is about or what the <code>cars</code> variable is about, I’d immediately search for <code>apply r</code> or <code>cars r</code>.</p>
+</div>
+<div id="comment-your-code" class="section level3" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Comment your code</h3>
+<p>Always try to briefly comment each statement (or group of statements), using <code>#</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select even numbers</span></span>
+<span id="cb5-2"><a href="index.html#cb5-2" aria-hidden="true" tabindex="-1"></a>even_odd <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>) <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span></span></code></pre></div>
+</div>
+<div id="keep-an-error-record" class="section level3" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Keep an error record</h3>
+<p>Try to keep a record of all the main error messages you encounter, so that you build a record of different error messages and how they have eventually been resolved. This serves as a great lookup tool for recurring errors.</p>
+<p>An entry in my error record reads, for example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="at">X=</span>cars,<span class="at">MARGIN=</span><span class="dv">2</span>,<span class="at">FUN=</span><span class="fu">mean</span>())</span>
+<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Error in mean.default(): argument &quot;x&quot; is missing, with no default</span></span></code></pre></div>
+<p>This error occurs because the supplied <code>mean()</code> function used to calculate means of the different columns is provided with parentheses <code>()</code>. However, in order for this function to actually calculate means of each column, you simply need to provide the function name <code>mean</code> without the parentheses, or:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(<span class="at">X=</span>cars,<span class="at">MARGIN=</span><span class="dv">2</span>,<span class="at">FUN=</span>mean)</span>
+<span id="cb7-2"><a href="index.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## speed  dist </span></span>
+<span id="cb7-3"><a href="index.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 15.40 42.98</span></span></code></pre></div>
+</div>
+<div id="find-out-the-root-of-errors-using-traceback" class="section level3" number="1.3.6">
+<h3><span class="header-section-number">1.3.6</span> Find out the root of errors using <code>traceback()</code></h3>
+<p>If you stumble upon an error, use R’s <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/traceback.html" target="_blank"><code>traceback()</code></a> function to find the root cause. As <code>traceback()</code> can produce a lot of garbage, it may help to reduce the amount of output, for example by stating <code>traceback(max.lines=5)</code>.</p>
+</div>
+<div id="inspect-values-using-print-or-use-rs-debugger" class="section level3" number="1.3.7">
+<h3><span class="header-section-number">1.3.7</span> Inspect values using <code>print()</code> or use R’s debugger</h3>
+<p>When you have just started to code in R, use as many <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/print.html" target="_blank"><code>print()</code></a> statements as possible, to obtain information about the state of your program and the values of your variables. When you become more experienced, you can start to inform yourself about R’s very handy debugging tools that can do all the variable inspection work for you. Read more about R debugging in the freely available <a href="https://adv-r.hadley.nz/debugging.html">chapter 22</a> of <span class="citation">(<a href="#ref-Wickham2019" role="doc-biblioref">Wickham 2019</a>)</span>.</p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Crawley2013" class="csl-entry">
+Crawley, Michael J. 2013. <em>The <span>R</span> Book</em>. Chichester, UK: John Wiley &amp; Sons.
+</div>
+<div id="ref-Davies2016" class="csl-entry">
+Davies, Tilman M. 2016. <em>The Book of <span>R</span></em>. San Francisco, CA: No Starch Press.
+</div>
+<div id="ref-Matloff2011" class="csl-entry">
+Matloff, Norman. 2011. <em>The Art of <span>R</span> Programming</em>. San Francisco: no starch press.
+</div>
+<div id="ref-Wickham2019" class="csl-entry">
+Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. Boca Raton, FL: CRC Press. <a href="https://adv-r.hadley.nz/index.html">https://adv-r.hadley.nz/index.html</a>.
+</div>
+<div id="ref-Wickham2017" class="csl-entry">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science</em>. Sebastopol, CA: O’Reilly. <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="using-loops-to-calculate-sums-and-sums-of-squares.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Some R exercises on looping constructs.pdf", "Some R exercises on looping constructs.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
